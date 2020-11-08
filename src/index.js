@@ -4,9 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Login from './containers/Auth/Login/Login'
+import Register from './containers/Auth/Register/Register'
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Register />
   </React.StrictMode>,
   document.getElementById('root')
 );
