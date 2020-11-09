@@ -4,15 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Login from './containers/Auth/Login/Login'
-import Register from './containers/Auth/Register/Register'
+import { Provider } from 'react-redux';
+//import thunk from 'redux-thunk';
+//import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Register />
-  </React.StrictMode>,
-  document.getElementById('root')
+
+
+
+const app = (
+ // <Provider store={store}>
+ // <Provider >
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+ // </Provider>
 );
+
+ReactDOM.render( app, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,16 +1,43 @@
-import React from 'react';
-import './App.css';
+import React,{Suspense} from 'react';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
-const app = () => {
+import './App.module.css'; 
+import MainPage from './containers/MainPage/MainPage'
+import Layout from './hoc/Layout/Layout'
+
+const Login = React.lazy(() => {
+  return import('./containers/Auth/Login/Login');
+});
+
+const Register = React.lazy(() => {
+  return import('./containers/Auth/Register/Register');
+});
+
+const app = (props) => {
+
+
+
+  let routes = (
+    <Switch>
+      <Route path="/login" render={(props) => <Login {...props}/>} />
+      <Route path="/register" render={(props) => <Register {...props}/>} />
+      <Route path="/" exact component={MainPage} />
+      <Redirect to="/" />
+    </Switch>
+  );
 
   return(
-        <div className="App">
-        <header className="App-header">
-          <h1>Thesis Begin</h1>
-        </header>
+      <div >
+        <Layout>
+          <Suspense fallback={<p>Loading...</p>}>
+            {routes}
+          </Suspense>
+        </Layout>
       </div>
   )
 
 }
 
-export default app;
+export default withRouter(app);
+
+

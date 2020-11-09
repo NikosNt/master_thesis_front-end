@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-
+import { withRouter } from "react-router-dom";
 
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
@@ -66,7 +66,7 @@ const Register = (props) => {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
-                placeholder: 'Birth Date'
+                placeholder: 'Birth Date  DD/MM/YYYY'
             },
             value: '',
             validation: {
@@ -88,7 +88,7 @@ const Register = (props) => {
     }
 
     const switchToRegisterHandler = ()=>{
-        <Redirect to={"/Register"} />
+        props.history.push("/login");
     }
 
     const formElementsArray = [];
@@ -137,5 +137,5 @@ const Register = (props) => {
 
 }
 
-export default Register ;
+export default withRouter(Register) ;
 

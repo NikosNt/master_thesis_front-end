@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-
+import { withRouter } from "react-router-dom";
 
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
@@ -52,7 +51,7 @@ const LogIn = (props) => {
     }
 
     const switchToRegisterHandler = ()=>{
-        <Redirect to={"/Register"} />
+        props.history.push("/register");
     }
 
     const formElementsArray = [];
@@ -101,5 +100,5 @@ const LogIn = (props) => {
 
 }
 
-export default LogIn ;
+export default withRouter(LogIn) ;
 
