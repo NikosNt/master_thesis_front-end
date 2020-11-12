@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
-import Button from '../../../components/UI/Button/Button'
+import MyButton from '../../../components/UI/Button/MyButton'
 import classes from './Register.module.css';
 
 const Register = (props) => {
@@ -73,7 +72,20 @@ const Register = (props) => {
                 required: true,      
             },
             valid: false,
+        },
+        userType: {
+            elementType: 'select',
+            elementConfig: {
+                options: [
+                    {value: 'user', displayValue: 'User'},
+                    {value: 'businessOwner', displayValue: 'Business owner'}
+                ]
+            },
+            value: 'user',
+            validation: {},
+            valid: true
         }
+
     });
 
     const inputChangedHandler = ( event, controlName ) => {
@@ -118,13 +130,13 @@ const Register = (props) => {
         <div  className={classes.Login}>
             
             <form >
-                <h3 className={classes.Text}>Register</h3>
+                <h2 className={classes.Header}>Register</h2>
                 {form}
-                <Button btnType="Submit">SUBMIT</Button>
+                <MyButton variant="outline-secondary">SUBMIT</MyButton>
                 <hr/>
-                <p>If you are not registered  <Button 
-                    btnType="Danger" clicked={switchToRegisterHandler}>Log In</Button>
-                </p>
+                <p className={classes.Text}>Are you registered ? </p>
+                <MyButton variant="light" clicked={switchToRegisterHandler}>Log In</MyButton>
+              
                 
             </form>
             

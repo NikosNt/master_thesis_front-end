@@ -1,0 +1,13 @@
+.Info{
+    font-family: 'Times New Roman', Times, serif;
+    /* margin: auto; */
+    
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    
+    background-color: rgb(244, 248, 247);
+}

@@ -1,0 +1,26 @@
+.Main{
+    /* margin-top: 10%;
+     */
+     padding-bottom:60px; 
+}
+
+.Button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.Dropdown{
+    
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 
+.Info{
+    
+   
+} */
+
+ 

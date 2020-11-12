@@ -1,16 +1,17 @@
 .Button {
-    background-color: transparent;
+    font-family: 'Times New Roman', Times, serif;
+    /* background-color: transparent;
     border: none;
     color: white;
     outline: none;
     cursor: pointer;
     font: inherit;
     padding: 10px;
-    margin: 10px;
-    font-weight: bold;
+    margin: 10px; */
+    /* font-weight: bold; */
 }
 
-.Button:first-of-type {
+/* .Button:first-of-type {
     margin-left: 0;
     padding-left: 0;
 }
@@ -22,6 +23,9 @@
 
 .Submit {
     color: #54678f;
+    background-color: rgb(175, 185, 187);
+    border-radius: 10% 10% 10% 10%;
+    width: 50%;
 }
 
 .Success {
@@ -30,4 +34,4 @@
 
 .Danger {
     color: #944317;
-}
+} */

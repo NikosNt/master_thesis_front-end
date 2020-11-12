@@ -13,6 +13,10 @@ const Register = React.lazy(() => {
   return import('./containers/Auth/Register/Register');
 });
 
+const Profile = React.lazy(() => {
+  return import('./containers/Profile/Profile');
+});
+
 const app = (props) => {
 
 
@@ -21,6 +25,7 @@ const app = (props) => {
     <Switch>
       <Route path="/login" render={(props) => <Login {...props}/>} />
       <Route path="/register" render={(props) => <Register {...props}/>} />
+      <Route path="/profile" render={(props) => <Profile {...props}/>} />
       <Route path="/" exact component={MainPage} />
       <Redirect to="/" />
     </Switch>

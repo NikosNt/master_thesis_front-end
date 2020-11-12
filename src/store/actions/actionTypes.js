@@ -1,0 +1,16 @@
+export const CITIES_INIT = 'CITIES_INIT';
+export const COUNTRIES_INIT = 'COUNTRIES_INIT';
+export const SERVICES_INIT = 'SERVICES_INIT';
+export const SEARCH_TEXT='SEARCH_TEXT'
+export const COUNTRY_CONTENT = 'COUNTRY_CONTENT';
+export const CITY_CONTENT = 'CITY_CONTENT';
+export const SERVICE_CONTENT = 'SERVICE_CONTENT';
+
+
+
+
+
+
+
+
+

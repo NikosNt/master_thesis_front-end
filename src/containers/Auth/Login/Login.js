@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
-import Button from '../../../components/UI/Button/Button'
+import MyButton from '../../../components/UI/Button/MyButton'
 import classes from './Login.module.css';
 
 const LogIn = (props) => {
@@ -75,19 +75,20 @@ const LogIn = (props) => {
         />
     ) );
 
-
+    const test =(event)=>{
+        console.log(logInForm)
+    }
 
     return(
         <div  className={classes.Login}>
-            
             <form >
-                <h3 className={classes.Text}>Log In</h3>
+                <h2 className={classes.Header}>Log In</h2>
                 {form}
-                <Button btnType="Submit">SUBMIT</Button>
+                <MyButton variant="outline-secondary" clicked={test}>SUBMIT</MyButton>
                 <hr/>
-                <p>If you are not registered  <Button 
-                    btnType="Danger" clicked={switchToRegisterHandler}>Register</Button>
-                </p>
+                <p className={classes.Text}>Don't have an account ?</p> 
+                <MyButton  variant="light" clicked={switchToRegisterHandler}>Register</MyButton>
+                
                 
             </form>
             
