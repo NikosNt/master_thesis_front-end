@@ -11,7 +11,11 @@ export const citiesInit =(cities)=>{
     return{
         type:actionTypes.CITIES_INIT,
        // cities:cities 
-        cities:[{id:5,name:'Athens'}]
+        //cities:[{id:5,name:'Athens'}]
+        cities:[    { id: 1, name: 'Chania'},
+        { id: 2, name: 'Rethimno'},
+        { id: 3, name: 'Hrakleio' },
+        { id: 4, name: 'Agios Nikolaos' },],
     }
 }
 
@@ -28,7 +32,12 @@ export const servicesInit =(services)=>{
     return{
         type:actionTypes.SERVICES_INIT,
         //services:services 
-        services:[{id:5,name:'Mechanics'}]
+        services:[  { id: 1, name: 'Doctor'},
+                    { id: 2, name: 'Bars'},
+                    { id: 3, name: 'Restaurants' },
+                    { id: 4, name: 'Hotel' },
+                    { id: 5, name: 'Mechanics'}
+                 ],
     }
 }
 

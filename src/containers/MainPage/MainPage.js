@@ -2,11 +2,11 @@ import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import classes from './MainPage.module.css';
-import SearchBar from '../../components/UI/SearchBar/SearchBar'
-import MyButton from '../../components/UI/Button/MyButton'
-import Info from '../../components/StartingInfo/StartingInfo'
-import Dropdown from '../../components/UI/Dropdown/Dropdown'
- 
+import SearchBar from '../../components/UI/SearchBar/SearchBar';
+import MyButton from '../../components/UI/Button/MyButton';
+import Info from '../../components/StartingInfo/StartingInfo';
+import Dropdown from '../../components/UI/Dropdown/Dropdown';
+import Footer from '../../components/Footer/Footer';
 
 import * as actions from '../../store/actions/index';
 
@@ -23,7 +23,7 @@ const Mainpage = (props) =>{
           onInitUpdateServiceContent } = props;
 
   useEffect(()=>{
-    OnInitCountries();
+    //OnInitCountries();
     OnInitCities();
     OnInitServices();
   },[OnInitCountries,OnInitCities,OnInitServices])
@@ -39,6 +39,7 @@ const Mainpage = (props) =>{
 
   return(
     <React.Fragment>
+      
       <div className={classes.Main}>
 
         <Info /> 
@@ -57,6 +58,7 @@ const Mainpage = (props) =>{
         <br/> 
 
       </div>
+      <Footer/>
     </React.Fragment>
 )
 

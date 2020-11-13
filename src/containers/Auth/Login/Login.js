@@ -4,7 +4,10 @@ import { withRouter } from "react-router-dom";
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
 import MyButton from '../../../components/UI/Button/MyButton'
+import Footer from '../../../components/Footer/Footer'
 import classes from './Login.module.css';
+
+import {Container,Col,Row} from 'react-bootstrap';
 
 const LogIn = (props) => {
 
@@ -80,23 +83,39 @@ const LogIn = (props) => {
     }
 
     return(
-        <div  className={classes.Login}>
-            <form >
-                <h2 className={classes.Header}>Log In</h2>
-                {form}
-                <MyButton variant="outline-secondary" clicked={test}>SUBMIT</MyButton>
-                <hr/>
-                <p className={classes.Text}>Don't have an account ?</p> 
-                <MyButton  variant="light" clicked={switchToRegisterHandler}>Register</MyButton>
-                
-                
-            </form>
-            
-            {/* <Button
-                clicked={switchAuthModeHandler}
-                btnType="Danger">SWITCH TO {isSignup ? 'SIGNIN' : 'SIGNUP'}
-            </Button>  */}
-        </div>
+        <>
+            <Container   className={classes.Cont}>
+                <Row className={classes.Welcome}>
+                    <Col>
+                        <h1>Welcome to ____ Log In to proceed with more feautures !! </h1>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col  xs={12} md={8} className={classes.Login}>
+                        <form >
+                            <h2 className={classes.Header}>Log In</h2>
+                            {form}
+                            <MyButton variant="outline-secondary" clicked={test}>SUBMIT</MyButton>
+                        </form>
+                    </Col>
+                    <Col xs={6} md={4} className={classes.Info}>
+                        <p className={classes.Par}>Don't have an account ?<br/>Register now to unlock all the features</p> 
+                        <MyButton  size="lg" variant="info" clicked={switchToRegisterHandler}>Register</MyButton>
+                    </Col>
+                </Row> 
+                {/* <Row  className={classes.MoreInfo}>          
+                    <Col xs={12} md={6}  >
+                        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular Services</p>
+                        <p>Doctors<br/>Restaurants<br/>Bars<br/>Gyms<br/>Mechanics<br/></p>
+                    </Col>
+                    <Col xs={12} md={6} > 
+                        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular towns</p>
+                        <p>Athina<br/>Thesalonikh<br/>Hrakleio<br/>Patra<br/>Xania<br/></p>
+                    </Col>
+                </Row> */}
+            </Container>
+            <Footer  />
+        </>
     );
 
 }

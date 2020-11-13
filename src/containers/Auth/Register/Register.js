@@ -5,6 +5,8 @@ import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
 import MyButton from '../../../components/UI/Button/MyButton'
 import classes from './Register.module.css';
+import Footer from '../../../components/Footer/Footer'
+import {Container,Col,Row} from 'react-bootstrap';
 
 const Register = (props) => {
 
@@ -127,24 +129,31 @@ const Register = (props) => {
 
 
     return(
-        <div  className={classes.Login}>
-            
-            <form >
-                <h2 className={classes.Header}>Register</h2>
-                {form}
-                <MyButton variant="outline-secondary">SUBMIT</MyButton>
-                <hr/>
-                <p className={classes.Text}>Are you registered ? </p>
-                <MyButton variant="light" clicked={switchToRegisterHandler}>Log In</MyButton>
-              
-                
-            </form>
-            
-            {/* <Button
-                clicked={switchAuthModeHandler}
-                btnType="Danger">SWITCH TO {isSignup ? 'SIGNIN' : 'SIGNUP'}
-            </Button>  */}
-        </div>
+        <>  
+          <Container   className={classes.Cont}>
+            <Row>
+                <Col xs={12} md={8} className={classes.Register}>
+                    <form >
+                        <h2 className={classes.Header}>Register</h2>
+                        {form}
+                        <MyButton variant="outline-secondary">SUBMIT</MyButton>
+                        <hr/>
+      
+                    </form>
+                </Col>
+                <Col xs={6} md={4} className={classes.Info}>
+                    <p style={{fontSize:'18px',textAlign: 'justify' }}>You can register as a User and find any sevice thats connected(sunergazetai) with our platform.<br/><br/>
+                     Or Register as a services-Bussines owner and get your company-business on the platform for others to find </p>
+                    <br/>
+                    <hr/>
+                    <br/>
+                    <p style={{fontSize:'18px',fontStyle:'italic'}}>Do you already have an acount ? </p>
+                    <MyButton variant="info" clicked={switchToRegisterHandler}>Log In</MyButton>
+                </Col>
+            </Row>  
+</Container>
+        <Footer  />
+        </>
     );
 
 }

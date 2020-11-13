@@ -9,15 +9,17 @@ const initialState={
                 { id: 2, name: 'USA'},
                 { id: 3, name: 'Germany' },],
 
-    cities:[    { id: 1, name: 'Chania'},
-                { id: 2, name: 'Rethimno'},
-                { id: 3, name: 'Hrakleio' },
-                { id: 4, name: 'Agios Nikolaos' },],
+    // cities:[    { id: 1, name: 'Chania'},
+    //             { id: 2, name: 'Rethimno'},
+    //             { id: 3, name: 'Hrakleio' },
+    //             { id: 4, name: 'Agios Nikolaos' },],
+    cities:[],
+    services:[],
+    // services:[  { id: 1, name: 'Doctor'},
+    //             { id: 2, name: 'Bars'},
+    //             { id: 3, name: 'Restaurants' },
+    //             { id: 4, name: 'Hotel' },],
 
-    services:[  { id: 1, name: 'Doctor'},
-                { id: 2, name: 'Bars'},
-                { id: 3, name: 'Restaurants' },
-                { id: 4, name: 'Hotel' },],
     countryContent:'',
     cityContent:'',
     serviceContent:''
@@ -31,12 +33,6 @@ const setSearchText =(state,action) =>{
     });
 }
 
-const citiesInit = ( state, action ) => {
-    return updateObject( state,{
-        cities:state.cities.concat(action.cities)
-    });
-};
-
 const countriesInit = ( state, action ) => {
     return updateObject(state,{
         countries:state.countries.concat(action.countries)
@@ -44,9 +40,31 @@ const countriesInit = ( state, action ) => {
 
 };
 
+
+//to 8ema edw einai oti prosteti sti palia lista ksana kai ksana kai exeis
+// ta idia polles fores 
+// const citiesInit = ( state, action ) => {
+//     return updateObject( state,{
+//         cities:state.cities.concat(action.cities)
+//     });
+// };
+
+const citiesInit = ( state, action ) => {
+    return updateObject( state,{
+        cities:action.cities
+    });
+};
+
+//to idio me ta cities
+// const servicesInit = ( state, action ) => {
+//     return updateObject( state, {
+//         services:state.services.concat(action.services)
+//     });
+// };
+
 const servicesInit = ( state, action ) => {
     return updateObject( state, {
-        services:state.services.concat(action.services)
+        services:action.services
     });
 };
 

@@ -1,27 +1,60 @@
+.Cont {
+    font-family: 'Times New Roman', Times, serif;
+    /* font-size: 1.1rem; */
+
+    /* will cover the 100% of viewport */
+    /* min-height: 100vh; 
+    overflow: hidden;
+    display: block;
+    position: relative;
+    */
+    
+    padding-bottom:100px;/* height of your footer */
+ 
+}
+
+.Welcome{
+    margin:   auto;
+    padding: 30px;
+    text-align: center;
+}
+
+
 .Login {
     margin: 60px auto;
-    width: 80%;
+    /* width: 80%; */
+    height: 400px;
     text-align: center;
-    box-shadow: 0 5px 6px #ccc;
-    border: 2px solid #eee;
-    padding: 20px;
+    padding: 30px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;    
     box-sizing: border-box;
 }
 
-.Text {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.1rem;
-  
+.Info{
+    margin:  auto;
+    text-align: center;
+    /* background-color: #d6aa77; */
+}
+.MoreInfo{
+    /* background-color: #9dc2b9; */
+    padding: 30px;
+    text-align: center;
 }
 
 .Header{
-    font-family: 'Times New Roman', Times, serif;
-    /* font-size: 1.6rem; */
-    color:#54678f;  
+    font-size: 3rem;
+    color:#18889e;  
 }
+.Par{
+    font-size: 1.7rem; 
+     /* text-align: justify; */
+}
+
 
 @media (min-width: 600px) {
     .Login {
-        width: 500px;
+        width: 400px;
     }
 }
