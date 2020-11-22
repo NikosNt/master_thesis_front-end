@@ -11,6 +11,20 @@ import {Container,Col,Row} from 'react-bootstrap';
 const Register = (props) => {
 
     const[logInForm,setLogInForm]= useState({
+        username: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Username'
+            },
+            value: '',
+            validation: {
+                required: true,
+                isEmail: true
+            },
+            valid: false,
+            touched: false
+        },
         email: {
             elementType: 'input',
             elementConfig: {
@@ -63,24 +77,12 @@ const Register = (props) => {
             },
             valid: false,
         },
-        bdate:{
-            elementType: 'input',
-            elementConfig: {
-                type: 'text',
-                placeholder: 'Birth Date  DD/MM/YYYY'
-            },
-            value: '',
-            validation: {
-                required: true,      
-            },
-            valid: false,
-        },
         userType: {
             elementType: 'select',
             elementConfig: {
                 options: [
                     {value: 'user', displayValue: 'User'},
-                    {value: 'businessOwner', displayValue: 'Business owner'}
+                    {value: 'mod', displayValue: 'Business owner'}
                 ]
             },
             value: 'user',
@@ -132,13 +134,18 @@ const Register = (props) => {
         <>  
           <Container   className={classes.Cont}>
             <Row>
+                <Col>
+                    <h1 className={classes.Welcome}>Register now to view all the benefits of ___ </h1>
+                </Col>
+            </Row>
+            <Row>
                 <Col xs={12} md={8} className={classes.Register}>
+                    <h2 className={classes.Header}>Register</h2>
                     <form >
-                        <h2 className={classes.Header}>Register</h2>
+                        
                         {form}
                         <MyButton variant="outline-secondary">SUBMIT</MyButton>
                         <hr/>
-      
                     </form>
                 </Col>
                 <Col xs={6} md={4} className={classes.Info}>
@@ -151,7 +158,7 @@ const Register = (props) => {
                     <MyButton variant="info" clicked={switchToRegisterHandler}>Log In</MyButton>
                 </Col>
             </Row>  
-</Container>
+         </Container>
         <Footer  />
         </>
     );

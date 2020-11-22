@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
-import { withRouter } from "react-router-dom";
+import React, { useState,useEffect } from 'react';
+//import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
 import MyButton from '../../../components/UI/Button/MyButton'
 import Footer from '../../../components/Footer/Footer'
 import classes from './Login.module.css';
+import * as actions from '../../../store/actions/index';
 
 import {Container,Col,Row} from 'react-bootstrap';
 
 const LogIn = (props) => {
 
     const[logInForm,setLogInForm]= useState({
-        email: {
+        username: {
             elementType: 'input',
             elementConfig: {
-                type: 'email',
-                placeholder: 'Mail Address'
+                type: 'text',
+                placeholder: 'username'
             },
             value: '',
             validation: {
                 required: true,
-                isEmail: true
             },
             valid: false,
             touched: false
@@ -42,6 +44,16 @@ const LogIn = (props) => {
         }
     });
 
+    const { onSetAuthRedirectPath,authRedirectPath } = props;
+
+    useEffect(()=>{
+      //  console.log("mphka?")
+        if (authRedirectPath !== '/' ) {
+         //   console.log("nai?")
+            onSetAuthRedirectPath();
+        }
+    },[onSetAuthRedirectPath,authRedirectPath])
+
     const inputChangedHandler = ( event, controlName ) => {
         const updatedControls = updateObject(logInForm, {
             [controlName]: updateObject(logInForm[controlName], {
@@ -55,6 +67,11 @@ const LogIn = (props) => {
 
     const switchToRegisterHandler = ()=>{
         props.history.push("/register");
+    }
+
+    const submitHandler = ( event ) => {
+        event.preventDefault();
+        props.onAuth( logInForm.username.value, logInForm.password.value );
     }
 
     const formElementsArray = [];
@@ -78,12 +95,22 @@ const LogIn = (props) => {
         />
     ) );
 
-    const test =(event)=>{
-        console.log(logInForm)
+    let errorMessage = null;
+    if ( props.error ) {
+        errorMessage = (
+            <p style={{fontWeight: 'bold',color:'red'}}>{props.error}</p>
+        );
+    }
+
+    let authRedirect = null;
+    if ( props.isAuthenticated ) {
+        authRedirect = <Redirect to={props.authRedirectPath} />
     }
 
     return(
         <>
+            {authRedirect}
+            
             <Container   className={classes.Cont}>
                 <Row className={classes.Welcome}>
                     <Col>
@@ -92,10 +119,11 @@ const LogIn = (props) => {
                 </Row>
                 <Row>
                     <Col  xs={12} md={8} className={classes.Login}>
-                        <form >
+                        <form  >
                             <h2 className={classes.Header}>Log In</h2>
                             {form}
-                            <MyButton variant="outline-secondary" clicked={test}>SUBMIT</MyButton>
+                            {errorMessage}
+                            <MyButton variant="outline-secondary" clicked={submitHandler}>SUBMIT</MyButton>
                         </form>
                     </Col>
                     <Col xs={6} md={4} className={classes.Info}>
@@ -120,5 +148,21 @@ const LogIn = (props) => {
 
 }
 
-export default withRouter(LogIn) ;
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        authRedirectPath: state.auth.authRedirectPath
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: ( username, password ) => dispatch( actions.auth( username, password ) ),
+        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+    };
+};
+
+ export default connect( mapStateToProps, mapDispatchToProps )(LogIn) ;
 

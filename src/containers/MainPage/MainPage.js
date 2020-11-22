@@ -36,9 +36,8 @@ const Mainpage = (props) =>{
     console.log(props.serviceContent)
 
   }
-
-  return(
-    <React.Fragment>
+  let page = (
+      <React.Fragment>
       
       <div className={classes.Main}>
 
@@ -60,6 +59,25 @@ const Mainpage = (props) =>{
       </div>
       <Footer/>
     </React.Fragment>
+    )
+
+  if(props.hasRole ==='ROLE_MODERATOR'){
+    page=(
+      <div><p>Mod Page</p></div>
+    )
+  }
+  if(props.hasRole ==='ROLE_ADMIN'){
+    page=(
+      <div><p>Admin Page</p></div>
+    )
+  }
+
+
+
+  return(
+    <React.Fragment>
+      {page}
+    </React.Fragment>
 )
 
 }
@@ -74,6 +92,9 @@ const mapStateToProps = state => {
       countryContent:state.mainPage.countryContent,
       cityContent:state.mainPage.cityContent,
       serviceContent:state.mainPage.serviceContent,
+      hasRole:state.auth.role,
+      token:state.auth.token,
+      isAuthenticated: state.auth.token !== null
 
 
   };

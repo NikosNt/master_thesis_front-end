@@ -17,11 +17,13 @@ import thunk from 'redux-thunk';
 
 import { BrowserRouter } from 'react-router-dom';
 import mainPageReducer from './store/reducers/MainPageReducer'
+import authReducer from './store/reducers/authReducer'
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
-    mainPage: mainPageReducer
+    mainPage: mainPageReducer,
+    auth:authReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
