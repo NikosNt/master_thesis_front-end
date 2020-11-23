@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axios-orders'
 import * as actionTypes from './actionTypes';
 
 
@@ -26,7 +26,6 @@ export const authFail = (error) => {
 
 export const logout = () => {
     localStorage.removeItem('token');
-    //localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
     localStorage.removeItem('role');
     return {
@@ -42,11 +41,7 @@ export const auth = (username, password) => {
             password: password,
             returnSecureToken: true
         };
-        let url = 'http://localhost:8080/api/auth/signin';
-        // if (!isSignup) {
-        //     url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAOqDu39bqhp9GbWy3b9xlQ2NedXCPmJXg';
-        // }
-        axios.post(url, authData)
+        axios.post('api/auth/signin', authData)
             .then(response => {
                 console.log(response);
                // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
@@ -58,7 +53,33 @@ export const auth = (username, password) => {
                 //dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
+
                 dispatch(authFail(err.response.data.error));
+            });
+    };
+};
+
+export const registerUser = (username,email, password,fname,lname,userType) => {
+    return dispatch => {
+        const authData = {
+            username: username,
+            email:email,
+            password: password,
+            fname:fname,
+            lname:lname,
+            role:[userType],
+            coordinatex:"0",
+            coordinatey:"0",
+        };
+        axios.post('api/auth/signup', authData)
+            .then(response => {
+                console.log("epitixos",response)
+                dispatch(auth(authData.username,authData.password));
+            })
+            .catch(err => {
+                console.log("mphka error");
+                console.log(err.response.data.message)
+                dispatch(authFail(err.response.data.message));
             });
     };
 };

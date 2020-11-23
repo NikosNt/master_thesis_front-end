@@ -44,7 +44,7 @@ console.log(props.token);
   );
     
   if(props.isAuthenticated && props.hasRole === 'ROLE_USER'){
-    console.log("user")
+    console.log("route -> user")
      routes = (
       <Switch>
         <Route path="/profile" render={(props) => <Profile {...props}/>} />
@@ -56,7 +56,7 @@ console.log(props.token);
   }
 
   if(props.isAuthenticated && props.hasRole === 'ROLE_ADMIN'){
-    console.log("admin")
+    console.log("route -> admin")
      routes = (
       <Switch>
         <Route path="/profile" render={(props) => <Profile {...props}/>} />
@@ -68,7 +68,7 @@ console.log(props.token);
   }
 
   if(props.isAuthenticated && props.hasRole === 'ROLE_MODERATOR'){
-    console.log("mod")
+    console.log("route -> mod")
      routes = (
       <Switch>
         <Route path="/profile" render={(props) => <Profile {...props}/>} />

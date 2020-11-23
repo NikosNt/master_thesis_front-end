@@ -1,11 +1,11 @@
 import React, { useState,useEffect } from 'react';
-//import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
 import MyButton from '../../../components/UI/Button/MyButton'
+import Spinner from '../../../components/UI/Spinner/Spinner'
 import Footer from '../../../components/Footer/Footer'
 import classes from './Login.module.css';
 import * as actions from '../../../store/actions/index';
@@ -47,9 +47,7 @@ const LogIn = (props) => {
     const { onSetAuthRedirectPath,authRedirectPath } = props;
 
     useEffect(()=>{
-      //  console.log("mphka?")
         if (authRedirectPath !== '/' ) {
-         //   console.log("nai?")
             onSetAuthRedirectPath();
         }
     },[onSetAuthRedirectPath,authRedirectPath])
@@ -95,6 +93,10 @@ const LogIn = (props) => {
         />
     ) );
 
+    if ( props.loading ) {
+        form = <Spinner />
+    }
+
     let errorMessage = null;
     if ( props.error ) {
         errorMessage = (
@@ -131,16 +133,6 @@ const LogIn = (props) => {
                         <MyButton  size="lg" variant="info" clicked={switchToRegisterHandler}>Register</MyButton>
                     </Col>
                 </Row> 
-                {/* <Row  className={classes.MoreInfo}>          
-                    <Col xs={12} md={6}  >
-                        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular Services</p>
-                        <p>Doctors<br/>Restaurants<br/>Bars<br/>Gyms<br/>Mechanics<br/></p>
-                    </Col>
-                    <Col xs={12} md={6} > 
-                        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular towns</p>
-                        <p>Athina<br/>Thesalonikh<br/>Hrakleio<br/>Patra<br/>Xania<br/></p>
-                    </Col>
-                </Row> */}
             </Container>
             <Footer  />
         </>
@@ -166,3 +158,17 @@ const mapDispatchToProps = dispatch => {
 
  export default connect( mapStateToProps, mapDispatchToProps )(LogIn) ;
 
+
+
+
+
+{/* <Row  className={classes.MoreInfo}>          
+    <Col xs={12} md={6}  >
+        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular Services</p>
+        <p>Doctors<br/>Restaurants<br/>Bars<br/>Gyms<br/>Mechanics<br/></p>
+    </Col>
+    <Col xs={12} md={6} > 
+        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular towns</p>
+        <p>Athina<br/>Thesalonikh<br/>Hrakleio<br/>Patra<br/>Xania<br/></p>
+    </Col>
+</Row> */}

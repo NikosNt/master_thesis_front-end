@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { updateObject, checkValidity } from '../../../shared/utility';
 import Input from '../../../components/UI/Input/Input'
 import MyButton from '../../../components/UI/Button/MyButton'
+import Spinner from '../../../components/UI/Spinner/Spinner'
 import classes from './Register.module.css';
 import Footer from '../../../components/Footer/Footer'
+import * as actions from '../../../store/actions/index';
 import {Container,Col,Row} from 'react-bootstrap';
 
 const Register = (props) => {
 
-    const[logInForm,setLogInForm]= useState({
+    const[RegisterForm,setRegisterForm]= useState({
         username: {
             elementType: 'input',
             elementConfig: {
@@ -20,7 +23,6 @@ const Register = (props) => {
             value: '',
             validation: {
                 required: true,
-                isEmail: true
             },
             valid: false,
             touched: false
@@ -93,25 +95,35 @@ const Register = (props) => {
     });
 
     const inputChangedHandler = ( event, controlName ) => {
-        const updatedControls = updateObject(logInForm, {
-            [controlName]: updateObject(logInForm[controlName], {
+        const updatedControls = updateObject(RegisterForm, {
+            [controlName]: updateObject(RegisterForm[controlName], {
                 value: event.target.value,
-                valid: checkValidity( event.target.value, logInForm[controlName].validation ),
+                valid: checkValidity( event.target.value, RegisterForm[controlName].validation ),
                 touched: true
             } )
         } );
-        setLogInForm(updatedControls)
+        setRegisterForm(updatedControls)
     }
 
     const switchToRegisterHandler = ()=>{
         props.history.push("/login");
     }
+    const submitHandler = ( event ) => {
+        event.preventDefault();
+        props.onRegister( RegisterForm.username.value, 
+                      RegisterForm.email.value,
+                      RegisterForm.password.value,
+                      RegisterForm.fname.value,
+                      RegisterForm.lname.value,
+                      RegisterForm.userType.value, );
+                      
+    }
 
     const formElementsArray = [];
-    for ( let key in logInForm ) {
+    for ( let key in RegisterForm ) {
         formElementsArray.push( {
             id: key,
-            config: logInForm[key]
+            config: RegisterForm[key]
         } );
     }
 
@@ -128,10 +140,25 @@ const Register = (props) => {
         />
     ) );
 
+    if ( props.loading ) {
+        form = <Spinner />
+    }
 
+    let errorMessage = null;
+    if ( props.error && props.error != 'Unauthorized' ) {
+        errorMessage = (
+            <p style={{fontWeight: 'bold',color:'red'}}>{props.error}</p>
+        );
+    }
+
+    let authRedirect = null;
+    if ( props.isAuthenticated ) {
+        authRedirect = <Redirect to={props.authRedirectPath} />
+    }
 
     return(
         <>  
+           {authRedirect}
           <Container   className={classes.Cont}>
             <Row>
                 <Col>
@@ -141,10 +168,10 @@ const Register = (props) => {
             <Row>
                 <Col xs={12} md={8} className={classes.Register}>
                     <h2 className={classes.Header}>Register</h2>
-                    <form >
-                        
+                    <form >         
                         {form}
-                        <MyButton variant="outline-secondary">SUBMIT</MyButton>
+                        {errorMessage}
+                        <MyButton variant="outline-secondary"  clicked={submitHandler}>SUBMIT</MyButton>
                         <hr/>
                     </form>
                 </Col>
@@ -165,5 +192,21 @@ const Register = (props) => {
 
 }
 
-export default withRouter(Register) ;
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        authRedirectPath: state.auth.authRedirectPath
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onRegister: ( username,email, password,fname,lname,userType ) => dispatch( actions.registerUser(username,email, password,fname,lname,userType) ),
+        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+    };
+};
+ 
+export default  connect( mapStateToProps, mapDispatchToProps )(Register) ;
 

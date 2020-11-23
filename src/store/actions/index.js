@@ -12,4 +12,5 @@ export{
     setAuthRedirectPath,
     authCheckState,
     logout,
+    registerUser
 }from './authAction'
