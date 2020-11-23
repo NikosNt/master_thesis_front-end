@@ -8,7 +8,7 @@ In develpoment
 
 ### Technologies 
 
-React.js(Redux,Hooks)
-Axios(calls from back end with springboot and MySQL)
+React.js(Redux,Hooks)\
+Axios(calls from back end with springboot and MySQL)\
 React-bootstrap
 
