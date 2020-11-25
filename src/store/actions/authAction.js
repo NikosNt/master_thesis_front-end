@@ -53,7 +53,6 @@ export const auth = (username, password) => {
                 //dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
-
                 dispatch(authFail(err.response.data.error));
             });
     };
@@ -77,8 +76,6 @@ export const registerUser = (username,email, password,fname,lname,userType) => {
                 dispatch(auth(authData.username,authData.password));
             })
             .catch(err => {
-                console.log("mphka error");
-                console.log(err.response.data.message)
                 dispatch(authFail(err.response.data.message));
             });
     };
