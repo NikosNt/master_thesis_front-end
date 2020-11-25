@@ -66,9 +66,7 @@ export const registerUser = (username,email, password,fname,lname,userType) => {
             password: password,
             fname:fname,
             lname:lname,
-            role:[userType],
-            coordinatex:"0",
-            coordinatey:"0",
+            role:[userType]
         };
         axios.post('api/auth/signup', authData)
             .then(response => {
