@@ -8,16 +8,17 @@ const navigationItems = ( props ) => {
         <>
             <ul className={classes.NavigationItems}>
         
-        {/* <NavigationItem link="/" exact>Main</NavigationItem> */}
-        {/* <NavigationItem link="/profile" >Profile</NavigationItem> */}
+                {/* <NavigationItem link="/" exact>Main</NavigationItem> */}
+                {/* <NavigationItem link="/profile" >Profile</NavigationItem> */}
 
-        {props.isAuthenticated ? <NavigationItem link="/profile">Profile</NavigationItem> : null}
-        {!props.isAuthenticated
-            ? <NavigationItem link="/login">Log In</NavigationItem>
-            : <NavigationItem link="/logout">Logout</NavigationItem>}
-    </ul>
-    </>)
+                {props.isAuthenticated ? <NavigationItem link="/profile">Profile</NavigationItem> : null}
+                {!props.isAuthenticated
+                    ? <NavigationItem link="/login">Log In</NavigationItem>
+                    : <NavigationItem link="/logout">Logout</NavigationItem>}
 
-        };
+            </ul>
+        </>)
+
+};
 
 export default navigationItems;

@@ -31,31 +31,27 @@ const Mainpage = (props) =>{
 
   const onSubmitHandler = () =>{
     console.log(props.searchText)
-   // console.log(props.countryContent)
     console.log(props.cityContent)
     console.log(props.serviceContent)
 
   }
   let page = (
       <React.Fragment>
-      
-      <div className={classes.Main}>
-
-        <Info /> 
-        <br/> 
-        <div className={classes.Dropdown}>
-          {/* <Dropdown list={props.countries} label={"country"} changed={(value)=> onInitUpdateCountryContent(value)}></Dropdown> */}
-          <Dropdown list={props.cities} label={"city"} changed={(value)=> onInitUpdateCityContent(value)}></Dropdown>
-          <Dropdown list={props.services} label={"type of business"} changed={(value)=> onInitUpdateServiceContent(value)}></Dropdown> 
-        </div>
-        <br/>   
-        <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
-        <br/>
-        <div className={classes.Button}>
-          <MyButton variant="outline-info" size="lg" clicked={ onSubmitHandler } >Search !</MyButton>
-        </div>
-        <br/> 
-
+        <div className={classes.Main}>
+          <Info /> 
+          <br/> 
+          <div className={classes.Dropdown}>
+            {/* <Dropdown list={props.countries} label={"country"} changed={(value)=> onInitUpdateCountryContent(value)}></Dropdown> */}
+            <Dropdown list={props.cities} label={"city"} changed={(value)=> onInitUpdateCityContent(value)}></Dropdown>
+            <Dropdown list={props.services} label={"type of business"} changed={(value)=> onInitUpdateServiceContent(value)}></Dropdown> 
+          </div>
+          <br/>   
+          <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
+          <br/>
+          <div className={classes.Button}>
+            <MyButton variant="outline-info" size="lg" clicked={ onSubmitHandler } >Search !</MyButton>
+          </div>
+          <br/> 
       </div>
       <Footer/>
     </React.Fragment>
@@ -66,13 +62,12 @@ const Mainpage = (props) =>{
       <div><p>Mod Page</p></div>
     )
   }
+
   if(props.hasRole ==='ROLE_ADMIN'){
     page=(
       <div><p>Admin Page</p></div>
     )
   }
-
-
 
   return(
     <React.Fragment>
@@ -81,7 +76,6 @@ const Mainpage = (props) =>{
 )
 
 }
-
 
 const mapStateToProps = state => {
   return {
@@ -95,8 +89,6 @@ const mapStateToProps = state => {
       hasRole:state.auth.role,
       token:state.auth.token,
       isAuthenticated: state.auth.token !== null
-
-
   };
 };
 
@@ -109,8 +101,6 @@ const mapDispatchToProps = dispatch => {
     onInitUpdateCountryContent:(content) => dispatch( actions.updateCountryContent(content) ),
     onInitUpdateCityContent:(content) => dispatch( actions.updateCityContent(content) ),
     onInitUpdateServiceContent:(content) => dispatch( actions.updateServiceContent(content) ),
-
-
   };
 };
 

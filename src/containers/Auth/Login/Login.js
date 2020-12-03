@@ -93,9 +93,7 @@ const LogIn = (props) => {
         />
     ) );
 
-    if ( props.loading ) {
-        form = <Spinner />
-    }
+    if ( props.loading ) {form = <Spinner />}
 
     let errorMessage = null;
     if ( props.error ) {
@@ -111,8 +109,7 @@ const LogIn = (props) => {
 
     return(
         <>
-            {authRedirect}
-            
+            {authRedirect}  
             <Container   className={classes.Cont}>
                 <Row className={classes.Welcome}>
                     <Col>
@@ -137,7 +134,6 @@ const LogIn = (props) => {
             <Footer  />
         </>
     );
-
 }
 
 const mapStateToProps = state => {

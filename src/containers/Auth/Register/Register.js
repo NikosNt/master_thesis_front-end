@@ -108,15 +108,15 @@ const Register = (props) => {
     const switchToRegisterHandler = ()=>{
         props.history.push("/login");
     }
+
     const submitHandler = ( event ) => {
         event.preventDefault();
         props.onRegister( RegisterForm.username.value, 
-                      RegisterForm.email.value,
-                      RegisterForm.password.value,
-                      RegisterForm.fname.value,
-                      RegisterForm.lname.value,
-                      RegisterForm.userType.value, );
-                      
+                          RegisterForm.email.value,
+                          RegisterForm.password.value,
+                          RegisterForm.fname.value,
+                          RegisterForm.lname.value,
+                          RegisterForm.userType.value);            
     }
 
     const formElementsArray = [];
@@ -140,15 +140,11 @@ const Register = (props) => {
         />
     ) );
 
-    if ( props.loading ) {
-        form = <Spinner />
-    }
+    if ( props.loading ) { form = <Spinner />}
 
     let errorMessage = null;
     if ( props.error && props.error != 'Unauthorized' ) {
-        errorMessage = (
-            <p style={{fontWeight: 'bold',color:'red'}}>{props.error}</p>
-        );
+        errorMessage = ( <p style={{fontWeight: 'bold',color:'red'}}>{props.error}</p> );
     }
 
     let authRedirect = null;
@@ -158,35 +154,35 @@ const Register = (props) => {
 
     return(
         <>  
-           {authRedirect}
-          <Container   className={classes.Cont}>
-            <Row>
-                <Col>
-                    <h1 className={classes.Welcome}>Register now to view all the benefits of ___ </h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} md={8} className={classes.Register}>
-                    <h2 className={classes.Header}>Register</h2>
-                    <form >         
-                        {form}
-                        {errorMessage}
-                        <MyButton variant="outline-secondary"  clicked={submitHandler}>SUBMIT</MyButton>
+            {authRedirect}
+            <Container   className={classes.Cont}>
+                <Row>
+                    <Col>
+                        <h1 className={classes.Welcome}>Register now to view all the benefits of ___ </h1>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12} md={8} className={classes.Register}>
+                        <h2 className={classes.Header}>Register</h2>
+                        <form >         
+                            {form}
+                            {errorMessage}
+                            <MyButton variant="outline-secondary"  clicked={submitHandler}>SUBMIT</MyButton>
+                            <hr/>
+                        </form>
+                    </Col>
+                    <Col xs={6} md={4} className={classes.Info}>
+                        <p style={{fontSize:'18px',textAlign: 'justify' }}>You can register as a User and find any sevice thats connected(sunergazetai) with our platform.<br/><br/>
+                        Or Register as a services-Bussines owner and get your company-business on the platform for others to find </p>
+                        <br/>
                         <hr/>
-                    </form>
-                </Col>
-                <Col xs={6} md={4} className={classes.Info}>
-                    <p style={{fontSize:'18px',textAlign: 'justify' }}>You can register as a User and find any sevice thats connected(sunergazetai) with our platform.<br/><br/>
-                     Or Register as a services-Bussines owner and get your company-business on the platform for others to find </p>
-                    <br/>
-                    <hr/>
-                    <br/>
-                    <p style={{fontSize:'18px',fontStyle:'italic'}}>Do you already have an acount ? </p>
-                    <MyButton variant="info" clicked={switchToRegisterHandler}>Log In</MyButton>
-                </Col>
-            </Row>  
-         </Container>
-        <Footer  />
+                        <br/>
+                        <p style={{fontSize:'18px',fontStyle:'italic'}}>Do you already have an acount ? </p>
+                        <MyButton variant="info" clicked={switchToRegisterHandler}>Log In</MyButton>
+                    </Col>
+                </Row>  
+            </Container>
+            <Footer  />
         </>
     );
 

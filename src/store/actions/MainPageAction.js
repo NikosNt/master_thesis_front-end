@@ -10,12 +10,12 @@ export const setSearchText =(text)=>{
 export const citiesInit =(cities)=>{
     return{
         type:actionTypes.CITIES_INIT,
-       // cities:cities 
+        //cities:cities 
         //cities:[{id:5,name:'Athens'}]
         cities:[    { id: 1, name: 'Chania'},
-        { id: 2, name: 'Rethimno'},
-        { id: 3, name: 'Hrakleio' },
-        { id: 4, name: 'Agios Nikolaos' },],
+                    { id: 2, name: 'Rethimno'},
+                    { id: 3, name: 'Hrakleio' },
+                    { id: 4, name: 'Agios Nikolaos' },],
     }
 }
 
@@ -23,8 +23,8 @@ export const countriesInit =(countries)=>{
     return{
         type:actionTypes.COUNTRIES_INIT,
         //countries:countries
-        countries:[{ id: 4, name: 'Cyprous' },
-                   {id:5,name:'Austria'}]
+        countries:[{id: 4, name: 'Cyprous' },
+                   {id: 5, name:'Austria'}]
     }
 }
 

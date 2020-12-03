@@ -12,7 +12,7 @@ const Logout = (props) => {
         onLogout();
     },[onLogout])
      
-        return <Redirect to="/"/>;
+    return <Redirect to="/"/>;
     
 }
 
@@ -22,5 +22,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-// export default logout;
 export default connect(null, mapDispatchToProps)(Logout);

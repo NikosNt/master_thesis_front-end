@@ -1,8 +1,6 @@
 import React from 'react';
 
 import classes from './StartingInfo.module.css'
-//import Jumbotron  from 'react-bootstrap/Jumbotron';
-//import Container  from 'react-bootstrap/Jumbotron';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const startingInfo = (props) =>{

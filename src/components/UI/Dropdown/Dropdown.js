@@ -7,19 +7,17 @@ import classes from './Dropdown.module.css';
 
 const Dropdown = (props) =>{
 
-
-return(
-    <DropdownList   className={classes.Dropdown}
-                    data={props.list}
-                    valueField='id'
-                    textField='name'
-                    defaultValue={props.label}
-                    onChange={props.changed}
-  />
-)
+  return(
+      <DropdownList   className={classes.Dropdown}
+                      data={props.list}
+                      valueField='id'
+                      textField='name'
+                      defaultValue={props.label}
+                      onChange={props.changed}
+      />
+  )
 
 }
-
 
 export default Dropdown;
 

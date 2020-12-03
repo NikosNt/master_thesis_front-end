@@ -24,16 +24,16 @@ const App = (props) => {
 
   const { onTryAutoSignup } = props;  //to kanw giati apo ta props  mono to "onTryAutoSignup" 8a alaksei
 
-
-
   useEffect (()=>{
     //props.onTryAutoSignup();
     onTryAutoSignup();
   },[onTryAutoSignup])  //meta to komma gia na treksei mia fora ...an balw kati mesa an allaze auto 8a ksanakane render
 
-console.log(props.hasRole);
-console.log(props.token);
-
+  //console log testing purposes
+  console.log(props.hasRole);
+  console.log(props.token);
+  //---------------------------
+  
   let routes = (
     <Switch>
       <Route path="/login" render={(props) => <Login {...props}/>} />

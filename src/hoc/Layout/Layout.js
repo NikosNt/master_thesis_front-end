@@ -6,18 +6,13 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 const Layout = (props) => {
-   const [sideDrawerIsVisible,setSideDrawerIsVisible] = useState(false)
+    const [sideDrawerIsVisible,setSideDrawerIsVisible] = useState(false)
 
-    const sideDrawerClosedHandler = () => {
-        setSideDrawerIsVisible(false);
-    }
+    const sideDrawerClosedHandler = () => { setSideDrawerIsVisible(false); }
 
-    const sideDrawerToggleHandler = () => {
-        setSideDrawerIsVisible(!sideDrawerIsVisible);
-    }
+    const sideDrawerToggleHandler = () => { setSideDrawerIsVisible(!sideDrawerIsVisible);}
 
-
-        return (
+    return (
             <React.Fragment>
                 <Toolbar
                     role={props.hasRole}
@@ -32,7 +27,7 @@ const Layout = (props) => {
                     {props.children}
                 </main>
             </React.Fragment>
-        )
+    )
     
 }
 
@@ -43,5 +38,4 @@ const mapStateToProps = state => {
     };
 };
 
-// export default Layout ;
 export default connect( mapStateToProps )( Layout );
