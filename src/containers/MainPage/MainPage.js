@@ -14,19 +14,16 @@ import * as actions from '../../store/actions/index';
 const Mainpage = (props) =>{
 
 
-  const { OnInitCountries,
-          OnInitCities,
-          OnInitServices,
+  const { OnfetchCities,
+          OnfetchServices,
           OnInitSearchText,
-         // onInitUpdateCountryContent,
           onInitUpdateCityContent,
           onInitUpdateServiceContent } = props;
 
   useEffect(()=>{
-    //OnInitCountries();
-    OnInitCities();
-    OnInitServices();
-  },[OnInitCountries,OnInitCities,OnInitServices])
+    OnfetchCities();
+    OnfetchServices();
+  },[OnfetchCities,OnfetchServices])
 
 
   const onSubmitHandler = () =>{
@@ -79,11 +76,9 @@ const Mainpage = (props) =>{
 
 const mapStateToProps = state => {
   return {
-      countries: state.mainPage.countries,
       cities: state.mainPage.cities,
       services: state.mainPage.services,  
       searchText:state.mainPage.searchText,
-      countryContent:state.mainPage.countryContent,
       cityContent:state.mainPage.cityContent,
       serviceContent:state.mainPage.serviceContent,
       hasRole:state.auth.role,
@@ -94,11 +89,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    OnInitCountries: () => dispatch( actions.countriesInit() ),
-    OnInitCities: () => dispatch( actions.citiesInit() ),
-    OnInitServices: () => dispatch( actions.servicesInit() ),
+    OnfetchCities: ()=> dispatch( actions.fetchCities() ),
+    OnfetchServices: () => dispatch( actions.fetchServices() ),
     OnInitSearchText: (text) => dispatch( actions.setSearchText(text) ),
-    onInitUpdateCountryContent:(content) => dispatch( actions.updateCountryContent(content) ),
     onInitUpdateCityContent:(content) => dispatch( actions.updateCityContent(content) ),
     onInitUpdateServiceContent:(content) => dispatch( actions.updateServiceContent(content) ),
   };

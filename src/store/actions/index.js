@@ -1,9 +1,7 @@
 export {
-    citiesInit,
-    countriesInit,
-    servicesInit,
+    fetchCities,
+    fetchServices,
     setSearchText,
-    updateCountryContent,
     updateCityContent,
     updateServiceContent
 } from './MainPageAction';

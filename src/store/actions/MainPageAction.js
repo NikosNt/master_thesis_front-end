@@ -1,3 +1,4 @@
+import axios from '../../axios-orders'
 import * as actionTypes from './actionTypes';
 
 export const setSearchText =(text)=>{
@@ -10,42 +11,48 @@ export const setSearchText =(text)=>{
 export const citiesInit =(cities)=>{
     return{
         type:actionTypes.CITIES_INIT,
-        //cities:cities 
-        //cities:[{id:5,name:'Athens'}]
-        cities:[    { id: 1, name: 'Chania'},
-                    { id: 2, name: 'Rethimno'},
-                    { id: 3, name: 'Hrakleio' },
-                    { id: 4, name: 'Agios Nikolaos' },],
+        cities:cities 
     }
 }
-
-export const countriesInit =(countries)=>{
-    return{
-        type:actionTypes.COUNTRIES_INIT,
-        //countries:countries
-        countries:[{id: 4, name: 'Cyprous' },
-                   {id: 5, name:'Austria'}]
+export const fetchCities = () => {
+    return dispatch => {
+        axios.get('api/services/business/by/cities')
+        .then( res => {
+            const citiess = [];
+            for(let key in res.data){
+                citiess.push({
+                    name:res.data[key],
+                    id:parseInt(key)+1,
+                });
+            }
+        dispatch(citiesInit(citiess));
+        })
     }
+
 }
 
 export const servicesInit =(services)=>{
     return{
         type:actionTypes.SERVICES_INIT,
-        //services:services 
-        services:[  { id: 1, name: 'Doctor'},
-                    { id: 2, name: 'Bars'},
-                    { id: 3, name: 'Restaurants' },
-                    { id: 4, name: 'Hotel' },
-                    { id: 5, name: 'Mechanics'}
-                 ],
+        services:services 
     }
 }
 
-export const updateCountryContent =(content)=>{
-    return{
-      type:actionTypes.COUNTRY_CONTENT  ,
-      countryContent:content
-    }   
+export const fetchServices = () => {
+    return dispatch => {
+        axios.get('api/services/business/by/types')
+        .then( res => {
+            const types = [];
+            for(let key in res.data){
+                types.push({
+                    name:res.data[key],
+                    id:parseInt(key)+1,
+                });
+            }
+        dispatch(servicesInit(types));
+        })
+    }
+
 }
 
 export const updateCityContent =(content)=>{
