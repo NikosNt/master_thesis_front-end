@@ -53,7 +53,8 @@ export const auth = (username, password) => {
                 //dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
-                dispatch(authFail(err.response.data.error));
+                console.log(err)
+                dispatch(authFail(err));
             });
     };
 };
@@ -74,7 +75,7 @@ export const registerUser = (username,email, password,fname,lname,userType) => {
                 dispatch(auth(authData.username,authData.password));
             })
             .catch(err => {
-                dispatch(authFail(err.response.data.message));
+                dispatch(authFail(err));
             });
     };
 };

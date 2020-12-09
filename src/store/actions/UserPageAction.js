@@ -1,6 +1,13 @@
 import axios from '../../axios-orders'
 import * as actionTypes from './actionTypes';
 
+export const loadFail = (error) => {
+    return {
+        type: actionTypes.LOAD_FAIL,
+        error: error
+    };
+};
+
 export const setSearchText =(text)=>{
     return{
       type:actionTypes.SEARCH_TEXT  ,
@@ -27,6 +34,10 @@ export const fetchCities = () => {
             }
         dispatch(citiesInit(citiess));
         })
+        .catch(err => {
+            console.log(err)
+            dispatch(loadFail(err))
+        });
     }
 
 }
@@ -51,6 +62,9 @@ export const fetchServices = () => {
             }
         dispatch(servicesInit(types));
         })
+        .catch(err => {
+            dispatch(loadFail(err))
+        });
     }
 
 }
@@ -69,3 +83,32 @@ export const updateServiceContent =(content)=>{
     }   
 }
 
+
+export const loadServicesCompanies =(content)=>{
+    return{
+      type:actionTypes.LOAD_SERVICES_COMPANIES  ,
+      loadedServices_Companies:content
+    }   
+}
+
+export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
+    console.log("city ->",city," typeBusiness ->",typeBusiness," typeBusiness ->",searchText)
+    return dispatch => {
+        axios.get('api/services/business/all')
+        .then( res => {
+            const all_business = [];
+            for(let key in res.data){
+                all_business.push({
+                    ...res.data[key]
+                });
+            }
+            for(let klidi in all_business){
+                console.log(all_business[klidi]);
+            }
+           // dispatch(loadServicesCompanies(business));
+        })
+        .catch(err => {
+            dispatch(loadFail(err))
+        });
+    }
+}

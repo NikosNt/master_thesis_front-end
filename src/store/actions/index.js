@@ -3,8 +3,9 @@ export {
     fetchServices,
     setSearchText,
     updateCityContent,
-    updateServiceContent
-} from './MainPageAction';
+    updateServiceContent,
+    fetchServicesCompanies
+} from './UserPageAction';
 export{
     auth,
     setAuthRedirectPath,
