@@ -26,22 +26,28 @@ const UserPage = (props) =>{
 
 
   const onSubmitHandler = () =>{
-    // console.log(props.searchText)
-    // console.log(props.cityContent.name)
-    // console.log(props.serviceContent.name)
-    OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText)
+    //console.log("Sto user Page")
+    //na kanw kati gia na leei kati prin klikaristoun oi epixiriseis
+    //an alaksw page na midenizete to state
   }
 
-  let selected_services = (
-    <React.Fragment>
-      <ViewBusiness/>
-      <ViewBusiness/>
-      <ViewBusiness/>
-      <ViewBusiness/>
-      <ViewBusiness/>
-      <ViewBusiness/>
-      </React.Fragment>
-  )
+  for(let klidi in props.loadedServices_Companies){
+        console.log(props.loadedServices_Companies[klidi]);
+    }
+
+  let selected_services = (<p>Select city and or business type to view the results</p>);
+
+  selected_services = props.loadedServices_Companies.map(buss =>(
+    <ViewBusiness key={buss.id}
+                  name={buss.business_name} 
+                  info={buss.info} 
+                  phones={buss.phones} 
+                  address={buss.address}
+                  owners={buss.owner}
+                  rating={buss.rating} 
+                  reference={buss.ref}           
+    />
+  ))
 
   return(
     <React.Fragment>
@@ -57,7 +63,7 @@ const UserPage = (props) =>{
       <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
       <br/>
       <div className={classes.Button}>
-        <MyButton variant="outline-info" size="lg" clicked={ onSubmitHandler } >Search !</MyButton>
+        <MyButton variant="outline-info" size="lg" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); onSubmitHandler()} } >Search !</MyButton>
       </div>
       <br/> 
       {selected_services}
@@ -74,6 +80,7 @@ const mapStateToProps = state => {
       searchText:state.userPage.searchText,
       cityContent:state.userPage.cityContent,
       serviceContent:state.userPage.serviceContent,
+      loadedServices_Companies:state.userPage.loadedServices_Companies,
       hasRole:state.auth.role,
       token:state.auth.token,
       isAuthenticated: state.auth.token !== null

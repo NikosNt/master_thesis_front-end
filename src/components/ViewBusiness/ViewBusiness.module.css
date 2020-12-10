@@ -1,8 +1,25 @@
 .ViewBusiness {
     width: 85%;
+    border-radius: 20px;
     border: 1px solid rgb(209, 204, 204);
-    box-shadow: 0 2px 3px rgb(121, 120, 120);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
     padding: 10px;
     margin: 10px auto;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    background-color: rgb(244, 248, 247);
+}
+
+.SpanStyle{
+    text-transform: capitalize;
+    display: inline-block;
+    margin: 0 6px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+}
+
+.Test{
+  
+    float: right;
 }

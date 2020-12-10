@@ -92,20 +92,31 @@ export const loadServicesCompanies =(content)=>{
 }
 
 export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
-    console.log("city ->",city," typeBusiness ->",typeBusiness," typeBusiness ->",searchText)
+   // console.log("city ->",city," typeBusiness ->",typeBusiness," searchText ->",searchText)
     return dispatch => {
         axios.get('api/services/business/all')
         .then( res => {
             const all_business = [];
-            for(let key in res.data){
-                all_business.push({
-                    ...res.data[key]
-                });
+            if( !city && !typeBusiness  && searchText === "Or search" ){
+                for(let key in res.data){
+                    all_business.push({
+                        ...res.data[key]
+                    });
+                }
+            }else if ( city && typeBusiness  && searchText === "Or search" ){
+                console.log("city kai type oxi search")
+                // for(let key in res.data){
+                //     all_business.push({
+                //         ...res.data[key]
+                //     });
+                // }
+
             }
-            for(let klidi in all_business){
-                console.log(all_business[klidi]);
-            }
-           // dispatch(loadServicesCompanies(business));
+
+            // for(let klidi in all_business){
+            //     console.log(all_business[klidi]);
+            // }
+            dispatch(loadServicesCompanies(all_business));
         })
         .catch(err => {
             dispatch(loadFail(err))
