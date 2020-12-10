@@ -92,30 +92,75 @@ export const loadServicesCompanies =(content)=>{
 }
 
 export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
-   // console.log("city ->",city," typeBusiness ->",typeBusiness," searchText ->",searchText)
+    console.log("city ->",city," typeBusiness ->",typeBusiness," searchText ->",searchText)
     return dispatch => {
         axios.get('api/services/business/all')
         .then( res => {
             const all_business = [];
-            if( !city && !typeBusiness  && searchText === "Or search" ){
+            if( !city && !typeBusiness  && searchText === "Or search" ){//an den exw epilogh
                 for(let key in res.data){
                     all_business.push({
                         ...res.data[key]
                     });
                 }
-            }else if ( city && typeBusiness  && searchText === "Or search" ){
-                console.log("city kai type oxi search")
-                // for(let key in res.data){
-                //     all_business.push({
-                //         ...res.data[key]
-                //     });
-                // }
+            }else if ( city && !typeBusiness  && searchText === "Or search" ){//an exw epileksh mono polh
+                for(let key in res.data){
+                    let counter = 0;
+                    for (let polh in res.data[key].address){
+                        if(res.data[key].address[polh].city === city && counter ===0){
+                            counter=1;
+                            all_business.push({
+                                ...res.data[key]
+                            });                            
+                        }
+                    }
+                }
+            }else if  (!city && typeBusiness  && searchText === "Or search" ){//an exw epileksh mono type
+                for(let key in res.data){
+                    for (let tupos in res.data[key].b_type){
+                        if(res.data[key].b_type[tupos].type === typeBusiness ){
+                            all_business.push({
+                                ...res.data[key]
+                            });                            
+                        }
+                    }
+                }
+            }else if  (!city && !typeBusiness  && searchText !== "Or search" ){//an exei epileksi mono search bar
+                for(let key in res.data){
+                    for (let tupos in res.data[key].b_type){
+                        if(res.data[key].b_type[tupos].type === searchText ){
+                            all_business.push({
+                                ...res.data[key]
+                            });                            
+                        }
+                    }
+                }
+            }else if  (city && typeBusiness  && searchText === "Or search" ){//an exei epileksi polh kai type
+                const temp_business= [];
+                for(let key in res.data){
+                    let counter = 0;
+                    for (let polh in res.data[key].address){
+                        if(res.data[key].address[polh].city === city && counter ===0){
+                            counter=1;
+                            temp_business.push({
+                                ...res.data[key]
+                            });                            
+                        }
+                    }
+                }
+                for(let key in temp_business){
+                    for (let tupos in temp_business[key].b_type){
+                        if(temp_business[key].b_type[tupos].type === typeBusiness ){
+                            all_business.push({
+                                ...temp_business[key]
+                            });                            
+                        }
+                    }
+                }
 
+            }else if  (city && !typeBusiness  && searchText !== "Or search" ){//an exei epileksi polh kai type
+                console.log("kai polh kai searchbar")
             }
-
-            // for(let klidi in all_business){
-            //     console.log(all_business[klidi]);
-            // }
             dispatch(loadServicesCompanies(all_business));
         })
         .catch(err => {
