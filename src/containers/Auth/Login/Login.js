@@ -153,18 +153,3 @@ const mapDispatchToProps = dispatch => {
 };
 
  export default connect( mapStateToProps, mapDispatchToProps )(LogIn) ;
-
-
-
-
-
-{/* <Row  className={classes.MoreInfo}>          
-    <Col xs={12} md={6}  >
-        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular Services</p>
-        <p>Doctors<br/>Restaurants<br/>Bars<br/>Gyms<br/>Mechanics<br/></p>
-    </Col>
-    <Col xs={12} md={6} > 
-        <p style={{fontWeight: 'bold',fontSize:'22px'}}>Popular towns</p>
-        <p>Athina<br/>Thesalonikh<br/>Hrakleio<br/>Patra<br/>Xania<br/></p>
-    </Col>
-</Row> */}

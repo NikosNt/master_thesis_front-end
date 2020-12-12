@@ -13,12 +13,14 @@ import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 import userPageReducer from './store/reducers/UserPageReducer'
 import authReducer from './store/reducers/authReducer'
+import moderatorReducer from './store/reducers/ModeratorReducer'
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
     userPage: userPageReducer,
-    auth:authReducer
+    auth:authReducer,
+    modPage:moderatorReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

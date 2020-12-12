@@ -25,11 +25,14 @@ export const fetchCities = () => {
     return dispatch => {
         axios.get('api/services/business/by/cities')
         .then( res => {
-            const citiess = [];
+            let citiess = [];
+            citiess = [
+                {name:"All cities" ,id:0},
+            ]
             for(let key in res.data){
                 citiess.push({
                     name:res.data[key],
-                    id:parseInt(key)+1,
+                    id:parseInt(res.data[key].id)+1,
                 });
             }
         dispatch(citiesInit(citiess));
@@ -53,11 +56,15 @@ export const fetchServices = () => {
     return dispatch => {
         axios.get('api/services/business/by/types')
         .then( res => {
-            const types = [];
+            let types = [];
+            types = [
+                {name:"All types" ,id:0},
+               // {name:"none" ,id:1},
+            ]
             for(let key in res.data){
                 types.push({
                     name:res.data[key],
-                    id:parseInt(key)+1,
+                    id:parseInt(res.data[key].id)+1,
                 });
             }
         dispatch(servicesInit(types));
@@ -97,13 +104,13 @@ export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
         axios.get('api/services/business/all')
         .then( res => {
             const all_business = [];
-            if( !city && !typeBusiness  && searchText === "Or search" ){//an den exw epilogh
+            if( (!city || city === "All cities") && (!typeBusiness || typeBusiness === "All types")  && (searchText === "Or search" || searchText === "" ) ){//an den exw epilogh
                 for(let key in res.data){
                     all_business.push({
                         ...res.data[key]
                     });
                 }
-            }else if ( city && !typeBusiness  && searchText === "Or search" ){//an exw epileksh mono polh
+            }else if ( city && (!typeBusiness || typeBusiness ==="All types")   && (searchText === "Or search" || searchText === "" ) ){//an exw epileksh mono polh
                 for(let key in res.data){
                     let counter = 0;
                     for (let polh in res.data[key].address){
@@ -115,7 +122,7 @@ export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
                         }
                     }
                 }
-            }else if  (!city && typeBusiness  && searchText === "Or search" ){//an exw epileksh mono type
+            }else if  ((!city || city === "All cities") && typeBusiness  && (searchText === "Or search" || searchText === "" )){//an exw epileksh mono type
                 for(let key in res.data){
                     for (let tupos in res.data[key].b_type){
                         if(res.data[key].b_type[tupos].type === typeBusiness ){
@@ -125,7 +132,7 @@ export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
                         }
                     }
                 }
-            }else if  (!city && !typeBusiness  && searchText !== "Or search" ){//an exei epileksi mono search bar
+            }else if  ((!city || city === "All cities")   &&  (searchText !== "Or search" || searchText !== "" ) ){//an exei epileksi mono search bar
                 for(let key in res.data){
                     for (let tupos in res.data[key].b_type){
                         if(res.data[key].b_type[tupos].type === searchText ){
@@ -135,7 +142,7 @@ export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
                         }
                     }
                 }
-            }else if  (city && typeBusiness  && searchText === "Or search" ){//an exei epileksi polh kai type
+            }else if  (city && typeBusiness  &&  (searchText === "Or search" || searchText === "" ) ){//an exei epileksi polh kai type
                 const temp_business= [];
                 for(let key in res.data){
                     let counter = 0;
@@ -158,7 +165,7 @@ export const fetchServicesCompanies=(city,typeBusiness,searchText)=>{
                     }
                 }
 
-            }else if  (city && !typeBusiness  && searchText !== "Or search" ){//an exei epileksi polh kai type
+            }else if  (city && !typeBusiness  &&  (searchText !== "Or search" || searchText !== "" ) ){//an exei epileksi polh kai search
                 console.log("kai polh kai searchbar")
             }
             dispatch(loadServicesCompanies(all_business));

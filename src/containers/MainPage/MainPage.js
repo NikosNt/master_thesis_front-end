@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import Footer from '../../components/Footer/Footer';
 import UserPage from './UserPage/UserPage'
+import ModeratorPage from './ModeratorPage/ModeratorPage'
+
 
 
 const Mainpage = (props) =>{
@@ -11,7 +13,7 @@ const Mainpage = (props) =>{
   let page = (
     <React.Fragment>
       <div>
-        <p>test</p>
+        <p>Loading ...</p>
       </div>
     </React.Fragment>
   )
@@ -21,7 +23,7 @@ const Mainpage = (props) =>{
   }
 
   if(props.hasRole ==='ROLE_MODERATOR'){
-    page=( <div><p>Mod Page</p></div> )
+    page=( <ModeratorPage/> )
   }
 
   if(props.hasRole ==='ROLE_ADMIN'){

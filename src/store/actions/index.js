@@ -6,6 +6,11 @@ export {
     updateServiceContent,
     fetchServicesCompanies
 } from './UserPageAction';
+
+export {
+    fetchBusiness
+} from './ModeratorAction';
+
 export{
     auth,
     setAuthRedirectPath,

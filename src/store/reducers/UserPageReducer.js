@@ -4,7 +4,7 @@ import { updateObject } from '../../shared/utility'
 
 const initialState={
     loading:false,
-    searchText:'Or search',
+    searchText:'',
     cities:[],
     services:[],
     cityContent:'',
@@ -82,7 +82,7 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.LOAD_SERVICES_COMPANIES: return loadServicesCompanies(state,action);
         default: return state;
     }
-;
+
 }
 
 export default reducer

@@ -59,7 +59,6 @@ const App = (props) => {
     console.log("route -> admin")
      routes = (
       <Switch>
-        <Route path="/profile" render={(props) => <Profile {...props}/>} />
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={MainPage} />
         <Redirect to="/" />
@@ -71,7 +70,6 @@ const App = (props) => {
     console.log("route -> mod")
      routes = (
       <Switch>
-        <Route path="/profile" render={(props) => <Profile {...props}/>} />
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={MainPage} />
         <Redirect to="/" />

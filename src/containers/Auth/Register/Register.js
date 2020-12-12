@@ -143,7 +143,7 @@ const Register = (props) => {
     if ( props.loading ) { form = <Spinner />}
 
     let errorMessage = null;
-    if ( props.error && props.error != 'Unauthorized' ) {
+    if ( props.error && props.error !== 'Unauthorized' ) {
         errorMessage = ( <p style={{fontWeight: 'bold',color:'red'}}>{props.error}</p> );
     }
 

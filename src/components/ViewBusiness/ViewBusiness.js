@@ -31,7 +31,7 @@ const ViewBusiness = (props) =>{
         ownerOutput = "  No owners available yet "
     }
     if(!props.address.length ){
-        addressOutput = "  No address available yet "
+        addressOutput = " No address available yet "
     }
 
     return(
