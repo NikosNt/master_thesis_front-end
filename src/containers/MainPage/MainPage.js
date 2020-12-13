@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-import Footer from '../../components/Footer/Footer';
+//import Footer from '../../components/Footer/Footer';
 import UserPage from './UserPage/UserPage'
 import ModeratorPage from './ModeratorPage/ModeratorPage'
 
@@ -33,7 +33,7 @@ const Mainpage = (props) =>{
   return(
     <React.Fragment>
       {page}
-      <Footer/>
+      {/* <Footer/> */}
     </React.Fragment>
   )
 

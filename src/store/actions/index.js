@@ -8,7 +8,9 @@ export {
 } from './UserPageAction';
 
 export {
-    fetchBusiness
+    fetchBusiness,
+    createBusiness,
+    updateBusiness
 } from './ModeratorAction';
 
 export{

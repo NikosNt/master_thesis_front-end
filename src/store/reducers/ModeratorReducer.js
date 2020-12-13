@@ -3,7 +3,28 @@ import { updateObject } from '../../shared/utility'
 
 const initialState = {
     modBusiness : [],
-    newModBusiness : [],
+    newModBusiness : {
+        moderatorId:'',
+        business_name:'',
+        rating:0,
+        info:'',
+        ref:'',
+        owner:[],
+        b_type:[],
+        address:[],
+        phones:[]
+    },
+    updateBusiness : {
+        moderatorId:'',
+        business_name:'',
+        rating:0,
+        info:'',
+        ref:'',
+        owner:[{fname:'',lname:''}],
+        b_type:[],
+        address:[],
+        phones:[]
+    },
     error : null
 };
 
@@ -18,6 +39,11 @@ const createModBusiness = ( state, action ) => {
         newModBusiness:action.newModBusiness
     });
 }
+const updateModBusiness = ( state, action ) => {
+    return updateObject( state,{
+        updateBusiness:action.updateBusiness
+    });
+}
 
 const loadModFail = (state, action) => {
     return updateObject( state, {
@@ -30,6 +56,8 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.LOAD_MOD_BUSINESS: return loadModBusinessInit( state, action );
         case actionTypes.LOAD_MOD_FAIL: return loadModFail( state, action );
         case actionTypes.CREATE_MOD_BUSINESS: return createModBusiness( state, action );
+        case actionTypes.UPDATE_BUSINESS: return updateModBusiness( state, action );
+
 
         // case actionTypes.CREATE_MOD_BUSINESS: return createModBusiness( state, action );
         // case actionTypes.CREATE_MOD_BUSINESS: return createModBusiness( state, action );

@@ -16,13 +16,6 @@ export const loadModBusinessInit = (modBusiness) => {
     }
 }
 
-export const createModBusiness = (newModBusiness) => {
-    return {
-        type: actionTypes.CREATE_MOD_BUSINESS,
-        newModBusiness: newModBusiness
-    }
-}
-
 export const fetchBusiness = (modId) => {
     return dispatch => {
         axios.get('api/services/business/mod/'+ modId)
@@ -39,4 +32,73 @@ export const fetchBusiness = (modId) => {
         });
     }
 
+}
+
+export const createModBusiness = () => {
+    return {
+        type: actionTypes.CREATE_MOD_BUSINESS,
+        newModBusiness:  {
+            moderatorId:'',
+            business_name:'',
+            rating:0,
+            info:'',
+            ref:'',
+            owner:[],
+            b_type:[],
+            address:[],
+            phones:[]
+        },
+    }
+}
+
+export const createBusiness = (business) => {
+    console.log(business)
+    return dispatch => {
+        axios.post('api/services/business/add',business)
+        .then(response => {
+            console.log("added epitixos", response);
+            dispatch(fetchBusiness(business.moderatorId));
+            dispatch(createModBusiness());//midenizei to obj 
+        })
+        .catch(err => {
+            console.log(err)
+            //dispatch(loadModFail(err))
+        });
+
+    }
+}
+
+
+export const updateModBusiness = () => {
+    return {
+        type: actionTypes.UPDATE_BUSINESS,
+        updateBusiness:  {
+            moderatorId:'',
+            business_name:'',
+            rating:0,
+            info:'',
+            ref:'',
+            owner:[],
+            b_type:[],
+            address:[],
+            phones:[]
+        },
+    }
+}
+
+export const updateBusiness = (business,id) => {
+    console.log(business)
+    return dispatch => {
+        axios.put('api/services/business/update/' +id , business)
+        .then(response => {
+            console.log("updated epitixos", response);
+            dispatch(fetchBusiness(business.moderatorId));
+            dispatch(updateModBusiness());//midenizei to obj 
+        })
+        .catch(err => {
+            console.log(err)
+            //dispatch(loadModFail(err))
+        });
+
+    }
 }
