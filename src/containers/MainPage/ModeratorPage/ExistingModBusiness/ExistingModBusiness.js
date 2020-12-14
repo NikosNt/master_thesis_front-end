@@ -2,8 +2,14 @@ import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import classes from './ExistingModBusiness.module.css';
 import MyButton from '../../../../components/UI/Button/MyButton'
+import DeleteProp from '../../../../components/ModComponents/DeleteProp'
+
+import * as actions from '../../../../store/actions/index';
 
 const ExistingModBusiness = (props) =>{
+
+    const {OnupdateModBusiness,OnupdateBusiness,OndeletePropBusiness} = props;
+
     const[businessUpdate,setBusinessUpdate]=useState({
         moderatorId: props.modBusiness.moderatorId,
         business_name:props.modBusiness.business_name,
@@ -12,41 +18,36 @@ const ExistingModBusiness = (props) =>{
         ref:props.modBusiness.ref,
         owner:{fname:'',lname:''} ,
         b_type:{type:''},
-        address:{city:'',street:'',street_numberv:null,zip_code:null,latitude:null,longitude:null},
+        address:{city:'',street:'',street_number:null,zip_code:null,latitude:null,longitude:null},
         phones:{phone_number:''} 
     })
 
-
-    let phoneOutput = props.modBusiness.phones.map(ph =>(
-        <div key={ph.id}>
-            <span>{ph.phone_number}</span>
-            <MyButton variant="danger" clicked={() => propDelete(ph.id)}> Delete</MyButton>
-        </div>  
+    let phoneOutput=props.modBusiness.phones.map(ph =>(
+        <DeleteProp key={ph.id} onClick={() => propDelete(ph.id,"phone")}>
+            {ph.phone_number}
+        </DeleteProp>
     ))
-
+     
     let ownerOutput = props.modBusiness.owner.map(owner =>(
-        <div key={owner.id}>
-            <span>{owner.fname} {owner.lname}</span>
-            <MyButton variant="danger" clicked={() => propDelete(owner.id)}> Delete</MyButton>
-        </div>  
+        <DeleteProp key={owner.id} onClick={() => propDelete(owner.id,"owner")}>
+            {owner.fname} {owner.lname}
+        </DeleteProp>
     ))
 
     let addressOutput = props.modBusiness.address.map(address =>(
-        <div key={address.id}>
-            <span> {address.city} {address.zipcode} {address.street} {address.street_number} </span>
-            <MyButton variant="danger" clicked={() => propDelete(address.id)}> Delete</MyButton>
-        </div>  
+        <DeleteProp key={address.id} onClick={() => propDelete(address.id,"address")}>
+            {address.city} {address.zip_code} {address.street} {address.street_number}
+        </DeleteProp>
     ))
 
     let TypeOutput = props.modBusiness.b_type.map(tupos =>(
-        <div key={tupos.id}>
-            <span>{tupos.type}</span>
-            <MyButton variant="danger" clicked={() => propDelete(tupos.id)}> Delete</MyButton>
-        </div>  
+        <DeleteProp key={tupos.id} onClick={() => propDelete(tupos.id,"type")}>
+           {tupos.type}
+        </DeleteProp>
     ))
 
-    const propDelete = (id) =>{
-        console.log("To id ",id);
+    const propDelete = (id,prop) =>{
+        OndeletePropBusiness(id,prop,props.modBusiness.moderatorId);
     }
 
     const onAddProp = (propName ) =>{
@@ -69,11 +70,26 @@ const ExistingModBusiness = (props) =>{
         if(propName === "type"){
             props.updateBusiness.b_type =[ businessUpdate.b_type];
         }
-        console.log(props.updateBusiness);
-        console.log(businessUpdate);
-
+        OnupdateBusiness(props.updateBusiness,props.modBusiness.id);
+        OnupdateModBusiness();
     }
 
+    const onAddBasicInfo = () =>{
+        props.updateBusiness.moderatorId = businessUpdate.moderatorId;
+        props.updateBusiness.business_name = businessUpdate.business_name;
+        props.updateBusiness.rating = businessUpdate.rating;
+        props.updateBusiness.info = businessUpdate.info;
+        props.updateBusiness.ref = businessUpdate.ref;
+        OnupdateBusiness( props.updateBusiness,props.modBusiness.id);
+    }
+
+    const onUpdatePropValueHandler = (value,parentProp,prop) => {
+        setBusinessUpdate(prevState => ({ ...prevState, [parentProp]:{...prevState[parentProp],[prop]:value} }))
+    }
+
+    const onUpdateBasicValueHandler = (value,prop) => {
+        setBusinessUpdate(prevState => ({ ...prevState,[prop]:value  }))
+    }
     
 
     return(
@@ -87,45 +103,52 @@ const ExistingModBusiness = (props) =>{
                 <p>Business ID : {props.modBusiness.id}</p>
                 <p>Business owner ID : {props.modBusiness.moderatorId}</p>
                 <p >Business Rating : {props.modBusiness.rating}</p>
-                <span>Business Name: </span> <input style={{width:"70%"}} defaultValue={props.modBusiness.business_name} onChange={ (event) =>{setBusinessUpdate(prevState => ({ ...prevState,business_name:event.target.value  }))} }/><p/>
-                <span>Reference Site: </span> <input style={{width:"70%"}}   defaultValue={props.modBusiness.ref}/>
-                <p>Description : </p> <textarea style={{width:"100%",height:"130px" }} defaultValue={props.modBusiness.info} />   
+                <span>Business Name: </span> <input style={{width:"70%"}} defaultValue={props.modBusiness.business_name}
+                                                                          onChange={ (event) =>{onUpdateBasicValueHandler(event.target.value,"business_name")} }/><p/>
+                <span>Reference Site: </span> <input style={{width:"70%"}}  defaultValue={props.modBusiness.ref}
+                                                                            onChange={ (event) =>{onUpdateBasicValueHandler(event.target.value,"ref")}}/>
+                <p>Description : </p> <textarea style={{width:"100%",height:"130px" }} defaultValue={props.modBusiness.info}  
+                                                                                       onChange={ (event) =>{onUpdateBasicValueHandler(event.target.value,"info")}}/>  
                 <br/>
-                <MyButton variant="info"  > Update </MyButton>
+                <MyButton variant="info"  clicked={() => onAddBasicInfo()} > Update </MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Phones:</h5>
                 {phoneOutput}
                 <hr/>
-                <input className={classes.InputStyle}  /><MyButton variant="success" > Add </MyButton>
+                <input className={classes.InputStyle}  maxLength="10" placeholder="Phone" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"phones","phone_number") }}/>
+                <MyButton variant="success"  clicked={() => onAddProp("phone")} > Add </MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Owners:</h5>
                 {ownerOutput}
                 <hr/>
-                <input className={classes.InputStyle} placeholder="Name" onChange={ (event) =>{setBusinessUpdate(prevState => ({ ...prevState, owner:{...prevState.owner,fname:event.target.value} }))} }/>
-                <input  className={classes.InputStyle} placeholder="Last Name" onChange={ (event) =>{setBusinessUpdate(prevState => ({ ...prevState, owner:{...prevState.owner,lname:event.target.value} }))}  }/> 
+                <input className={classes.InputStyle} placeholder="Name" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"owner","fname") }}/>
+                <input className={classes.InputStyle} placeholder="Last Name" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"owner","lname")}}/> 
+                        {/* onChange={ (event) =>{setBusinessUpdate(prevState => ({ ...prevState, owner:{...prevState.owner,lname:event.target.value} }))}  } */}
                 <MyButton variant="success"  clicked={() => onAddProp("owner")} > Add</MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Address:</h5>
                 {addressOutput}
                 <hr/>
-                <input className={classes.InputStyle} placeholder="City"/>
-                <input className={classes.InputStyle} placeholder="Zip Code"/>
-                <input className={classes.InputStyle} placeholder="street"/><br/>
-                <input className={classes.InputStyle} placeholder="street number"/>
-                <input className={classes.InputStyle} placeholder="Latitude"/>
-                <input className={classes.InputStyle} placeholder="Longitude"/><br/>
-                <MyButton variant="success" > Add </MyButton>
+                <input className={classes.InputStyle} placeholder="City" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","city")} }/>
+                <input className={classes.InputStyle} maxLength="5" placeholder="Zip Code" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","zip_code")} }/>
+                <input className={classes.InputStyle} placeholder="street" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","street")} }/><br/>
+                <input className={classes.InputStyle} placeholder="street number" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","street_number")} }/>
+                <input className={classes.InputStyle} maxLength="7" placeholder="Latitude" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","latitude")} }/>
+                <input className={classes.InputStyle} maxLength="7" placeholder="Longitude" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
+                <MyButton variant="success" clicked={() => onAddProp("address")} > Add </MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Types:</h5>
                 {TypeOutput}
                 <hr/>
-                <input  className={classes.InputStyle} /><MyButton variant="success" > Add </MyButton>
-            </div>
-           
+                <input  className={classes.InputStyle} placeholder="type" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"b_type","type") }}/>
+                <MyButton variant="success"  clicked={() => onAddProp("type")}> Add </MyButton>
+            </div> 
+            <br/>
+            <br/><br/>
         </>
     )
 
@@ -144,7 +167,10 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-        
+        OnupdateModBusiness: ()=> dispatch( actions.updateModBusiness() ),
+        OnupdateBusiness: (updatedBusiness,id)=> dispatch( actions.updateBusiness(updatedBusiness,id) ),
+        OndeletePropBusiness: (id,prop,modId)=> dispatch( actions.deletePropBusiness(id,prop,modId) ),
+
     };
   };
 

@@ -6,7 +6,7 @@ import SearchBar from '../../../components/UI/SearchBar/SearchBar'
 import MyButton from '../../../components/UI/Button/MyButton';
 import Info from '../../../components/StartingInfo/StartingInfo';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
-import ViewBusiness from '../../../components/ViewBusiness/ViewBusiness'
+import ViewBusiness from '../../../components/UserComponents/ViewBusiness/ViewBusiness'
 
 import * as actions from '../../../store/actions/index';
 
@@ -22,7 +22,8 @@ const UserPage = (props) =>{
   useEffect(()=>{
     OnfetchCities();
     OnfetchServices();
-  },[OnfetchCities,OnfetchServices])
+     
+  },[OnfetchCities,OnfetchServices,])
 
 
   const onSubmitHandler = () =>{

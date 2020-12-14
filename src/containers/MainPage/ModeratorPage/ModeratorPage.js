@@ -25,9 +25,9 @@ const ModeratorPage = (props) =>{
         modPage=<ExistingModBusiness  />
     }
     return( 
-            <>  
-                {modPage}
-            </>  
+        <>  
+            {modPage}
+        </>  
     )
 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import classes from './ViewBusiness.module.css';
-import MyButton from '../UI/Button/MyButton';
+import MyButton from '../../UI/Button/MyButton';
 
 const ViewBusiness = (props) =>{
 
@@ -36,8 +36,8 @@ const ViewBusiness = (props) =>{
 
     return(
         <div className={classes.ViewBusiness}>
-            <p>Business Name: {props.name}</p>
-            <p>Info: {props.info}</p>
+            <h4>{props.name}</h4>
+            <p>Description : </p> <p>{props.info}</p> 
             <p>Phones:{phoneOutput}</p>
             <p>Owners:{ownerOutput}</p>
             <p>Address:{addressOutput}</p>

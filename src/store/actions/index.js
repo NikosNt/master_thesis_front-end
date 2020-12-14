@@ -10,7 +10,8 @@ export {
 export {
     fetchBusiness,
     createBusiness,
-    updateBusiness
+    deletePropBusiness,
+    updateBusiness,updateModBusiness
 } from './ModeratorAction';
 
 export{

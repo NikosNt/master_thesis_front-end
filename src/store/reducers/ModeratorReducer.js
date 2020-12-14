@@ -20,7 +20,7 @@ const initialState = {
         rating:0,
         info:'',
         ref:'',
-        owner:[{fname:'',lname:''}],
+        owner:[],
         b_type:[],
         address:[],
         phones:[]

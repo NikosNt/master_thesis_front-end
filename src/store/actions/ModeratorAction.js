@@ -87,18 +87,34 @@ export const updateModBusiness = () => {
 }
 
 export const updateBusiness = (business,id) => {
-    console.log(business)
     return dispatch => {
         axios.put('api/services/business/update/' +id , business)
         .then(response => {
             console.log("updated epitixos", response);
             dispatch(fetchBusiness(business.moderatorId));
-            dispatch(updateModBusiness());//midenizei to obj 
         })
         .catch(err => {
             console.log(err)
             //dispatch(loadModFail(err))
         });
+    }
+}
 
+export const deletePropBusiness = (id,prop,modId) => {
+    return dispatch => {
+        let path = '';
+        if(prop === "phone"){  path = 'api/services/props/phone/delete/'+id   }
+        if(prop === "owner"){  path = 'api/services/props/owner/delete/'+id  }
+        if(prop === "address"){  path = 'api/services/props/address/delete/'+id  }
+        if(prop === "type"){  path = 'api/services/props/type/delete/' +id }
+        axios.delete(path)
+        .then(response => {
+            console.log("deleted", response);
+            dispatch(fetchBusiness(modId));
+        })
+        .catch(err => {
+            console.log(err)
+            //dispatch(loadModFail(err))
+        });
     }
 }
