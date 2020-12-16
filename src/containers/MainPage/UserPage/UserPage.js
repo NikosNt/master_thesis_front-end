@@ -52,24 +52,24 @@ const UserPage = (props) =>{
 
   return(
     <React.Fragment>
-    <div className={classes.Main}>
-      <Info /> 
-      <br/> 
-      <div className={classes.Dropdown}>
-        {/* <Dropdown list={props.countries} label={"country"} changed={(value)=> onInitUpdateCountryContent(value)}></Dropdown> */}
-        <Dropdown list={props.cities} label={"city"} changed={(value)=> onInitUpdateCityContent(value)}></Dropdown>
-        <Dropdown list={props.services} label={"type of business"} changed={(value)=> onInitUpdateServiceContent(value)}></Dropdown> 
-      </div>
-      <br/>   
-      <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
-      <br/>
-      <div className={classes.Button}>
-        <MyButton variant="outline-info" size="lg" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); onSubmitHandler()} } >Search !</MyButton>
-      </div>
-      <br/> 
-      {selected_services}
-  </div>
-</React.Fragment>
+      <div className={classes.Main}>
+        <Info /> 
+        <br/> 
+        <div className={classes.Dropdown}>
+          {/* <Dropdown list={props.countries} label={"country"} changed={(value)=> onInitUpdateCountryContent(value)}></Dropdown> */}
+          <Dropdown list={props.cities} label={"city"} changed={(value)=> onInitUpdateCityContent(value)}></Dropdown>
+          <Dropdown list={props.services} label={"type of business"} changed={(value)=> onInitUpdateServiceContent(value)}></Dropdown> 
+        </div>
+        <br/>   
+        <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
+        <br/>
+        <div className={classes.Button}>
+          <MyButton variant="outline-info" size="lg" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); onSubmitHandler()} } >Search !</MyButton>
+        </div>
+        <br/> 
+        {selected_services}
+    </div>
+  </React.Fragment>
 )
 
 }
@@ -99,5 +99,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-//export default Mainpage;
 export default connect( mapStateToProps,mapDispatchToProps )( UserPage );

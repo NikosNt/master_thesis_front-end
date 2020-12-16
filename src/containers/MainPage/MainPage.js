@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Footer from '../../components/Footer/Footer';
 import UserPage from './UserPage/UserPage'
 import ModeratorPage from './ModeratorPage/ModeratorPage'
-
+import AdminPage from './AdminPage/AdminPage'
 
 
 const Mainpage = (props) =>{
@@ -27,7 +27,7 @@ const Mainpage = (props) =>{
   }
 
   if(props.hasRole ==='ROLE_ADMIN'){
-    page=( <div><p>Admin Page</p></div> )
+    page=(<AdminPage /> )
   }
 
   return(

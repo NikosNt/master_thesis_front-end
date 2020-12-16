@@ -5,7 +5,7 @@ export {
     updateCityContent,
     updateServiceContent,
     fetchServicesCompanies
-} from './UserPageAction';
+} from './UserAction';
 
 export {
     fetchBusiness,
@@ -13,6 +13,11 @@ export {
     deletePropBusiness,
     updateBusiness,updateModBusiness
 } from './ModeratorAction';
+
+export {
+    fetchAdminServicesCompanies,
+    deleteAdminServicesCompanies
+} from './AdminAction';
 
 export{
     auth,
