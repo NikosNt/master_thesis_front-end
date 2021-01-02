@@ -10,7 +10,8 @@ const initialState={
     cityContent:'',
     serviceContent:'',
     error: null,
-    loadedServices_Companies:[]
+    loadedServices_Companies:[],
+    resultMessage:''
     
 };
 
@@ -34,12 +35,6 @@ const citiesInit = ( state, action ) => {
     });
 };
 
-//to idio me ta cities
-// const servicesInit = ( state, action ) => {
-//     return updateObject( state, {
-//         services:state.services.concat(action.services)
-//     });
-// };
 
 const servicesInit = ( state, action ) => {
     return updateObject( state, {
@@ -65,9 +60,16 @@ const loadFail = (state, action) => {
     });
 };
 
+const setResultMessage = (state, action) => {
+    return updateObject( state, {
+        resultMessage: action.resultMessage,
+    });
+};
+
 const loadServicesCompanies = ( state, action ) => {
     return updateObject( state,{
-        loadedServices_Companies:action.loadedServices_Companies
+        loadedServices_Companies:action.loadedServices_Companies,
+        resultMessage:action.resultMessage
     });
 };
 
@@ -80,6 +82,7 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.CITY_CONTENT: return updateCityContent(state,action);
         case actionTypes.SERVICE_CONTENT: return updateServiceContent(state,action);
         case actionTypes.LOAD_SERVICES_COMPANIES: return loadServicesCompanies(state,action);
+        case actionTypes.RESULT_MESSAGE: return setResultMessage(state,action); 
         default: return state;
     }
 

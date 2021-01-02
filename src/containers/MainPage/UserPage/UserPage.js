@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './UserPage.module.css';
@@ -17,26 +17,29 @@ const UserPage = (props) =>{
           OnInitSearchText,
           onInitUpdateCityContent,
           onInitUpdateServiceContent,
-          OnfetchServicesCompanies } = props;
+          OnfetchServicesCompanies,
+          OnInitSetResultMessage } = props;
 
   useEffect(()=>{
     OnfetchCities();
     OnfetchServices();
-     
-  },[OnfetchCities,OnfetchServices,])
+    OnInitSearchText('');
+    OnInitSetResultMessage('');
+  },[OnfetchCities,OnfetchServices,OnInitSearchText,OnInitSetResultMessage])
+
 
 
   const onSubmitHandler = () =>{
     //console.log("Sto user Page")
     //na kanw kati gia na leei kati prin klikaristoun oi epixiriseis
-    //an alaksw page na midenizete to state
+
   }
 
   for(let klidi in props.loadedServices_Companies){
         console.log(props.loadedServices_Companies[klidi]);
     }
 
-  let selected_services = (<p>Select city and or business type to view the results</p>);
+  let  selected_services = null;
 
   selected_services = props.loadedServices_Companies.map(buss =>(
     <ViewBusiness key={buss.id}
@@ -50,13 +53,14 @@ const UserPage = (props) =>{
     />
   ))
 
+
+
   return(
     <React.Fragment>
       <div className={classes.Main}>
         <Info /> 
         <br/> 
         <div className={classes.Dropdown}>
-          {/* <Dropdown list={props.countries} label={"country"} changed={(value)=> onInitUpdateCountryContent(value)}></Dropdown> */}
           <Dropdown list={props.cities} label={"city"} changed={(value)=> onInitUpdateCityContent(value)}></Dropdown>
           <Dropdown list={props.services} label={"type of business"} changed={(value)=> onInitUpdateServiceContent(value)}></Dropdown> 
         </div>
@@ -67,7 +71,9 @@ const UserPage = (props) =>{
           <MyButton variant="outline-info" size="lg" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); onSubmitHandler()} } >Search !</MyButton>
         </div>
         <br/> 
+        <h4 className={classes.NoResult} > {props.resultMessage} </h4>
         {selected_services}
+       
     </div>
   </React.Fragment>
 )
@@ -82,6 +88,8 @@ const mapStateToProps = state => {
       cityContent:state.userPage.cityContent,
       serviceContent:state.userPage.serviceContent,
       loadedServices_Companies:state.userPage.loadedServices_Companies,
+      resultMessage:state.userPage.resultMessage,
+      
       hasRole:state.auth.role,
       token:state.auth.token,
       isAuthenticated: state.auth.token !== null
@@ -93,6 +101,7 @@ const mapDispatchToProps = dispatch => {
     OnfetchCities: ()=> dispatch( actions.fetchCities() ),
     OnfetchServices: () => dispatch( actions.fetchServices() ),
     OnInitSearchText: (text) => dispatch( actions.setSearchText(text) ),
+    OnInitSetResultMessage: (message) => dispatch( actions.setResultMessage(message) ),
     onInitUpdateCityContent:(content) => dispatch( actions.updateCityContent(content) ),
     onInitUpdateServiceContent:(content) => dispatch( actions.updateServiceContent(content) ),
     OnfetchServicesCompanies: (city,typeBusiness,searchText)=> dispatch( actions.fetchServicesCompanies(city,typeBusiness,searchText) ),

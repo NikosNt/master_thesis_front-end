@@ -8,6 +8,13 @@ export const loadFail = (error) => {
     };
 };
 
+export const setResultMessage = (message) => {
+    return {
+        type: actionTypes.RESULT_MESSAGE,
+        resultMessage : message
+    };
+};
+
 export const setSearchText = (text) => {
     return {
         type: actionTypes.SEARCH_TEXT,
@@ -91,18 +98,21 @@ export const updateServiceContent = (content) => {
 }
 
 
-export const loadServicesCompanies = (content) => {
+export const loadServicesCompanies = (content,message) => {
     return {
         type: actionTypes.LOAD_SERVICES_COMPANIES,
-        loadedServices_Companies: content
+        loadedServices_Companies: content,
+        resultMessage: message
     }
 }
 
 export const fetchServicesCompanies = (city, typeBusiness, searchText) => {
+ 
     if (!city) { city = "empty" }
     if (!typeBusiness) { typeBusiness = "empty" }
     if (searchText === "") { searchText = "empty" }
-
+  
+    let message = "" ;
     return dispatch => {
         axios.get('api/services/business/by/' + city + '/' + typeBusiness + '/' + searchText + '/')
             .then(res => {
@@ -112,7 +122,11 @@ export const fetchServicesCompanies = (city, typeBusiness, searchText) => {
                         ...res.data[key]
                     });
                 }
-                dispatch(loadServicesCompanies(all_business));
+
+                if(Object.keys(all_business).length === 0){      
+                    message = 'No results for the selected :('
+                }
+                dispatch(loadServicesCompanies(all_business,message));
             })
             .catch(err => {
                 dispatch(loadFail(err))

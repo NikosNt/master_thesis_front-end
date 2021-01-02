@@ -2,6 +2,7 @@ export {
     fetchCities,
     fetchServices,
     setSearchText,
+    setResultMessage,
     updateCityContent,
     updateServiceContent,
     fetchServicesCompanies
