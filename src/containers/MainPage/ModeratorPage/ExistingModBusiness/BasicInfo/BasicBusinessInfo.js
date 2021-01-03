@@ -1,12 +1,13 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
-import classes from './ExistingModBusiness.module.css';
-import MyButton from '../../../../components/UI/Button/MyButton'
-import DeleteProp from '../../../../components/ModComponents/DeleteProp'
+import classes from './BasicBusinessInfo.module.css';
+import MyButton from '../../../../../components/UI/Button/MyButton'
+import DeleteProp from '../../../../../components/ModComponents/DeleteProp'
 
-import * as actions from '../../../../store/actions/index';
 
-const ExistingModBusiness = (props) =>{
+import * as actions from '../../../../../store/actions/index';
+
+const BasicBusinessInfo = (props) =>{
 
     const {OnupdateModBusiness,OnupdateBusiness,OndeletePropBusiness} = props;
 
@@ -50,7 +51,7 @@ const ExistingModBusiness = (props) =>{
         OndeletePropBusiness(id,prop,props.modBusiness.moderatorId);
     }
 
-    const onAddProp = (propName ) =>{
+    const addPropHandler = (propName ) =>{
 
         props.updateBusiness.moderatorId= props.modBusiness.moderatorId;
         props.updateBusiness.business_name=props.modBusiness.business_name;
@@ -72,9 +73,10 @@ const ExistingModBusiness = (props) =>{
         }
         OnupdateBusiness(props.updateBusiness,props.modBusiness.id);
         OnupdateModBusiness();
+        console.log(businessUpdate);
     }
 
-    const onAddBasicInfo = () =>{
+    const addBasicInfoHandler = () =>{
         props.updateBusiness.moderatorId = businessUpdate.moderatorId;
         props.updateBusiness.business_name = businessUpdate.business_name;
         props.updateBusiness.rating = businessUpdate.rating;
@@ -83,11 +85,12 @@ const ExistingModBusiness = (props) =>{
         OnupdateBusiness( props.updateBusiness,props.modBusiness.id);
     }
 
-    const onUpdatePropValueHandler = (value,parentProp,prop) => {
+    const updatePropValueHandler = (value,parentProp,prop) => {
+        
         setBusinessUpdate(prevState => ({ ...prevState, [parentProp]:{...prevState[parentProp],[prop]:value} }))
     }
 
-    const onUpdateBasicValueHandler = (value,prop) => {
+    const updateBasicValueHandler = (value,prop) => {
         setBusinessUpdate(prevState => ({ ...prevState,[prop]:value  }))
     }
     
@@ -104,48 +107,49 @@ const ExistingModBusiness = (props) =>{
                 <p>Business owner ID : {props.modBusiness.moderatorId}</p>
                 <p >Business Rating : {props.modBusiness.rating}</p>
                 <span>Business Name: </span> <input style={{width:"70%"}} defaultValue={props.modBusiness.business_name}
-                                                                          onChange={ (event) =>{onUpdateBasicValueHandler(event.target.value,"business_name")} }/><p/>
+                                                                          onChange={ (event) =>{updateBasicValueHandler(event.target.value,"business_name")} }/><p/>
                 <span>Reference Site: </span> <input style={{width:"70%"}}  defaultValue={props.modBusiness.ref}
-                                                                            onChange={ (event) =>{onUpdateBasicValueHandler(event.target.value,"ref")}}/>
+                                                                            onChange={ (event) =>{updateBasicValueHandler(event.target.value,"ref")}}/>
                 <p>Description : </p> <textarea style={{width:"100%",height:"130px" }} defaultValue={props.modBusiness.info}  
-                                                                                       onChange={ (event) =>{onUpdateBasicValueHandler(event.target.value,"info")}}/>  
+                                                                                       onChange={ (event) =>{updateBasicValueHandler(event.target.value,"info")}}/>  
                 <br/>
-                <MyButton variant="info"  clicked={() => onAddBasicInfo()} > Update </MyButton>
+                <MyButton variant="info"  clicked={() => addBasicInfoHandler()} > Update </MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Phones:</h5>
                 {phoneOutput}
                 <hr/>
-                <input className={classes.InputStyle}  maxLength="10" placeholder="Phone" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"phones","phone_number") }}/>
-                <MyButton variant="success"  clicked={() => onAddProp("phone")} > Add </MyButton>
+                <input className={classes.InputStyle}  maxLength="10" placeholder="Phone" onChange={ (event) => {updatePropValueHandler(event.target.value,"phones","phone_number") }}/>
+                <br/>
+                <MyButton variant="success"  clicked={() => addPropHandler("phone")} > Add </MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Owners:</h5>
                 {ownerOutput}
                 <hr/>
-                <input className={classes.InputStyle} placeholder="Name" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"owner","fname") }}/>
-                <input className={classes.InputStyle} placeholder="Last Name" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"owner","lname")}}/> 
+                <input className={classes.InputStyle} placeholder="Name" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","fname") }}/>
+                <input className={classes.InputStyle} placeholder="Last Name" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","lname")}}/> 
                         {/* onChange={ (event) =>{setBusinessUpdate(prevState => ({ ...prevState, owner:{...prevState.owner,lname:event.target.value} }))}  } */}
-                <MyButton variant="success"  clicked={() => onAddProp("owner")} > Add</MyButton>
+                <br/><MyButton variant="success"  clicked={() => addPropHandler("owner")} > Add</MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Address:</h5>
                 {addressOutput}
                 <hr/>
-                <input className={classes.InputStyle} placeholder="City" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","city")} }/>
-                <input className={classes.InputStyle} maxLength="5" placeholder="Zip Code" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","zip_code")} }/>
-                <input className={classes.InputStyle} placeholder="street" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","street")} }/><br/>
-                <input className={classes.InputStyle} placeholder="street number" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","street_number")} }/>
-                <input className={classes.InputStyle} maxLength="7" placeholder="Latitude" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","latitude")} }/>
-                <input className={classes.InputStyle} maxLength="7" placeholder="Longitude" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
-                <MyButton variant="success" clicked={() => onAddProp("address")} > Add </MyButton>
+                <input className={classes.InputStyle} placeholder="City" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","city")} }/>
+                <input className={classes.InputStyle} maxLength="5" placeholder="Zip Code" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","zip_code")} }/>
+                <input className={classes.InputStyle} placeholder="street" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street")} }/><br/>
+                <input className={classes.InputStyle} placeholder="street number" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street_number")} }/>
+                <input className={classes.InputStyle} maxLength="7" placeholder="Latitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","latitude")} }/>
+                <input className={classes.InputStyle} maxLength="7" placeholder="Longitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
+                <MyButton variant="success" clicked={() => addPropHandler("address")} > Add </MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Types:</h5>
                 {TypeOutput}
                 <hr/>
-                <input  className={classes.InputStyle} placeholder="type" onChange={ (event) => {onUpdatePropValueHandler(event.target.value,"b_type","type") }}/>
-                <MyButton variant="success"  clicked={() => onAddProp("type")}> Add </MyButton>
+                <input  className={classes.InputStyle} placeholder="type" onChange={ (event) => {updatePropValueHandler(event.target.value,"b_type","type") }}/>
+                <br/><MyButton variant="success"  clicked={() => addPropHandler("type")}> Add </MyButton>
             </div> 
             <br/>
             <br/><br/>
@@ -174,4 +178,4 @@ const mapStateToProps = state => {
     };
   };
 
-export default connect( mapStateToProps,mapDispatchToProps )( ExistingModBusiness );
+export default connect( mapStateToProps,mapDispatchToProps )( BasicBusinessInfo );

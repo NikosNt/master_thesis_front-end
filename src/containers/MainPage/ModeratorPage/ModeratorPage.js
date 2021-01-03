@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import NewModBusiness from './NewModBusiness/NewModBusiness';
-import ExistingModBusiness from './ExistingModBusiness/ExistingModBusiness';
+import ModFunctions from './ExistingModBusiness/ModFunctions';
 
 //import classes from './ModeratorPage.module.css';
 import * as actions from '../../../store/actions/index';
@@ -17,12 +17,12 @@ const ModeratorPage = (props) =>{
 
     let modPage;
 
-    console.log(props.modBusiness)
+    //console.log(props.modBusiness)
 
     if(Object.keys(props.modBusiness).length === 0){
         modPage=<NewModBusiness/>
     }else{
-        modPage=<ExistingModBusiness  />
+        modPage=<ModFunctions/>
     }
     return( 
         <>  

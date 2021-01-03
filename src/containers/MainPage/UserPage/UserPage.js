@@ -27,33 +27,28 @@ const UserPage = (props) =>{
     OnInitSetResultMessage('');
   },[OnfetchCities,OnfetchServices,OnInitSearchText,OnInitSetResultMessage])
 
-
-
   const onSubmitHandler = () =>{
     //console.log("Sto user Page")
     //na kanw kati gia na leei kati prin klikaristoun oi epixiriseis
 
   }
 
-  for(let klidi in props.loadedServices_Companies){
-        console.log(props.loadedServices_Companies[klidi]);
-    }
+  // for(let klidi in props.loadedServices_Companies){
+  //       console.log(props.loadedServices_Companies[klidi]);
+  //   }
 
   let  selected_services = null;
 
   selected_services = props.loadedServices_Companies.map(buss =>(
     <ViewBusiness key={buss.id}
-                  name={buss.business_name} 
-                  info={buss.info} 
+                  business={buss}
+                  authenticated={props.isAuthenticated}
                   phones={buss.phones} 
                   address={buss.address}
                   owners={buss.owner}
-                  rating={buss.rating} 
-                  reference={buss.ref}           
+       
     />
   ))
-
-
 
   return(
     <React.Fragment>
