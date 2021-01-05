@@ -7,9 +7,9 @@ const startingInfo = (props) =>{
 
     return(
         <div className={classes.Info} >
-                <h1 >Search any type of business, store you want !! </h1>
-                <p> _____ can help you search and find any type o business/store like <br/>
-                 doctors, restaurants, bars, hotels etc.. in your area</p> 
+                <h1 >Αναζητήστε οποιονδήποτε τύπο επιχείρησης η υπηρεσίας που θέλετε!! </h1>
+                <p>To FindMe μπορεί να σας βοηθήσει να αναζητήσετε και να βρείτε οποιοδήποτε είδος επιχείρησης η υπηρεσίας <br/>
+                   Οπως Γιατροί, Εστιατόρια, Μπαρ, Ξενοδοχεία κ.λπ. στην περιοχή σας</p> 
         </div>
     )
 

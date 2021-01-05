@@ -35,3 +35,37 @@ export const checkValidity = ( value, rules ) => {
 
     return isValid;
 }
+
+
+export const getCurDate = () => {
+    const currentdate = new Date(); 
+
+    const hour = currentdate.getHours() >= 10 ? currentdate.getHours() : '0' + currentdate.getHours();
+    const min = currentdate.getMinutes() >= 10 ? currentdate.getMinutes() :'0'+ currentdate.getMinutes() ;
+
+    return { dayNum:currentdate.getDay(),
+             date:currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear(),
+             hour: hour+ ":" + min,
+             time:currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds(),
+            }
+}
+
+export const getDay = (day) => {
+
+    let currentDay= '';
+    switch(day){
+        case 0 : currentDay ="Κυριακή" ;break;
+        case 1 : currentDay ="Δευτέρα" ;break;
+        case 2 : currentDay ="Τρίτη" ;break;
+        case 3 : currentDay ="Τετάρτη" ;break;
+        case 4 : currentDay ="Πέμπτη" ;break;
+        case 5 : currentDay ="Παρασκευή" ;break;
+        case 6 : currentDay ="Σάββατο" ;break;
+        default : break;
+    }
+    return  currentDay;
+}

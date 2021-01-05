@@ -7,8 +7,9 @@ import * as actions from '../../../../store/actions/index';
 import BasicBusinessInfo from './BasicInfo/BasicBusinessInfo';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
+import {Tab,Tabs} from 'react-bootstrap'
+// import Tab from 'react-bootstrap/Tab'
+// import Tabs from 'react-bootstrap/Tabs'
 
 const ModFunctions = (props) =>{
 

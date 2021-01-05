@@ -9,6 +9,26 @@
     background-color: #f4f5f5;
 }
 
+.Rows{
+    
+    margin: 0  auto;
+    width:85%;
+
+  /* width: 25%;
+  float: left; */
+  
+}
+
+.Cols{
+ 
+    border-radius: 5px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    padding: 10px;
+    background-color: #f4f5f5;
+    
+}
+
 .SpanStyle{
     text-transform: capitalize;
     display: inline-block;
@@ -19,11 +39,6 @@
     background-color: white;
 }
 
-.Open{
-  color:rgb(61, 173, 61);
-    
-}
-
-.Closed{
-    color:rgb(209, 53, 53);
+.p{
+    font-weight: bold; 
 }

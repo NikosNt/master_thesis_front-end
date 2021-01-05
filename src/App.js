@@ -20,8 +20,8 @@ const Profile = React.lazy(() => {
   return import('./containers/Profile/Profile');
 });
 
-const ViewProductsServices = React.lazy(()=>{
-  return import('./components/UserComponents/View_Products_Services/ViewProductsServices')
+const View_A_Business = React.lazy(()=>{
+  return import('./components/UserComponents/View_A_Business/View_A_Business')
 })
 
 const App = (props) => {
@@ -29,7 +29,6 @@ const App = (props) => {
   const { onTryAutoSignup } = props;  //to kanw giati apo ta props  mono to "onTryAutoSignup" 8a alaksei
 
   useEffect (()=>{
-    //props.onTryAutoSignup();
     onTryAutoSignup();
   },[onTryAutoSignup])  //meta to komma gia na treksei mia fora ...an balw kati mesa an allaze auto 8a ksanakane render
 
@@ -53,7 +52,7 @@ const App = (props) => {
      routes = (
       <Switch>
         <Route path="/profile" render={(props) => <Profile {...props}/>} />
-        <Route path="/viewProductsServices" render={(props) => <ViewProductsServices {...props}/>} />
+        <Route path="/view_a_business" render={(props) => <View_A_Business {...props}/>} />
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={MainPage} />
         <Redirect to="/" />

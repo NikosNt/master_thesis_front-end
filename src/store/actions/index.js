@@ -5,7 +5,8 @@ export {
     setResultMessage,
     updateCityContent,
     updateServiceContent,
-    fetchServicesCompanies
+    fetchServicesCompanies,
+    fetchScheduleBusiness
 } from './UserAction';
 
 export {

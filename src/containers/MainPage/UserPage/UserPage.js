@@ -1,4 +1,4 @@
-import React,{useEffect } from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import classes from './UserPage.module.css';
@@ -25,30 +25,25 @@ const UserPage = (props) =>{
     OnfetchServices();
     OnInitSearchText('');
     OnInitSetResultMessage('');
+   
   },[OnfetchCities,OnfetchServices,OnInitSearchText,OnInitSetResultMessage])
 
-  const onSubmitHandler = () =>{
-    //console.log("Sto user Page")
-    //na kanw kati gia na leei kati prin klikaristoun oi epixiriseis
-
-  }
 
   // for(let klidi in props.loadedServices_Companies){
   //       console.log(props.loadedServices_Companies[klidi]);
-  //   }
+  // }
+
 
   let  selected_services = null;
 
   selected_services = props.loadedServices_Companies.map(buss =>(
-    <ViewBusiness key={buss.id}
+    <ViewBusiness key={buss.business_id}
                   business={buss}
                   authenticated={props.isAuthenticated}
-                  phones={buss.phones} 
-                  address={buss.address}
-                  owners={buss.owner}
-       
     />
   ))
+
+
 
   return(
     <React.Fragment>
@@ -63,14 +58,14 @@ const UserPage = (props) =>{
         <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
         <br/>
         <div className={classes.Button}>
-          <MyButton variant="outline-info" size="lg" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); onSubmitHandler()} } >Search !</MyButton>
+          <MyButton variant="outline-info" size="lg" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); } } >Search !</MyButton>
         </div>
         <br/> 
         <h4 className={classes.NoResult} > {props.resultMessage} </h4>
         {selected_services}
        
-    </div>
-  </React.Fragment>
+      </div>
+    </React.Fragment>
 )
 
 }
@@ -84,9 +79,7 @@ const mapStateToProps = state => {
       serviceContent:state.userPage.serviceContent,
       loadedServices_Companies:state.userPage.loadedServices_Companies,
       resultMessage:state.userPage.resultMessage,
-      
-      hasRole:state.auth.role,
-      token:state.auth.token,
+
       isAuthenticated: state.auth.token !== null
   };
 };

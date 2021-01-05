@@ -11,8 +11,8 @@ const initialState={
     serviceContent:'',
     error: null,
     loadedServices_Companies:[],
-    resultMessage:''
-    
+    resultMessage:'',
+    businessSchedule:[]
 };
 
 const setSearchText =(state,action) =>{
@@ -73,6 +73,12 @@ const loadServicesCompanies = ( state, action ) => {
     });
 };
 
+const loadScheduleBusiness = ( state, action ) => {
+    return updateObject( state,{
+        businessSchedule:action.businessSchedule
+    });
+};
+
 const reducer = (state=initialState,action) =>{
     switch(action.type) {
         case actionTypes.CITIES_INIT: return citiesInit( state, action );
@@ -82,6 +88,7 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.CITY_CONTENT: return updateCityContent(state,action);
         case actionTypes.SERVICE_CONTENT: return updateServiceContent(state,action);
         case actionTypes.LOAD_SERVICES_COMPANIES: return loadServicesCompanies(state,action);
+        case actionTypes.LOAD_BUSINESS_SCHEDULE: return loadScheduleBusiness(state,action);
         case actionTypes.RESULT_MESSAGE: return setResultMessage(state,action); 
         default: return state;
     }

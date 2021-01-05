@@ -1,6 +1,7 @@
 import axios from '../../axios-orders'
 import * as actionTypes from './actionTypes';
 
+
 export const loadFail = (error) => {
     return {
         type: actionTypes.LOAD_FAIL,
@@ -33,9 +34,7 @@ export const fetchCities = () => {
         axios.get('api/services/business/by/cities')
             .then(res => {
                 let citiess = [];
-                citiess = [
-                    { name: "All cities", id: 0 },
-                ]
+                citiess = [ { name: "All cities", id: 0 } ]
                 for (let key in res.data) {
                     citiess.push({
                         name: res.data[key],
@@ -64,10 +63,7 @@ export const fetchServices = () => {
         axios.get('api/services/business/by/types')
             .then(res => {
                 let types = [];
-                types = [
-                    { name: "All types", id: 0 },
-                    // {name:"none" ,id:1},
-                ]
+                types = [{ name: "All types", id: 0 }]
                 for (let key in res.data) {
                     types.push({
                         name: res.data[key],
@@ -107,30 +103,55 @@ export const loadServicesCompanies = (content,message) => {
 }
 
 export const fetchServicesCompanies = (city, typeBusiness, searchText) => {
- 
+    
     if (!city) { city = "empty" }
     if (!typeBusiness) { typeBusiness = "empty" }
     if (searchText === "") { searchText = "empty" }
-  
+ 
+    let all_business = [];
     let message = "" ;
     return dispatch => {
         axios.get('api/services/business/by/' + city + '/' + typeBusiness + '/' + searchText + '/')
             .then(res => {
-                const all_business = [];
                 for (let key in res.data) {
                     all_business.push({
                         ...res.data[key]
                     });
                 }
-
                 if(Object.keys(all_business).length === 0){      
-                    message = 'No results for the selected :('
+                    message = 'Δεν βρέθηκε κάποιο αποτέλεσμα για τα επιλεγμένα :('
                 }
                 dispatch(loadServicesCompanies(all_business,message));
             })
             .catch(err => {
                 dispatch(loadFail(err))
-            });
+            });      
     }
 }
 
+ export const loadScheduleBusiness = (content) => {
+    return {
+        type: actionTypes.LOAD_BUSINESS_SCHEDULE,
+        businessSchedule: content,
+    }
+ }
+
+ export const fetchScheduleBusiness = (id) => {
+    let schedule = [];
+    return dispatch => {
+        axios.get('api/schedule/business/' + id )
+        .then(res => {
+            for (let key in res.data) {
+                schedule.push({
+                    ...res.data[key]
+                });
+            }
+            dispatch(loadScheduleBusiness(schedule));
+        })
+        .catch(err => {
+            dispatch(loadFail(err))
+        });
+
+    } 
+
+}
