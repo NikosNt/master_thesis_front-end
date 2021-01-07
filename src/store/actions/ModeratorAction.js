@@ -28,7 +28,7 @@ export const fetchBusiness = (modId) => {
         })
         .catch(err => {
             console.log(err)
-            dispatch(loadModFail(err))
+           // dispatch(loadModFail(err))
         });
     }
 

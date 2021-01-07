@@ -1,5 +1,4 @@
 import React,{useEffect,useState} from 'react';
-import { connect } from 'react-redux';
 
 import classes from './ModFunctions.module.css';
 import * as actions from '../../../../store/actions/index';
@@ -9,7 +8,6 @@ import BusinessModSchedule from './BusinessModSchedule/BusinessModSchedule';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Tab,Tabs} from 'react-bootstrap'
-
 
 const ModFunctions = (props) =>{
 
@@ -36,19 +34,5 @@ const ModFunctions = (props) =>{
     )
 }
 
-const mapStateToProps = state => {
-    return {
- 
-        hasRole:state.auth.role,
-        token:state.auth.token,
-        isAuthenticated: state.auth.token !== null
-    };
-  };
-  
-  const mapDispatchToProps = dispatch => {
-    return {
-        
-    };
-  };
 
-export default connect( mapStateToProps,mapDispatchToProps )( ModFunctions );
+export default ModFunctions ;

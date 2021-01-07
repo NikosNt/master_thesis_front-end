@@ -1,5 +1,3 @@
-
-
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 
@@ -35,8 +33,7 @@ const ScheduleDay = (props) =>{
                         : <span><input type="checkbox"   checked={checked}  onChange={ ()=> setChecked(!checked) }/> Closed</span>
 
     const deleteSetHourHandler = (id) => {
-        console.log("To id ",id);  
-         onDeleteScheduleSetHourDay(props.schedule.businessId,id );
+        onDeleteScheduleSetHourDay(props.schedule.businessId,id );
         if(props.schedule.hours.length === 1){
             console.log("edw")
             const obj = {
@@ -45,7 +42,6 @@ const ScheduleDay = (props) =>{
                 state :  0,
                 hours : []
             }
-            console.log(obj)
             onUpdateScheduleBusinessDay(obj,props.schedule.id);
         }     
     }
@@ -67,7 +63,6 @@ const ScheduleDay = (props) =>{
                     closing : closeHourMin,
                 }]
             }
-            console.log(obj)
             onUpdateScheduleBusinessDay(obj,props.schedule.id);
         }
     }
@@ -81,13 +76,14 @@ const ScheduleDay = (props) =>{
         } 
     };
 
- 
+    console.log(props.schedule)
+    
+
     return(   
         <>  
             <Modal show={showModal} modalClosed={() => setShowModal(false)}>
                 <h4 style={{textAlign:"center"}}>Οι ώρες ανοίγματος και κλεισίματος δεν συμφωνούν</h4>
             </Modal>
-        
             <div className={classes.Day} >
                 <Row>
                     <Col>
@@ -119,7 +115,6 @@ const ScheduleDay = (props) =>{
         </>
     )
 }
-
 
 const mapStateToProps = state => {
     return {

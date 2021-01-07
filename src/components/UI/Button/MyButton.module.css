@@ -12,6 +12,13 @@
     /* font-weight: bold; */
 }
 
+.btn-custom  {
+    color: #fff;
+    background-color: #eca919;
+    border-color: #da9517;
+ 
+}
+
 /* .Button:first-of-type {
     margin-left: 0;
     padding-left: 0;

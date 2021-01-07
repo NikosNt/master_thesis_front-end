@@ -7,7 +7,6 @@ import {Row,Col} from 'react-bootstrap'
 import * as actions from '../../../../store/actions/index';
 
 
-
 const Business_Info = (props) =>{
 
    const {OnFetchScheduleBusiness} = props;
@@ -65,8 +64,6 @@ const Business_Info = (props) =>{
                 </React.Fragment>
     })
 
-
-
     return(
         <>
             <div className={classes.ViewBusiness}>
@@ -87,11 +84,9 @@ const Business_Info = (props) =>{
     )
 }
 
-
 const mapStateToProps = state => {
     return {
         businessSchedule: state.userPage.businessSchedule,
-        isAuthenticated: state.auth.token !== null
     };
   };
   

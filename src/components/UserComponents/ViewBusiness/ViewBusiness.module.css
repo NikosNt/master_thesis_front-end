@@ -6,7 +6,7 @@
     padding: 10px;
     margin: 10px auto;
     /* box-sizing: border-box; */
-    background-color: #f4f5f5;
+    background-color: #ffffff;
 }
 
 .SpanStyle{
@@ -16,7 +16,7 @@
     /* border: 1px solid #ccc; */
     border-radius: 10px;
     padding: 5px;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .Open{
@@ -26,4 +26,9 @@
 
 .Closed{
     color:rgb(209, 53, 53);
+}
+ 
+.LogMessage{
+    text-align:"center";
+    font-family: 'Times New Roman', Times, serif;
 }

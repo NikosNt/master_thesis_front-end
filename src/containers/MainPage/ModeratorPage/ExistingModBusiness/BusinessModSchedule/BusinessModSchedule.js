@@ -16,12 +16,10 @@ import * as actions from '../../../../../store/actions/index';
         }
         fetchData();
     }, [OnFetchModScheduleBusiness,props.modBusiness.id]); 
-
-    // const[scheduleUpdateState,setScheduleUpdateState]
     
-    // console.log("+++++++++++++++++++")   
-    // console.log(props.modBusiness)
-    // console.log("++++++++++++++++++")   
+    console.log("+++++++++++++++++++")   
+    console.log(props.modBusiness)
+    console.log("++++++++++++++++++")   
 
   //  console.log(props.modBusinessSchedule)
     let days = null;
@@ -31,31 +29,24 @@ import * as actions from '../../../../../store/actions/index';
 
     return(
         <React.Fragment>
-            {/* <br/> */}
             <div className={classes.Schedule}>
                 {days}
             </div>
-            <br/>
-            <br/>
-            <br/>
+            <br/><br/> <br/>
         </React.Fragment>
     )
 
 }
 
-
 const mapStateToProps = state => {
     return {
-        updateSchedule:state.modPage.updateSchedule,
         modBusinessSchedule:state.modPage.modBusinessSchedule,
-        userId:state.auth.userId,
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
         OnFetchModScheduleBusiness: (id)=> dispatch( actions.fetchModScheduleBusiness(id) ),
-
     };
   };
 

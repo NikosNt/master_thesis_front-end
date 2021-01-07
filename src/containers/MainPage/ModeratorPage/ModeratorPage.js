@@ -18,10 +18,10 @@ const ModeratorPage = (props) =>{
 
     let modPage;
 
-    // console.log("------------------")    
-    // console.log(props.userId)
-    // console.log( props.modBusiness )
-    // console.log("------------------")   
+    console.log("------------------")    
+    console.log(props.userId)
+    console.log( props.modBusiness )
+    console.log("------------------")   
 
     if(Object.keys(props.modBusiness).length === 0){
         modPage=<NewModBusiness/>
@@ -40,9 +40,6 @@ const mapStateToProps = state => {
     return {
         modBusiness:state.modPage.modBusiness,
         userId:state.auth.userId,
-        hasRole:state.auth.role,
-        token:state.auth.token,
-        isAuthenticated: state.auth.token !== null
     };
   };
   

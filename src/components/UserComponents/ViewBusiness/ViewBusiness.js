@@ -2,22 +2,18 @@ import React,{useState} from 'react';
 
 import classes from './ViewBusiness.module.css';
 import MyButton from '../../UI/Button/MyButton';
+ 
 import { withRouter } from "react-router-dom";
 
 import Modal from '../../UI/Modal/Modal';
 import {getDay,getCurDate} from '../../../shared/utility';
-import {Row,Col} from 'react-bootstrap';
+import {Row,Col,Button} from 'react-bootstrap';
 
 const ViewBusiness = (props) =>{
 
-
-    const [messageAuthenticate,setMessageAuthenticate] = useState('Please log in first');
     const [showModal,setShowModal] = useState(false);   
-    // const [open,setOpen] = useState('');
-
 
     let addressOutput = props.business.address.map(address =>{
-
             return <span className={classes.SpanStyle} key={address.id}>
                     {address.city} {address.zipcode} {address.street} {address.street_number} 
                 </span>
@@ -26,7 +22,6 @@ const ViewBusiness = (props) =>{
     if(!props.business.address.length ){
         addressOutput = " No address available yet "
     }
-
 
     let open = false;
     let closed = false;
@@ -42,23 +37,6 @@ const ViewBusiness = (props) =>{
         scheduleDay =<i>Το ωράριο λειτουργίας δεν είναι διαθέσιμο !</i> 
     }
 
-
-    // if(props.business.hours.length){
-    //     const wra = getCurDate();
-    //     console.log("wra : ",wra.hour);
-    //     props.business.hours.map(hours => {
-    //         console.log(wra.hour+ " > "+ hours.opening+ " && "+ wra.hour +" < "+ hours.closing)
-    //         if(wra.hour > hours.opening && wra.hour < hours.closing){
-    //           //  setOpen("OPEN")
-    //             console.log("eimai anoixta ")
-    //         }else{
-    //             console.log("eimai kleista")
-    //         }
-    //     })
-    //     //na ftiaksw edw ti sin8ikh me to wrario
-        
-    // }
-
     const viewBusinessHandler = () => {   
         if(props.authenticated){
             props.history.push({
@@ -66,18 +44,16 @@ const ViewBusiness = (props) =>{
                 business:props.business
             });
         } 
-        //setMessageAuthenticate ("Please log in first");
-        setShowModal(true);
-         
+        setShowModal(true);      
     }
 
     return(
         <>
             <Modal show={showModal} modalClosed={() => setShowModal(false)}>
-                <h4 style={{textAlign:"center"}}>{messageAuthenticate}</h4>
+                <h4 style={{textAlign:"center"}}>Please log in first :)</h4>
             </Modal>
             <div className={classes.ViewBusiness}>
-                <h4>{props.business.business_name}</h4>
+                <h4 style={{color:"#39a8a8",textAlign:"center"}}>{props.business.business_name}</h4>
                 <p>Πληροφορίες : </p> <p>{props.business.info}</p> 
                 <p>Διεύθυνση :{addressOutput}</p>            
                 <Row>
@@ -89,9 +65,18 @@ const ViewBusiness = (props) =>{
                         {!open && closed?<h6 className={classes.Closed} >Κλειστά</h6>:null}
                     </Col>
                 </Row>
-                 <hr/><MyButton  variant="info"  clicked={viewBusinessHandler } > View more information</MyButton>
+                 <hr/><MyButton  variant="custom"  clicked={viewBusinessHandler } > View more information</MyButton>
                 {/* <MyButton variant="secondary">Open in Map</MyButton> */}
             </div>
+            <style type="text/css">
+                {`
+                    .btn-custom {
+                        color: #fff;
+                        background-color: #ffa165;
+                        border-color: #ffa165;
+                    }
+                `}
+            </style>
         </>
     );
 }

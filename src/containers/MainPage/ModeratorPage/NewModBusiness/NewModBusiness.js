@@ -50,9 +50,6 @@ const mapStateToProps = state => {
     return {
         newModBusiness:state.modPage.newModBusiness,
         userId:state.auth.userId,
-        hasRole:state.auth.role,
-        token:state.auth.token,
-        isAuthenticated: state.auth.token !== null
     };
   };
   

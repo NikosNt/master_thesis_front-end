@@ -58,13 +58,26 @@ const UserPage = (props) =>{
         <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
         <br/>
         <div className={classes.Button}>
-          <MyButton variant="outline-info" size="lg" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); } } >Search !</MyButton>
+          <MyButton variant="outline-info" size="xxl" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText); } } >Search !</MyButton>
         </div>
         <br/> 
         <h4 className={classes.NoResult} > {props.resultMessage} </h4>
         {selected_services}
        
       </div>
+
+    
+      <style type="text/css">
+        {`
+          .btn-xxl {
+            padding: 0.7rem 4.5rem;
+            font-size: 1.3rem;
+          }
+        `}
+      </style>
+
+ 
+ 
     </React.Fragment>
 )
 

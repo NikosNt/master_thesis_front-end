@@ -160,10 +160,7 @@ const BasicBusinessInfo = (props) =>{
 
 const mapStateToProps = state => {
     return {
-       // modBusiness:state.modPage.modBusiness,
         updateBusiness:state.modPage.updateBusiness,
-        userId:state.auth.userId,
-        hasRole:state.auth.role,
     };
   };
   
