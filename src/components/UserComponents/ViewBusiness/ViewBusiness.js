@@ -11,7 +11,7 @@ import {Row,Col} from 'react-bootstrap';
 const ViewBusiness = (props) =>{
 
 
-    const [messageAuthenticate,setMessageAuthenticate] = useState('');
+    const [messageAuthenticate,setMessageAuthenticate] = useState('Please log in first');
     const [showModal,setShowModal] = useState(false);   
     // const [open,setOpen] = useState('');
 
@@ -66,7 +66,7 @@ const ViewBusiness = (props) =>{
                 business:props.business
             });
         } 
-        setMessageAuthenticate ("Please log in first");
+        //setMessageAuthenticate ("Please log in first");
         setShowModal(true);
          
     }

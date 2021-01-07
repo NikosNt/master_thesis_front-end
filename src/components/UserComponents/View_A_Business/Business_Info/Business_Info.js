@@ -18,17 +18,11 @@ const Business_Info = (props) =>{
         }
         fetchData();
     }, [OnFetchScheduleBusiness,props.business.business_id]); 
-
-    // useEffect( ()=>{
-    //     OnFetchScheduleBusiness(props.business.business_id);
-    // },[OnFetchScheduleBusiness,props.business.business_id])
-
-    
-
+  
     let phoneOutput = props.business.phones.map(ph =>{
-            return <span  className={classes.SpanStyle} key={ph.id}>
+            return <React.Fragment key={ph.id}><span  className={classes.SpanStyle} >
                     {ph.phone_number}
-                </span>
+                </span><br/></React.Fragment>
         })
     let ownerOutput = props.business.owner.map(owner =>{
             return <span className={classes.SpanStyle} key={owner.id}>
@@ -36,9 +30,9 @@ const Business_Info = (props) =>{
                 </span>
         })
     let addressOutput = props.business.address.map(address =>{
-        return <span className={classes.SpanStyle} key={address.id}>
+        return <React.Fragment key={address.id}><span className={classes.SpanStyle}>
                 {address.city} {address.zipcode} {address.street} {address.street_number} 
-            </span>
+            </span><br/></React.Fragment>
     })    
 
     if(!props.business.phones.length ){
@@ -63,15 +57,13 @@ const Business_Info = (props) =>{
                             {days.state ===1 
                                 ? days.hours.map(hour=>{
                                     return <span key={hour.id}  > {hour.opening} - {hour.closing} </span>})
-                                :  
-                                <span> Το ωράριο δεν είναι διαθέσιμο !</span>
+                                : days.state === 0 ? <span>Το κατάστημα  είναι κλειστό </span>:
+                                    <span> Το ωράριο δεν είναι διαθέσιμο !</span>
                             }
                         </Col>
-                    </Row>   
-                    <br/>
+                    </Row><br/>
                 </React.Fragment>
     })
-
 
 
 
@@ -80,29 +72,17 @@ const Business_Info = (props) =>{
             <div className={classes.ViewBusiness}>
                 <p><b>Πληροφορίες</b> : </p> <p>{props.business.info}</p> 
             </div>
+            <p className={classes.Rows}><b>Ιδιοκτήτες</b> : {ownerOutput}</p>
             <Row className={classes.Rows}>
                 <Col sm={12} md={6} className={classes.Cols}   >
-                    <p><b>Ιδιοκτήτης</b> : {ownerOutput}</p>
-                    <p><b>Τηλέφωνο</b> : {phoneOutput}</p>
-                    <p><b>Διεύθυνση</b> : {addressOutput}</p>
+                    <p><b>Ωράριο λειτουργίας</b> : </p> 
+                    {schedule}                   
                 </Col>
                 <Col sm={12} md={6}  className={classes.Cols} >
-                    <p><b>Ωράριο λειτουργίας</b> : </p> 
-                    {schedule}
+                    <p><b>Τηλέφωνα επικοινωνίας :</b></p> <p>  {phoneOutput}</p>
+                    <p><b>Διεύθυνση</b> : </p> <p>{addressOutput}</p>
                 </Col>
             </Row>
-            {/* <div className={classes.Rows}>
-                <div >
-                    <p><b>Ιδιοκτήτης</b> : {ownerOutput}</p>
-                    <p><b>Τηλέφωνο</b> : {phoneOutput}</p>
-                    <p><b>Διεύθυνση</b> : {addressOutput}</p>
-                </div>
-                <div >
-                    <p><b>Ωράριο λειτουργίας</b> : </p> 
-                    {schedule}
-                </div>
-            </div> */}
-
         </>
     )
 }

@@ -5,11 +5,11 @@ import classes from './ModFunctions.module.css';
 import * as actions from '../../../../store/actions/index';
 
 import BasicBusinessInfo from './BasicInfo/BasicBusinessInfo';
+import BusinessModSchedule from './BusinessModSchedule/BusinessModSchedule';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Tab,Tabs} from 'react-bootstrap'
-// import Tab from 'react-bootstrap/Tab'
-// import Tabs from 'react-bootstrap/Tabs'
+
 
 const ModFunctions = (props) =>{
 
@@ -18,10 +18,10 @@ const ModFunctions = (props) =>{
     return(
         <Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)} >
             <Tab eventKey="basicInfo" title="Information">
-                <BasicBusinessInfo  />
+                <BasicBusinessInfo modBusiness={props.business} />
             </Tab>
             <Tab eventKey="schedule" title="Schedule">
-                <p style={{textAlign:"center"}}>Not available yet !</p>
+                 <BusinessModSchedule  modBusiness={props.business}/>
             </Tab>
             <Tab  eventKey="products" title="Products" >
                 <p style={{textAlign:"center"}}>Not available yet !</p>

@@ -9,20 +9,24 @@ import * as actions from '../../../store/actions/index';
 
 const ModeratorPage = (props) =>{
 
-    const {OnfetchBusiness} = props;
+    const {OnfetchBusiness,OnLoadModBusinessInit} = props;
 
     useEffect(()=>{
-        OnfetchBusiness(props.userId)
-    },[OnfetchBusiness,props.userId])
+        OnLoadModBusinessInit([]);
+        OnfetchBusiness(props.userId);
+    },[OnLoadModBusinessInit,OnfetchBusiness,props.userId])
 
     let modPage;
 
-    //console.log(props.modBusiness)
+    // console.log("------------------")    
+    // console.log(props.userId)
+    // console.log( props.modBusiness )
+    // console.log("------------------")   
 
     if(Object.keys(props.modBusiness).length === 0){
         modPage=<NewModBusiness/>
     }else{
-        modPage=<ModFunctions/>
+        modPage=<ModFunctions business={props.modBusiness}/>
     }
     return( 
         <>  
@@ -45,6 +49,7 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
         OnfetchBusiness: (modId)=> dispatch( actions.fetchBusiness(modId) ),
+        OnLoadModBusinessInit: (bus)=> dispatch( actions.loadModBusinessInit(bus) ),
     };
   };
 

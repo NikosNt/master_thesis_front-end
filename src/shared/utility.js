@@ -69,3 +69,9 @@ export const getDay = (day) => {
     }
     return  currentDay;
 }
+
+export const getHourMin = (hour,min) =>{
+    const rHour =  hour >= 10 ? hour : '0' + hour;
+    const rMin =  min >= 10 ? min : '0' + min;
+    return rHour+':'+rMin;
+}

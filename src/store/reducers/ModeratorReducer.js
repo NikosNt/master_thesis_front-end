@@ -25,7 +25,10 @@ const initialState = {
         address:[],
         phones:[]
     },
-    error : null
+    error : null,
+    modBusinessSchedule:[],
+ 
+
 };
 
 const loadModBusinessInit = ( state, action ) => {
@@ -45,6 +48,12 @@ const updateModBusiness = ( state, action ) => {
     });
 }
 
+const loadModBusinessSchedule = ( state, action ) => {
+    return updateObject( state,{
+        modBusinessSchedule:action.modBusinessSchedule
+    });
+}
+ 
 const loadModFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
@@ -58,9 +67,8 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.CREATE_MOD_BUSINESS: return createModBusiness( state, action );
         case actionTypes.UPDATE_BUSINESS: return updateModBusiness( state, action );
 
-
-        // case actionTypes.CREATE_MOD_BUSINESS: return createModBusiness( state, action );
-        // case actionTypes.CREATE_MOD_BUSINESS: return createModBusiness( state, action );
+        case actionTypes.LOAD_MOD_BUS_SCHEDULE: return loadModBusinessSchedule( state, action );
+ 
         default: return state;
     }
 
