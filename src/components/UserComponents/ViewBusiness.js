@@ -1,12 +1,12 @@
 import React,{useState} from 'react';
 
 import classes from './ViewBusiness.module.css';
-import MyButton from '../../UI/Button/MyButton';
+import MyButton from '../UI/Button/MyButton';
  
 import { withRouter } from "react-router-dom";
 
-import Modal from '../../UI/Modal/Modal';
-import {getDay,getCurDate} from '../../../shared/utility';
+import Modal from '../UI/Modal/Modal';
+import {getDay,getCurDate} from '../../shared/utility';
 import {Row,Col,Button} from 'react-bootstrap';
 
 const ViewBusiness = (props) =>{

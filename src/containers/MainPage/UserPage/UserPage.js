@@ -6,7 +6,7 @@ import SearchBar from '../../../components/UI/SearchBar/SearchBar'
 import MyButton from '../../../components/UI/Button/MyButton';
 import Info from '../../../components/StartingInfo/StartingInfo';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
-import ViewBusiness from '../../../components/UserComponents/ViewBusiness/ViewBusiness'
+import ViewBusiness from '../../../components/UserComponents/ViewBusiness'
 
 import * as actions from '../../../store/actions/index';
 
@@ -33,7 +33,6 @@ const UserPage = (props) =>{
   //       console.log(props.loadedServices_Companies[klidi]);
   // }
 
-
   let  selected_services = null;
 
   selected_services = props.loadedServices_Companies.map(buss =>(
@@ -42,8 +41,6 @@ const UserPage = (props) =>{
                   authenticated={props.isAuthenticated}
     />
   ))
-
-
 
   return(
     <React.Fragment>
@@ -65,8 +62,6 @@ const UserPage = (props) =>{
         {selected_services}
        
       </div>
-
-    
       <style type="text/css">
         {`
           .btn-xxl {
@@ -75,9 +70,6 @@ const UserPage = (props) =>{
           }
         `}
       </style>
-
- 
- 
     </React.Fragment>
 )
 

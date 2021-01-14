@@ -12,7 +12,9 @@ const initialState={
     error: null,
     loadedServices_Companies:[],
     resultMessage:'',
-    businessSchedule:[]
+    businessSchedule:[],
+    business_user_messages:[],
+    newMessage:[],
 };
 
 const setSearchText =(state,action) =>{
@@ -79,6 +81,18 @@ const loadScheduleBusiness = ( state, action ) => {
     });
 };
 
+const loadBusinessUserMessages = ( state, action ) => {
+    return updateObject( state,{
+        business_user_messages:action.business_user_messages
+    });
+};
+
+// const addNewMessageToBusiness = ( state, action ) => {
+//     return updateObject( state,{
+//         business_user_messages:action.business_user_messages
+//     });
+// };
+
 const reducer = (state=initialState,action) =>{
     switch(action.type) {
         case actionTypes.CITIES_INIT: return citiesInit( state, action );
@@ -89,6 +103,8 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.SERVICE_CONTENT: return updateServiceContent(state,action);
         case actionTypes.LOAD_SERVICES_COMPANIES: return loadServicesCompanies(state,action);
         case actionTypes.LOAD_BUSINESS_SCHEDULE: return loadScheduleBusiness(state,action);
+        case actionTypes.LOAD_BUSINESS_USER_MESSAGES: return loadBusinessUserMessages(state,action);
+     //   case actionTypes.ADD_MESSAGE_TO_BUSINESS: return addNewMessageToBusiness(state,action);
         case actionTypes.RESULT_MESSAGE: return setResultMessage(state,action); 
         default: return state;
     }

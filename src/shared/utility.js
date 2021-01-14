@@ -43,6 +43,8 @@ export const getCurDate = () => {
     const hour = currentdate.getHours() >= 10 ? currentdate.getHours() : '0' + currentdate.getHours();
     const min = currentdate.getMinutes() >= 10 ? currentdate.getMinutes() :'0'+ currentdate.getMinutes() ;
 
+    const  month= currentdate.getMonth()+1 >=10 ? currentdate.getMonth()+1 : '0' + (currentdate.getMonth()+1) 
+
     return { dayNum:currentdate.getDay(),
              date:currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
@@ -51,6 +53,12 @@ export const getCurDate = () => {
              time:currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds(),
+             day_time:currentdate.getFullYear() +"-"
+                    + month + "-" 
+                    +currentdate.getDate() + " "
+                    +currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds(),
             }
 }
 

@@ -2,7 +2,8 @@ import React,{useState} from 'react';
 
 import Products from './Business_Products/Products';
 import Services from './Business_Services/Services';
-import Business_Info from './Business_Info/Business_Info'
+import Business_Info from './Business_Info/Business_Info';
+import Business_messages from './Business_messages/Business_messages';
 
 import classes from './View_A_Business.module.css' ;
 import {Tab,Tabs} from 'react-bootstrap'
@@ -10,6 +11,8 @@ import {Tab,Tabs} from 'react-bootstrap'
 const ViewProductsServices = (props) =>{
 
     const [key, setKey] = useState('info');
+
+  
 
     return(
         <>
@@ -25,7 +28,7 @@ const ViewProductsServices = (props) =>{
                      <Business_Info business={props.location.business}/>
                 </Tab>           
                 <Tab eventKey="messages" title="Messages" >
-                    <p style={{textAlign:"center"}}>Not available yet !</p>
+                    <Business_messages businessID={props.location.business.business_id}/>
                 </Tab>
             </Tabs>
         </>

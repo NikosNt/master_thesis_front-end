@@ -155,3 +155,52 @@ export const fetchServicesCompanies = (city, typeBusiness, searchText) => {
     } 
 
 }
+
+export const loadBusinessUserMessages = (content) => {
+    return {
+        type: actionTypes.LOAD_BUSINESS_USER_MESSAGES,
+        business_user_messages: content,
+    }
+ }
+
+ export const fetchdBusinessUserMessages = (userId,busId) => {
+    let messages = [];
+    return dispatch => {
+        //http://localhost:8080/api/messages/view/{userId}/{businessId}
+        axios.get('api/messages/view/' + userId + '/' + busId )
+        .then(res => {
+            for (let key in res.data) {
+                messages.push({
+                    ...res.data[key]
+                });
+            }
+            dispatch(loadBusinessUserMessages(messages));
+        })
+        .catch(err => {
+            dispatch(loadFail(err))
+        });
+    } 
+}
+
+export const addNewMessageToBusiness = (message) => {
+    return dispatch => {
+     //http://localhost:8080/api/messages/add
+        axios.post('api/messages/add',message)
+        .then(res => {
+            console.log("added epitixos", res);
+            dispatch(fetchdBusinessUserMessages(message.userId,message.businessId));
+        })
+        .catch(err => {
+            dispatch(loadFail(err))
+        });
+    } 
+}
+
+// {
+//     "businessId": 16,
+//     "userId": 10,
+//     "sender": 0,
+//     "title": "Re:kkkk",
+//     "message": "ooooosdsdsd dssd o",
+//     "date_time": "2015-12-28 23:44:52"
+// }
