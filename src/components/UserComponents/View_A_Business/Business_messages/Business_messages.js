@@ -51,7 +51,6 @@ const Business_messages = (props) =>{
                 message: contentMessage,
                 date_time: getCurDate().day_time
          }
-         console.log(m);
          OnAddNewMessage(m);
          setContentTitle('');
          setContentMessage('');
@@ -60,11 +59,12 @@ const Business_messages = (props) =>{
     return(
         <>
         {/* <p style={{textAlign:"center"}} >Ta messages {props.businessID}  kai {props.userId}</p> */}
-            <div>
+            <div className={classes.Page}>
                 {messages}
             </div>
-            <div>
-                <NewMessage changed={sendMessageHandler}
+            <div className={classes.NewM}>
+                <NewMessage 
+                            changed={sendMessageHandler}
                             cTitle={contentTitle}
                             titleChanged={(e)=>setContentTitle(e.target.value)}
                             cMessage={contentMessage}
