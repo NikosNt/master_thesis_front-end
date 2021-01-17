@@ -1,17 +1,22 @@
 import React,{useState} from 'react';
-
+import { connect } from 'react-redux';
 import classes from './ViewBusiness.module.css';
 import MyButton from '../UI/Button/MyButton';
  
 import { withRouter } from "react-router-dom";
-
+import * as actions from '../../store/actions/index';
 import Modal from '../UI/Modal/Modal';
 import {getDay,getCurDate} from '../../shared/utility';
 import {Row,Col,Button} from 'react-bootstrap';
 
 const ViewBusiness = (props) =>{
 
-    const [showModal,setShowModal] = useState(false);   
+    const {OnLoadBusiness} = props;
+
+    const [showModal,setShowModal] = useState(false);
+    // const [open,setOpen] = useState(false)   ;
+    // const [closed,setClosed] = useState(false)   ; to many rerenders
+
 
     let addressOutput = props.business.address.map(address =>{
             return <span className={classes.SpanStyle} key={address.id}>
@@ -34,15 +39,20 @@ const ViewBusiness = (props) =>{
     })    
 
     if(!props.business.hours.length){
-        scheduleDay =<i>Το ωράριο λειτουργίας δεν είναι διαθέσιμο !</i> 
+        if( props.business.state === 0 ){
+            closed=true;
+        }else{
+        scheduleDay =<i>Το ωράριο λειτουργίας δεν είναι διαθέσιμο !</i> }
     }
 
     const viewBusinessHandler = () => {   
         if(props.authenticated){
+            OnLoadBusiness(props.business)
             props.history.push({
                 pathname:"/view_a_business",
-                business:props.business
+            //     business:props.business
             });
+            console.log(props.business)
         } 
         setShowModal(true);      
     }
@@ -72,13 +82,23 @@ const ViewBusiness = (props) =>{
                 {`
                     .btn-custom {
                         color: #fff;
-                        background-color: #ffa165;
-                        border-color: #ffa165;
+                        background-color: #9b8554bf;
+                        
                     }
                 `}
             </style>
         </>
     );
 }
-
-export default withRouter(ViewBusiness);
+// const mapStateToProps = state => {
+//     return {
+    
+//     };
+//   };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      OnLoadBusiness: (business)=> dispatch( actions.loadBusiness(business) ),  
+    };
+  };
+export default connect( null,mapDispatchToProps )(withRouter(ViewBusiness));

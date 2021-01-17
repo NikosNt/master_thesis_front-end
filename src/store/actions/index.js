@@ -6,9 +6,12 @@ export {
     updateCityContent,
     updateServiceContent,
     fetchServicesCompanies,
+    loadBusiness,
     fetchScheduleBusiness,
     fetchdBusinessUserMessages,
-    addNewMessageToBusiness
+    addNewMessageToBusiness,
+    fetchBusinessServices,
+    fetchBusinessProducts
 } from './UserAction';
 
 export {

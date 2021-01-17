@@ -129,6 +129,13 @@ export const fetchServicesCompanies = (city, typeBusiness, searchText) => {
     }
 }
 
+export const loadBusiness = (content ) => {
+    return {
+        type: actionTypes.LOAD_BUSINESS,
+        loadBusiness: content,
+    }
+}
+
  export const loadScheduleBusiness = (content) => {
     return {
         type: actionTypes.LOAD_BUSINESS_SCHEDULE,
@@ -196,11 +203,54 @@ export const addNewMessageToBusiness = (message) => {
     } 
 }
 
-// {
-//     "businessId": 16,
-//     "userId": 10,
-//     "sender": 0,
-//     "title": "Re:kkkk",
-//     "message": "ooooosdsdsd dssd o",
-//     "date_time": "2015-12-28 23:44:52"
-// }
+export const loadBusinessServices = (content) => {
+    return {
+        type: actionTypes.LOAD_BUSINESS_SERVICES,
+        loadBusinessServices: content,
+    }
+ }
+
+ export const fetchBusinessServices = (busId) => {
+    let services = [];
+    return dispatch => {
+        //http://localhost:8080/api/product_services/services/{business_id}
+        axios.get('api/product_services/services/' + busId )
+        .then(res => {
+            for (let key in res.data) {
+                services.push({
+                    ...res.data[key]
+                });
+            }
+            dispatch(loadBusinessServices(services));
+        })
+        .catch(err => {
+            dispatch(loadFail(err))
+        });
+    } 
+}
+
+export const loadBusinessProducts = (content) => {
+    return {
+        type: actionTypes.LOAD_BUSINESS_PRODUCTS,
+        loadBusinessProducts: content,
+    }
+ }
+
+ export const fetchBusinessProducts = (busId) => {
+    let products = [];
+    return dispatch => {
+        //http://localhost:8080/api/product_services/products/{business_id}
+        axios.get('api/product_services/products/' + busId )
+        .then(res => {
+            for (let key in res.data) {
+                products.push({
+                    ...res.data[key]
+                });
+            }
+            dispatch(loadBusinessProducts(products));
+        })
+        .catch(err => {
+            dispatch(loadFail(err))
+        });
+    } 
+}

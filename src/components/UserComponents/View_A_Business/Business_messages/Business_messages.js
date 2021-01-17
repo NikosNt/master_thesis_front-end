@@ -38,8 +38,7 @@ const Business_messages = (props) =>{
     ))
     
     if (!props.business_user_messages.length){
-        console.log("mphka")
-        messages=(<p style={{textAlign:"center"}}>Send a message and communicate !</p>)
+        messages=(<p style={{textAlign:"center"}}>No messages yet! <br/>Send a message and communicate :) </p>)
     }
 
     const sendMessageHandler = () => {

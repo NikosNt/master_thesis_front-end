@@ -12,9 +12,12 @@ const initialState={
     error: null,
     loadedServices_Companies:[],
     resultMessage:'',
+    loadBusiness:[],
     businessSchedule:[],
     business_user_messages:[],
     newMessage:[],
+    loadBusinessServices:[],
+    loadBusinessProducts:[],
 };
 
 const setSearchText =(state,action) =>{
@@ -74,6 +77,11 @@ const loadServicesCompanies = ( state, action ) => {
         resultMessage:action.resultMessage
     });
 };
+const loadBusiness = ( state, action ) => {
+    return updateObject( state,{
+        loadBusiness:action.loadBusiness
+    });
+};
 
 const loadScheduleBusiness = ( state, action ) => {
     return updateObject( state,{
@@ -87,11 +95,16 @@ const loadBusinessUserMessages = ( state, action ) => {
     });
 };
 
-// const addNewMessageToBusiness = ( state, action ) => {
-//     return updateObject( state,{
-//         business_user_messages:action.business_user_messages
-//     });
-// };
+const loadBusinessServices = ( state, action ) => {
+    return updateObject( state,{
+        loadBusinessServices:action.loadBusinessServices
+    });
+};
+const loadBusinessProducts = ( state, action ) => {
+    return updateObject( state,{
+        loadBusinessProducts:action.loadBusinessProducts
+    });
+};
 
 const reducer = (state=initialState,action) =>{
     switch(action.type) {
@@ -102,9 +115,11 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.CITY_CONTENT: return updateCityContent(state,action);
         case actionTypes.SERVICE_CONTENT: return updateServiceContent(state,action);
         case actionTypes.LOAD_SERVICES_COMPANIES: return loadServicesCompanies(state,action);
+        case actionTypes.LOAD_BUSINESS: return loadBusiness(state,action);
         case actionTypes.LOAD_BUSINESS_SCHEDULE: return loadScheduleBusiness(state,action);
         case actionTypes.LOAD_BUSINESS_USER_MESSAGES: return loadBusinessUserMessages(state,action);
-     //   case actionTypes.ADD_MESSAGE_TO_BUSINESS: return addNewMessageToBusiness(state,action);
+        case actionTypes.LOAD_BUSINESS_SERVICES: return loadBusinessServices(state,action);
+        case actionTypes.LOAD_BUSINESS_PRODUCTS: return loadBusinessProducts(state,action);
         case actionTypes.RESULT_MESSAGE: return setResultMessage(state,action); 
         default: return state;
     }
