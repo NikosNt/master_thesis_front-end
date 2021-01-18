@@ -1,8 +1,9 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
-
+import Service from './Service/Service'
 import * as actions from '../../../../store/actions/index';
-import classes from './Services.module.css' ;
+//import classes from './Services.module.css' ;
+import {CardDeck} from 'react-bootstrap'
 
 const Services = (props) =>{
 
@@ -18,22 +19,21 @@ const Services = (props) =>{
     //console.log(props.business_services);
 
     let showServices =  props.business_services.map( service =>(
-      <div key={service.id} className={classes.ViewServices}>
-        <h5>{service.name}</h5>
-        <p> value: {service.value}</p>
-        <p> Plhrofories: {service.info}</p>
-       
-      </div>
+      <Service key={service.id} service={service} />
     ))
 
+    let noServices='';
     if(!props.business_services.length ){
-      showServices =<p style={{textAlign:"center",marginTop:"10%"}}>Δεν υπάρχουν διαθέσιμες υπηρεσίες</p>
+       noServices =<p style={{textAlign:"center",marginTop:"10%"}}>Δεν υπάρχουν διαθέσιμες υπηρεσίες</p>
     }
     
 
     return(
       <>
-        {showServices}
+        <CardDeck >
+          {showServices}
+        </CardDeck>
+        {noServices}
       </>
     )
 }

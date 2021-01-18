@@ -16,16 +16,16 @@ const ViewProductsServices = (props) =>{
         <>
             <h2 className={classes.Heading} > {props.loadBusiness.business_name}</h2>
             <Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)} >
-                <Tab  eventKey="products" title="Products" >
+                <Tab  eventKey="products" title="Προιόντα" >
                     <Products businessID={props.loadBusiness.business_id}/>
                 </Tab>
-                <Tab  eventKey="services" title="Services" >
+                <Tab  eventKey="services" title="Υπηρεσίες" >
                     <Services businessID={props.loadBusiness.business_id}/>
                 </Tab> 
-                <Tab eventKey="info" title="Information">
+                <Tab eventKey="info" title="Πληροφορίες">
                      <Business_Info business={props.loadBusiness}/>
                 </Tab>           
-                <Tab eventKey="messages" title="Messages" >
+                <Tab eventKey="messages" title="Μηνύματα" >
                     <Business_messages businessID={props.loadBusiness.business_id}/>
                 </Tab>
             </Tabs>

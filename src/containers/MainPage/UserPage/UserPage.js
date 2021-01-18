@@ -7,7 +7,7 @@ import MyButton from '../../../components/UI/Button/MyButton';
 import Info from '../../../components/StartingInfo/StartingInfo';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import ViewBusiness from '../../../components/UserComponents/ViewBusiness'
-
+import {CardDeck,CardGroup} from 'react-bootstrap'
 import * as actions from '../../../store/actions/index';
 
 const UserPage = (props) =>{
@@ -59,7 +59,10 @@ const UserPage = (props) =>{
         </div>
         <br/> 
         <h4 className={classes.NoResult} > {props.resultMessage} </h4>
-        {selected_services}
+        <CardDeck >
+          {selected_services}
+        </CardDeck>
+        
        
       </div>
       <style type="text/css">

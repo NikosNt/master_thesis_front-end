@@ -7,8 +7,8 @@ import { withRouter } from "react-router-dom";
 import * as actions from '../../store/actions/index';
 import Modal from '../UI/Modal/Modal';
 import {getDay,getCurDate} from '../../shared/utility';
-import {Row,Col,Button} from 'react-bootstrap';
-
+import {Row,Col,Card} from 'react-bootstrap';
+ 
 const ViewBusiness = (props) =>{
 
     const {OnLoadBusiness} = props;
@@ -20,7 +20,7 @@ const ViewBusiness = (props) =>{
 
     let addressOutput = props.business.address.map(address =>{
             return <span className={classes.SpanStyle} key={address.id}>
-                    {address.city} {address.zipcode} {address.street} {address.street_number} 
+                   <li> {address.city} {address.zipcode} {address.street} {address.street_number} </li>
                 </span>
         })    
 
@@ -50,18 +50,34 @@ const ViewBusiness = (props) =>{
             OnLoadBusiness(props.business)
             props.history.push({
                 pathname:"/view_a_business",
-            //     business:props.business
             });
             console.log(props.business)
         } 
         setShowModal(true);      
     }
 
+
+
     return(
         <>
             <Modal show={showModal} modalClosed={() => setShowModal(false)}>
                 <h4 style={{textAlign:"center"}}>Please log in first :)</h4>
             </Modal>
+            <Col  sm={12} md={6} lg={4} className={classes.Column} >
+                <Card  className={classes.ViewBusiness}  >
+                    <Card.Header style={{color:"#39a8a8",textAlign:"center"}}>{props.business.business_name}</Card.Header>  
+                    <Card.Body>
+                        {/* <p>Πληροφορίες : </p> <p>{props.business.info}</p>  */}
+                        <p>Διεύθυνση :</p> {addressOutput}           
+                        <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  {scheduleDay}</p>
+                        {open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}
+                        {!open && closed?<h6 className={classes.Closed} >Κλειστά</h6>:null}
+
+                        <hr/><MyButton  variant="custom"  clicked={viewBusinessHandler } > View more information</MyButton>
+                    </Card.Body>
+                </Card>
+            </Col>
+             {/* <Col  sm={12} md={6} lg={4} >
             <div className={classes.ViewBusiness}>
                 <h4 style={{color:"#39a8a8",textAlign:"center"}}>{props.business.business_name}</h4>
                 <p>Πληροφορίες : </p> <p>{props.business.info}</p> 
@@ -76,8 +92,10 @@ const ViewBusiness = (props) =>{
                     </Col>
                 </Row>
                  <hr/><MyButton  variant="custom"  clicked={viewBusinessHandler } > View more information</MyButton>
-                {/* <MyButton variant="secondary">Open in Map</MyButton> */}
-            </div>
+               
+            </div></Col> */}
+
+             {/* <MyButton variant="secondary">Open in Map</MyButton> */}
             <style type="text/css">
                 {`
                     .btn-custom {

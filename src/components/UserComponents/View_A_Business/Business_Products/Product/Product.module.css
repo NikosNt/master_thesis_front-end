@@ -1,0 +1,10 @@
+.ViewProduct {
+    margin-top: 20px;
+}
+
+.Column{
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+

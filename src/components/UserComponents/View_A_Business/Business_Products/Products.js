@@ -1,9 +1,9 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
-
+import Product from './Product/Product'
 import * as actions from '../../../../store/actions/index';
-import classes from './Products.module.css' ;
-import {Card} from 'react-bootstrap'
+//import classes from './Products.module.css' ;
+import {CardDeck} from 'react-bootstrap'
 
 const Products = (props) =>{
 
@@ -16,34 +16,22 @@ const Products = (props) =>{
         fetchData();
     }, [OnfetchBusinessProducts,props.businessID]); 
 
-    console.log(props.business_products);
-   let showProducts =  props.business_products.map( product =>(
-    <Card key={product.id} className={classes.ViewProducts}>
-      <Card.Img    variant="top" src="\thesis_photos\silver_chain1.jpg" /> 
-      <Card.Title>{product.name}</Card.Title>
-   
-    
-            <p> Diathesima : {product.number}</p>
-      <p> Timh : {product.value}</p>
-      <p> Plhrofories: {product.info}</p>
-   
-      {/* <img src={require("C:\thesis_photos\silver_chain1.jpg")} height="200" width="200"/> */}
-      
-     {/* {product.photos_path.map(ph =>( */}
-      {/* <img key={ph.id} src={ph.path} height="200" width="200"/> */}
-       {/* <Card.Img  key={ph.id} variant="top" src="holder.js/100px180" /> */}
+  //console.log(props.business_products);
 
-     {/* ))
-    } */}
-    </Card>
+   let showProducts =  props.business_products.map( product =>(
+    <Product key={product.id}  product={product}/>
   ))
 
+  let noProducts='';
   if(!props.business_products.length ){
-    showProducts =<p style={{textAlign:"center",marginTop:"10%"}}>Δεν υπάρχουν διαθέσιμα προιοντα</p>
+    noProducts =<p style={{textAlign:"center",marginTop:"10%"}}>Δεν υπάρχουν διαθέσιμα προιοντα</p>
   }
     return(
-      <> 
-        {showProducts}
+      <>  
+        <CardDeck >
+            {showProducts}
+        </CardDeck> 
+        {noProducts}
       </>
     )
 }
