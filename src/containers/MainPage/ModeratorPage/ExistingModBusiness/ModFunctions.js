@@ -1,10 +1,13 @@
 import React,{useEffect,useState} from 'react';
 
-import classes from './ModFunctions.module.css';
-import * as actions from '../../../../store/actions/index';
+//import classes from './ModFunctions.module.css';
+//import * as actions from '../../../../store/actions/index';
 
-import BasicBusinessInfo from './BasicInfo/BasicBusinessInfo';
-import BusinessModSchedule from './BusinessModSchedule/BusinessModSchedule';
+import BasicBusinessInfo from '../../../../components/ModComponents/BasicInfo/BasicBusinessInfo';
+import BusinessModSchedule from '../../../../components/ModComponents/BusinessModSchedule/BusinessModSchedule';
+import Products from '../../../../components/ModComponents/ProductsMod/ProductsMod';
+import Services from '../../../../components/ModComponents/ServicesMod/ServicesMod';
+import Messages from '../../../../components/ModComponents/MessagesMod/MessagesMod';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Tab,Tabs} from 'react-bootstrap'
@@ -19,16 +22,16 @@ const ModFunctions = (props) =>{
                 <BasicBusinessInfo modBusiness={props.business} />
             </Tab>
             <Tab eventKey="schedule" title="Schedule">
-                 <BusinessModSchedule  modBusiness={props.business}/>
+                 <BusinessModSchedule  modBusiness={props.business} />
             </Tab>
             <Tab  eventKey="products" title="Products" >
-                <p style={{textAlign:"center"}}>Not available yet !</p>
+                <Products />
             </Tab>
             <Tab  eventKey="services" title="Services" >
-                <p style={{textAlign:"center"}}>Not available yet !</p>
+                <Services  modBusiness={props.business} />
             </Tab>            
             <Tab eventKey="messages" title="Messages" >
-                <p style={{textAlign:"center"}}>Not available yet !</p>
+                <Messages />
             </Tab>
         </Tabs>
     )

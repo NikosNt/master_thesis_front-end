@@ -33,7 +33,7 @@ const Mainpage = (props) =>{
   return(
     <React.Fragment>
       {page}
-      <Footer/>
+      {/* <Footer/> */}
     </React.Fragment>
   )
 

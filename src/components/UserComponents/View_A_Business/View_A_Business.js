@@ -2,8 +2,8 @@ import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import Products from './Business_Products/Products';
 import Services from './Business_Services/Services';
-import Business_Info from './Business_Info/Business_Info';
-import Business_messages from './Business_messages/Business_messages';
+import BusinessInfo from './Business_Info/Business_Info';
+import BusinessMessages from './Business_messages/Business_messages';
 // import * as actions from '../../../store/actions/index';
 import classes from './View_A_Business.module.css' ;
 import {Tab,Tabs} from 'react-bootstrap'
@@ -23,10 +23,10 @@ const ViewProductsServices = (props) =>{
                     <Services businessID={props.loadBusiness.business_id}/>
                 </Tab> 
                 <Tab eventKey="info" title="Πληροφορίες">
-                     <Business_Info business={props.loadBusiness}/>
+                     <BusinessInfo business={props.loadBusiness}/>
                 </Tab>           
                 <Tab eventKey="messages" title="Μηνύματα" >
-                    <Business_messages businessID={props.loadBusiness.business_id}/>
+                    <BusinessMessages businessID={props.loadBusiness.business_id}/>
                 </Tab>
             </Tabs>
         </>

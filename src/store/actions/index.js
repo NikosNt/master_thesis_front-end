@@ -24,7 +24,13 @@ export {
 
     fetchModScheduleBusiness,
     updateScheduleBusinessDay,
-    deleteScheduleSetHourDay
+    deleteScheduleSetHourDay,
+
+    fetchModBusinessServices,
+    creteNewService,
+    updateService,
+    deleteService
+
 } from './ModeratorAction';
 
 export {

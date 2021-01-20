@@ -173,3 +173,77 @@ export const deleteScheduleSetHourDay = (busId,id ) =>{
     }
 }
 
+export const loadModBusinessServices = (content) => {
+    return {
+        type: actionTypes.LOAD_MOD_SERVICES,
+        modBusinessServices: content,
+    }
+ }
+
+ export const fetchModBusinessServices = (busId) => {
+    let services = [];
+    return dispatch => {
+        axios.get('api/product_services/services/' + busId )
+        .then(res => {
+            for (let key in res.data) {
+                services.push({
+                    ...res.data[key]
+                });
+            }
+            dispatch(loadModBusinessServices(services));
+        })
+        .catch(err => {
+            console.log(err)
+            //dispatch(loadFail(err))
+        });
+    } 
+}
+
+export const creteNewService = (newService) => {
+    return dispatch =>{
+        axios.post('api/product_services/services/add',newService )
+        .then(res =>{
+            console.log("added epitixos", res);
+            dispatch(fetchModBusinessServices(newService.business_id));
+        })
+        .catch(err => {
+            console.log(err)
+            //dispatch(loadFail(err))
+        });
+    }
+}
+export const updateService = (updatedService,id) => {
+//http://localhost:8080/api/product_services/services/update/{id}
+// {
+//     "business_id": 17,
+//     "name": "poutso",
+//     "value": 120.0,
+//     "info": "episkepsh gia gamish"
+// }
+    return dispatch =>{
+        axios.put('api/product_services/services/update/'+ id ,updatedService )
+        .then(res =>{
+            console.log("updated epitixos", res);
+            dispatch(fetchModBusinessServices(updatedService.business_id));
+        })
+        .catch(err => {
+            console.log(err)
+            //dispatch(loadFail(err))
+        });
+    }
+}
+export const deleteService = (id,busId) => {
+//http://localhost:8080/api/product_services/services/delete/{id}
+    return dispatch =>{
+        axios.delete('api/product_services/services/delete/'+ id)
+        .then(res =>{
+            console.log("deleted epitixos", res);
+            dispatch(fetchModBusinessServices(busId));
+        })
+        .catch(err => {
+            console.log(err)
+            //dispatch(loadFail(err))
+        });
+}
+
+}

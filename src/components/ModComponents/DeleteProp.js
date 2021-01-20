@@ -1,6 +1,6 @@
 import React  from 'react';
 import MyButton from '../UI/Button/MyButton'
-import {Container,Col,Row} from 'react-bootstrap';
+import {Col,Row} from 'react-bootstrap';
 const deleteProp = (props) =>{
  
     return (

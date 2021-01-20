@@ -16,13 +16,14 @@ const ModeratorPage = (props) =>{
         OnfetchBusiness(props.userId);
     },[OnLoadModBusinessInit,OnfetchBusiness,props.userId])
 
+    
+
+    // Debug
+    // console.log("------------------")    
+    // console.log(props.userId)
+    // console.log( props.modBusiness )
+    // console.log("------------------")   
     let modPage;
-
-    console.log("------------------")    
-    console.log(props.userId)
-    console.log( props.modBusiness )
-    console.log("------------------")   
-
     if(Object.keys(props.modBusiness).length === 0){
         modPage=<NewModBusiness/>
     }else{

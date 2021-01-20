@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import * as actions from '../../store/actions/index';
 import Modal from '../UI/Modal/Modal';
 import {getDay,getCurDate} from '../../shared/utility';
-import {Row,Col,Card} from 'react-bootstrap';
+import {Col,Card} from 'react-bootstrap';
  
 const ViewBusiness = (props) =>{
 

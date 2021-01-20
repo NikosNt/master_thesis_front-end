@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import classes from './BasicBusinessInfo.module.css';
-import MyButton from '../../../../../components/UI/Button/MyButton'
-import DeleteProp from '../../../../../components/ModComponents/DeleteProp'
+import MyButton from '../../UI/Button/MyButton'
+import DeleteProp from '../DeleteProp'
 
 
-import * as actions from '../../../../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 const BasicBusinessInfo = (props) =>{
 

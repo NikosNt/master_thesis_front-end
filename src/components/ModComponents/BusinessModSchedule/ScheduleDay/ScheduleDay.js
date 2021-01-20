@@ -1,14 +1,14 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 
-import Button from "../../UI/Button/MyButton";
-import DeleteProp from '../DeleteProp';
+import Button from "../../../UI/Button/MyButton";
+import DeleteProp from '../../DeleteProp';
 import classes from './ScheduleDay.module.css';
-import Modal from '../../UI/Modal/Modal'
-import * as actions from '../../../store/actions/index';
+import Modal from '../../../UI/Modal/Modal'
+import * as actions from '../../../../store/actions/index';
 
 import {Row,Col} from 'react-bootstrap';
-import {getDay,getHourMin} from '../../../shared/utility';
+import {getDay,getHourMin} from '../../../../shared/utility';
 import DateFnsUtils from "@date-io/date-fns";
 import {TimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 
@@ -76,7 +76,7 @@ const ScheduleDay = (props) =>{
         } 
     };
 
-    console.log(props.schedule)
+    //console.log(props.schedule)
     
 
     return(   

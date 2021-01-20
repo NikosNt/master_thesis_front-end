@@ -1,10 +1,10 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 
-import ScheduleDay from '../../../../../components/ModComponents/ScheduleDay/ScheduleDay'
+import ScheduleDay from './ScheduleDay/ScheduleDay'
 import classes from './BusinessModSchedule.module.css';
 
-import * as actions from '../../../../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
     const BusinessModSchedule = (props) =>{
 
@@ -17,11 +17,12 @@ import * as actions from '../../../../../store/actions/index';
         fetchData();
     }, [OnFetchModScheduleBusiness,props.modBusiness.id]); 
     
-    console.log("+++++++++++++++++++")   
-    console.log(props.modBusiness)
-    console.log("++++++++++++++++++")   
+    //Debug
+    // console.log("+++++++++++++++++++")   
+    // console.log(props.modBusiness)
+    // console.log("++++++++++++++++++")   
 
-  //  console.log(props.modBusinessSchedule)
+    // console.log(props.modBusinessSchedule)
     let days = null;
     days = props.modBusinessSchedule.map(day => (
         <ScheduleDay key={day.id} schedule={day} />

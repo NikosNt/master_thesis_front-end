@@ -7,7 +7,7 @@ import MyButton from '../../../components/UI/Button/MyButton';
 import Info from '../../../components/StartingInfo/StartingInfo';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import ViewBusiness from '../../../components/UserComponents/ViewBusiness'
-import {CardDeck,CardGroup} from 'react-bootstrap'
+import {CardDeck} from 'react-bootstrap'
 import * as actions from '../../../store/actions/index';
 
 const UserPage = (props) =>{
