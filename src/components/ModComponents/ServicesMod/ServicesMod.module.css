@@ -6,7 +6,6 @@
 
 .Button{
     border: none;
-  
     padding: 20px;
     text-align: center;
     text-decoration: none;
@@ -14,4 +13,9 @@
     font-size: 15px;
     margin: 14px 12px;
     border-radius: 50%; 
+}
+
+.Deck{
+    margin: auto;
+    width:90%;
 }

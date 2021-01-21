@@ -40,13 +40,13 @@ const Services = (props) =>{
 
 const mapStateToProps = state => {
     return {
-       business_services: state.userPage.loadBusinessServices
+       business_services: state.services.loadUserBusinessServices
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
-      OnfetchBusinessServices: (busId)=> dispatch( actions.fetchBusinessServices(busId) ),  
+      OnfetchBusinessServices: (busId)=> dispatch( actions.fetchUserBusinessServices(busId) ),  
     };
   };
 

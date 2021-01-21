@@ -15,6 +15,12 @@ import userPageReducer from './store/reducers/UserReducer'
 import authReducer from './store/reducers/authReducer'
 import moderatorReducer from './store/reducers/ModeratorReducer'
 import adminReducer from './store/reducers/AdminReducer'
+import ScheduleReducer from './store/reducers/ScheduleReducer'
+import MessagesReducer from './store/reducers/MessagesReducer'
+import ServicesReducer from './store/reducers/ServicesReducer'
+import ProductsReducer from './store/reducers/ProductsReducer'
+
+
 
 const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
 
@@ -22,6 +28,10 @@ const rootReducer = combineReducers({
     userPage: userPageReducer,
     auth:authReducer,
     modPage:moderatorReducer,
+    schedule:ScheduleReducer,
+    messages:MessagesReducer,
+    services:ServicesReducer,
+    products:ProductsReducer,
     adminPage:adminReducer
 });
 

@@ -38,13 +38,13 @@ const Products = (props) =>{
 
 const mapStateToProps = state => {
     return {
-       business_products: state.userPage.loadBusinessProducts
+       business_products: state.products.loadUserBusinessProducts
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
-      OnfetchBusinessProducts: (busId)=> dispatch( actions.fetchBusinessProducts(busId) ),  
+      OnfetchBusinessProducts: (busId)=> dispatch( actions.fetchUserBusinessProducts(busId) ),  
     };
   };
 export default connect( mapStateToProps,mapDispatchToProps )(Products);

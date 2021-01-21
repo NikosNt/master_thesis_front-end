@@ -77,14 +77,14 @@ const Business_messages = (props) =>{
 const mapStateToProps = state => {
     return {
        userId :state.auth.userId ,
-       business_user_messages: state.userPage.business_user_messages
+       business_user_messages: state.messages.business_user_messages
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
       OnfetchMessages: (userId,busId)=> dispatch( actions.fetchdBusinessUserMessages(userId,busId) ),
-      OnAddNewMessage: (message)=> dispatch( actions.addNewMessageToBusiness(message) ),  
+      OnAddNewMessage: (message)=> dispatch( actions.addUserNewMessageToBusiness(message) ),  
     };
   };
   

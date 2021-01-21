@@ -124,8 +124,8 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-        onDeleteScheduleSetHourDay: (busID,id )=> dispatch( actions.deleteScheduleSetHourDay(busID,id ) ),
-        onUpdateScheduleBusinessDay: (setHourDay,id)=> dispatch( actions.updateScheduleBusinessDay(setHourDay,id) ),
+        onDeleteScheduleSetHourDay: (busID,id )=> dispatch( actions.deleteModScheduleSetHourDay(busID,id ) ),
+        onUpdateScheduleBusinessDay: (setHourDay,id)=> dispatch( actions.updateModScheduleBusinessDay(setHourDay,id) ),
     };
   };
 

@@ -1,17 +1,27 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { connect } from 'react-redux';
-import {Card,Col} from 'react-bootstrap';
+import {Card,Col,Alert,Row } from 'react-bootstrap';
 import classes from './ServiceMod.module.css' ;
 import MyButton from '../../../UI/Button/MyButton';
 import * as actions from '../../../../store/actions/index';
 
+ import Modal from '../../../UI/Modal/Modal'
+
 const ServiceMod = (props) => {
 
-    const {OnUpdateModService,OnDeleteModService}=props;
+    const {OnUpdateModService,OnDeleteModService,onLoadModFail}=props;
 
     const [name,setName] = useState(props.serviceMod.name);
     const [value,setValue] = useState(props.serviceMod.value);
     const [info,setInfo] = useState(props.serviceMod.info);
+    const [showModal,setShowModal] = useState(false);
+
+    // useEffect(()=>{
+    //     if(props.error){
+    //         setShowModal(true);
+    //         console.log("mphka -> ",showModal)
+    //     }
+    // })
 
     const updateServiceHandler = () =>{
         const updatedService ={
@@ -25,10 +35,16 @@ const ServiceMod = (props) => {
     const deleteServiceHandler = () =>{
         // console.log("Delete Service me id -> ",props.serviceMod.id);
         OnDeleteModService(props.serviceMod.id, props.serviceMod.business_id)
-    }
 
+    
+        
+    }
+  
     return(
-        <> 
+        <>  
+            <Modal show={showModal} modalClosed={() => { setShowModal(false);onLoadModFail(null)}} >
+                <p>Error</p>
+            </Modal>
             <Col   md={12} lg={6} className={classes.Column}> 
                 <Card key={props.serviceMod.id} className={classes.ViewService}  >
                     <Card.Header style={{/*color:"#39a8a8",*/textAlign:"center"}}>
@@ -36,29 +52,31 @@ const ServiceMod = (props) => {
                     </Card.Header>
                     <Card.Body>
                         <span> Τιμή :  </span> 
-                        <input  style={{width:"20%"}} value={value} onChange={(e)=> setValue(e.target.value)}/> 
+                        <input  style={{width:"15%"}} value={value} onChange={(e)=> setValue(e.target.value)}/> 
                         <p> Πληροφορίες :</p> 
-                        <textarea style={{width:"80%",height:"70px" }} value={info} onChange={(e)=> setInfo(e.target.value)} /><br/>
+                        <textarea style={{width:"90%",height:"100px" }} value={info} onChange={(e)=> setInfo(e.target.value)} /><br/>
                         <MyButton variant="info" clicked={updateServiceHandler}>Update</MyButton>
                         <MyButton variant="danger" clicked={deleteServiceHandler}>Delete</MyButton>
+                       
                    </Card.Body>
                 </Card>
-            </Col>
+            </Col>   
         </>
     )
 }
-// const mapStateToProps = state => {
-//     return {
-
-//     };
-//   };
+const mapStateToProps = state => {
+    return {
+       
+    };
+  };
   
   const mapDispatchToProps = dispatch => {
     return {
-      OnUpdateModService: (updatedService,id)=> dispatch( actions.updateService(updatedService,id)),
-      OnDeleteModService: (id,busId)=> dispatch( actions.deleteService(id,busId)),
+      OnUpdateModService: (updatedService,id)=> dispatch( actions.updateModService(updatedService,id)),
+      OnDeleteModService: (id,busId)=> dispatch( actions.deleteModService(id,busId)),
+    //   onLoadModFail:(err)=>dispatch(actions.loadModFail(err))
     };
   };
   
 
-export default  connect( null,mapDispatchToProps )(ServiceMod);
+export default  connect( mapStateToProps,mapDispatchToProps )( ServiceMod );

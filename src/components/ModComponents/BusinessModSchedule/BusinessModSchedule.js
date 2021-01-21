@@ -41,7 +41,7 @@ import * as actions from '../../../store/actions/index';
 
 const mapStateToProps = state => {
     return {
-        modBusinessSchedule:state.modPage.modBusinessSchedule,
+        modBusinessSchedule:state.schedule.modBusinessSchedule,
     };
   };
   

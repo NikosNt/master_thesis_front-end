@@ -63,7 +63,7 @@ const ServicesMod = (props) =>{
                       addNewService={()=> addNewServiceHandler()}
           />
         </Modal>
-        <div>
+        <div className={classes.Deck}>
           <CardDeck >
             {showModServices}
           </CardDeck>
@@ -79,14 +79,14 @@ const ServicesMod = (props) =>{
 }
 const mapStateToProps = state => {
     return {
-        modBusinessServices:state.modPage.modBusinessServices,
+        modBusinessServices:state.services.modBusinessServices,
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
         OnFetchModBusinessServices: (id)=> dispatch( actions.fetchModBusinessServices(id) ),
-        OnAddModService: (newService)=> dispatch( actions.creteNewService(newService)),
+        OnAddModService: (newService)=> dispatch( actions.creteModNewService(newService)),
     };
   };
 export default connect( mapStateToProps,mapDispatchToProps )( ServicesMod);

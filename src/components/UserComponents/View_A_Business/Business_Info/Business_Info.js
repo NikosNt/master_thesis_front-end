@@ -86,13 +86,13 @@ const Business_Info = (props) =>{
 
 const mapStateToProps = state => {
     return {
-        businessSchedule: state.userPage.businessSchedule,
+        businessSchedule: state.schedule.businessUserSchedule,
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
-      OnFetchScheduleBusiness: (id)=> dispatch( actions.fetchScheduleBusiness(id) ),
+      OnFetchScheduleBusiness: (id)=> dispatch( actions.fetchUserScheduleBusiness(id) ),
 
     };
   };
