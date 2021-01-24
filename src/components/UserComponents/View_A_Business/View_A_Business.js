@@ -26,7 +26,7 @@ const ViewProductsServices = (props) =>{
                      <BusinessInfo business={props.loadBusiness}/>
                 </Tab>           
                 <Tab eventKey="messages" title="Μηνύματα" >
-                    <BusinessMessages businessID={props.loadBusiness.business_id}/>
+                    <BusinessMessages businessName={props.loadBusiness.business_name} businessID={props.loadBusiness.business_id}/>
                 </Tab>
             </Tabs>
         </>

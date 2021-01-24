@@ -23,15 +23,17 @@ const Business_messages = (props) =>{
     const [contentTitle,setContentTitle] = useState('')
     const [contentMessage,setContentMessage] = useState('')
 
-    //console.log(props.business_user_messages)
+ 
 
     let messages = props.business_user_messages.map(sms => (
          sms.sender === 0 ?
                 <div  key={sms.id} className={classes.Left}>
+                    <p>{props.businessName}:</p>
                     <ViewMessages message={sms}/>
                 </div>   
                 :                
                 <div  key={sms.id} className={classes.Right}>
+                <p>You:</p>
                     <ViewMessages message={sms}/>
                 </div>  
   

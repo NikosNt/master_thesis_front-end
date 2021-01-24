@@ -31,6 +31,13 @@ export const loadUserBusinessServices = (content) => {
 
 //---------------------------------Moderator------------------------------------------------
 
+export const failMod = (content) => {
+    return {
+        type: actionTypes.FAIL_MOD,
+        failModError: content,
+    }
+ }
+
 export const loadModBusinessServices = (content) => {
     return {
         type: actionTypes.LOAD_MOD_SERVICES,
@@ -77,7 +84,7 @@ export const updateModService = (updatedService,id) => {
         })
         .catch(err => {
             console.log(err)
-            //dispatch(loadModFail(err))
+            dispatch(failMod(err))
         });
     }
 }
@@ -90,7 +97,7 @@ export const deleteModService = (id,busId) => {
         })
         .catch(err => {
             console.log(err)
-            //dispatch(loadModFail(err))
+            dispatch(failMod(err))
         });
     }
 }

@@ -9,10 +9,9 @@ import classes from './ServicesMod.module.css';
 import {CardDeck,Button} from 'react-bootstrap';
 
 
-
 const ServicesMod = (props) =>{
 
-    const {OnFetchModBusinessServices,OnAddModService} = props;
+    const {OnFetchModBusinessServices,OnAddModService,OnLoadModFail} = props;
 
     useEffect(() => {
         async function fetchData() {
@@ -52,6 +51,9 @@ const ServicesMod = (props) =>{
 
     return(
       <>
+        <Modal show={props.failModError} modalClosed={() => OnLoadModFail(false) }>
+          <p style={{textAlign:"center"}}>An error has occured !</p>
+        </Modal>
         <Modal style={{height:"1000px"}} show={showModal} modalClosed={() => setShowModal(false)}>
           <NewService businessId={props.modBusiness.id}
                       name={newName}
@@ -80,6 +82,7 @@ const ServicesMod = (props) =>{
 const mapStateToProps = state => {
     return {
         modBusinessServices:state.services.modBusinessServices,
+        failModError:state.services.failModError
     };
   };
   
@@ -87,6 +90,7 @@ const mapStateToProps = state => {
     return {
         OnFetchModBusinessServices: (id)=> dispatch( actions.fetchModBusinessServices(id) ),
         OnAddModService: (newService)=> dispatch( actions.creteModNewService(newService)),
+        OnLoadModFail:(err)=>dispatch(actions.failMod(err))
     };
   };
 export default connect( mapStateToProps,mapDispatchToProps )( ServicesMod);

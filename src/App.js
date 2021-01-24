@@ -34,8 +34,10 @@ const App = (props) => {
 
   //---------------------------
   //console log testing purposes
-  //console.log(props.hasRole);
-  //console.log(props.token);
+  console.log(props.hasRole);
+  console.log(props.token);
+  console.log(props.username);
+
   //---------------------------
   
   let routes = (
@@ -98,6 +100,7 @@ const App = (props) => {
 const mapStateToProps = state => {
   return {
     hasRole:state.auth.role,
+    username:state.auth.username,
     token:state.auth.token,
     isAuthenticated: state.auth.token !== null
   };

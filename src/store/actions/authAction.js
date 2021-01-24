@@ -8,11 +8,12 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token, userId,role) => {
+export const authSuccess = (token, userId,role,username) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
         userId: userId,
+        username:username,
         role:role
     };
 };
@@ -43,13 +44,13 @@ export const auth = (username, password) => {
         };
         axios.post('api/auth/signin', authData)
             .then(response => {
-                // console.log(response);
+                 console.log(response);
                // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 localStorage.setItem('token', response.data.accessToken);
                 //localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.id);    
                 localStorage.setItem('role',response.data.roles[0]);
-                dispatch(authSuccess(response.data.accessToken, response.data.id,response.data.roles[0]));
+                dispatch(authSuccess(response.data.accessToken, response.data.id,response.data.roles[0],response.data.username));
                 //dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
