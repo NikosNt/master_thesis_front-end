@@ -39,6 +39,7 @@ export {
 export {
     fetchUserBusinessServices,
 
+    loadFailServiceMod,
     fetchModBusinessServices,
     creteModNewService,
     updateModService,

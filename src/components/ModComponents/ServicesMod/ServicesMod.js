@@ -8,11 +8,9 @@ import Modal from '../../UI/Modal/Modal';
 import classes from './ServicesMod.module.css';
 import {CardDeck,Button} from 'react-bootstrap';
 
-
-
 const ServicesMod = (props) =>{
 
-    const {OnFetchModBusinessServices,OnAddModService} = props;
+    const {OnFetchModBusinessServices,OnAddModService,onLoadModFail} = props;
 
     useEffect(() => {
         async function fetchData() {
@@ -35,7 +33,6 @@ const ServicesMod = (props) =>{
         noModServices =<p style={{textAlign:"center",marginTop:"10%"}}>Δεν υπάρχουν διαθέσιμες υπηρεσίες</p>
     }
 
-    //console.log(props.modBusinessServices);
     const addNewServiceHandler = () =>{
       const newService ={
               business_id: props.modBusiness.id,
@@ -48,11 +45,14 @@ const ServicesMod = (props) =>{
       setNewName('');
       setNewValue('');
       setNewInfo('');
-  }
+    }
 
     return(
       <>
-        <Modal style={{height:"1000px"}} show={showModal} modalClosed={() => setShowModal(false)}>
+        <Modal show={props.modServiceFail} modalClosed={() => {  onLoadModFail(false)}} >
+          <p style={{textAlign:"center"}}> An error has occured !</p>
+        </Modal>
+        <Modal  show={showModal} modalClosed={() => setShowModal(false)}>
           <NewService businessId={props.modBusiness.id}
                       name={newName}
                       nameChange={(e)=>setNewName(e.target.value)}
@@ -80,6 +80,7 @@ const ServicesMod = (props) =>{
 const mapStateToProps = state => {
     return {
         modBusinessServices:state.services.modBusinessServices,
+        modServiceFail:state.services.modServiceFail
     };
   };
   
@@ -87,6 +88,7 @@ const mapStateToProps = state => {
     return {
         OnFetchModBusinessServices: (id)=> dispatch( actions.fetchModBusinessServices(id) ),
         OnAddModService: (newService)=> dispatch( actions.creteModNewService(newService)),
+        onLoadModFail:(err)=>dispatch(actions.loadFailServiceMod(err))
     };
   };
 export default connect( mapStateToProps,mapDispatchToProps )( ServicesMod);

@@ -1,6 +1,6 @@
 import React  from 'react';
 import classes from './NewService.module.css' ;
-import {Card,Col} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import MyButton from '../../../UI/Button/MyButton'
 const NewService = (props) => {
 
