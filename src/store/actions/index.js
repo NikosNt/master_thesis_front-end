@@ -33,13 +33,14 @@ export {
 export {
     fetchdBusinessUserMessages,
     addUserNewMessageToBusiness,
+    fetchedModMessages
 }from './MessagesAction'
 
 
 export {
     fetchUserBusinessServices,
 
-    loadFailServiceMod,
+    failMod,
     fetchModBusinessServices,
     creteModNewService,
     updateModService,

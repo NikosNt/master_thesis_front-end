@@ -4,14 +4,20 @@ import { updateObject } from '../../shared/utility'
 const initialState={
     loadUserBusinessServices:[],
     modBusinessServices:[],
-    modServiceFail:false,
+    failModError:false,
 };
 
-const loadFailServiceMod = ( state, action ) => {
+const failMod = ( state, action ) => {
     return updateObject( state,{
-        modServiceFail:action.modServiceFail
+        failModError:action.failModError
     });
-}
+};
+
+// const loadFailServiceMod = ( state, action ) => {
+//     return updateObject( state,{
+//         modServiceFail:action.modServiceFail
+//     });
+// }
 
 const loadUserBusinessServices = ( state, action ) => {
     return updateObject( state,{
@@ -29,7 +35,7 @@ const reducer = (state=initialState,action) =>{
     switch(action.type) {
         case actionTypes.LOAD_BUSINESS_SERVICES: return loadUserBusinessServices(state,action);
         case actionTypes.LOAD_MOD_SERVICES: return loadModBusinessServices( state, action );
-        case actionTypes.MOD_SERVICE_FAIL: return loadFailServiceMod( state, action );
+        case actionTypes.FAIL_MOD: return failMod( state, action );
         default: return state;
     }
 }

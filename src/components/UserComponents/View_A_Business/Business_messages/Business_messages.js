@@ -23,15 +23,17 @@ const Business_messages = (props) =>{
     const [contentTitle,setContentTitle] = useState('')
     const [contentMessage,setContentMessage] = useState('')
 
-    //console.log(props.business_user_messages)
+ 
 
     let messages = props.business_user_messages.map(sms => (
          sms.sender === 0 ?
                 <div  key={sms.id} className={classes.Left}>
+                    <p>{props.businessName} : <i>{sms.username_sender}</i></p>
                     <ViewMessages message={sms}/>
                 </div>   
                 :                
                 <div  key={sms.id} className={classes.Right}>
+                <p>You:</p>
                     <ViewMessages message={sms}/>
                 </div>  
   
@@ -46,11 +48,13 @@ const Business_messages = (props) =>{
                 businessId: props.businessID,
                 userId: Number(props.userId),
                 sender: 1,
+                username_sender:props.username,
                 title: contentTitle,
                 message: contentMessage,
                 date_time: getCurDate().day_time
          }
-         OnAddNewMessage(m);
+         console.log(m)
+        // OnAddNewMessage(m);
          setContentTitle('');
          setContentMessage('');
     }
@@ -76,6 +80,7 @@ const Business_messages = (props) =>{
 
 const mapStateToProps = state => {
     return {
+       username:state.auth.username,
        userId :state.auth.userId ,
        business_user_messages: state.messages.business_user_messages
     };

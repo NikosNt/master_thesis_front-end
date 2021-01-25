@@ -1,23 +1,20 @@
 import React,{useState,useEffect} from 'react';
 import { connect } from 'react-redux';
-import {Card,Col } from 'react-bootstrap';
+import {Card,Col} from 'react-bootstrap';
 import classes from './ServiceMod.module.css' ;
 import MyButton from '../../../UI/Button/MyButton';
 import * as actions from '../../../../store/actions/index';
 
-
-
 const ServiceMod = (props) => {
-
-    const {OnUpdateModService,OnDeleteModService,onLoadModFail}=props;
+    const {OnUpdateModService,OnDeleteModService,OnLoadModFail}=props;
 
     const [name,setName] = useState(props.serviceMod.name);
     const [value,setValue] = useState(props.serviceMod.value);
     const [info,setInfo] = useState(props.serviceMod.info);
 
     useEffect(()=>{
-        if(props.modServiceFail){
-            onLoadModFail(true);
+        if(props.failModError){
+            OnLoadModFail(true);
         }
     })
 
@@ -31,9 +28,9 @@ const ServiceMod = (props) => {
         OnUpdateModService(updatedService,props.serviceMod.id);
     }
     const deleteServiceHandler = () =>{
-        OnDeleteModService(props.serviceMod.id, props.serviceMod.business_id) 
+        OnDeleteModService(props.serviceMod.id, props.serviceMod.business_id)
     }
-   
+
     return(
         <>  
             <Col   md={12} lg={6} className={classes.Column}> 
@@ -56,15 +53,15 @@ const ServiceMod = (props) => {
 }
 const mapStateToProps = state => {
     return {
-        modServiceFail:state.services.modServiceFail
+        failModError:state.services.failModError
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
-        OnUpdateModService: (updatedService,id)=> dispatch( actions.updateModService(updatedService,id)),
-        OnDeleteModService: (id,busId)=> dispatch( actions.deleteModService(id,busId)),
-        onLoadModFail:(err)=>dispatch(actions.loadFailServiceMod(err))
+      OnUpdateModService: (updatedService,id)=> dispatch( actions.updateModService(updatedService,id)),
+      OnDeleteModService: (id,busId)=> dispatch( actions.deleteModService(id,busId)),
+      OnLoadModFail:(err)=>dispatch(actions.failMod(err))
     };
   };
   

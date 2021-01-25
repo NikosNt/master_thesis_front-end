@@ -46,3 +46,34 @@ export const addUserNewMessageToBusiness = (message) => {
 }
 
 //---------------------------------Moderator------------------------------------------------
+
+
+
+export const loadModMessages = (content) => {
+    return {
+        type: actionTypes.LOAD_MOD_MESSAGES,
+        modMessages: content,
+    }
+ }
+
+ export const fetchedModMessages = (id) => {
+    let messages = [];
+    return dispatch => {
+        //http://localhost:8080/api/messages/view/{businessId}
+        axios.get('api/messages/view/'+ id )
+        .then(res => {
+            for (let key in res.data) {
+                messages.push({
+                    ...res.data[key]
+                });
+            }
+            dispatch(loadModMessages(messages));
+        })
+        .catch(err => {
+            console.log(err)
+        //    dispatch(loadFail(err))
+        });
+    } 
+} 
+
+//http://localhost:8080/api/messages/view/{businessId}

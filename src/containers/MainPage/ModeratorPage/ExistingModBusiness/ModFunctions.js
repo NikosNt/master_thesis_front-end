@@ -31,7 +31,7 @@ const ModFunctions = (props) =>{
                 <Services  modBusiness={props.business} />
             </Tab>            
             <Tab eventKey="messages" title="Messages" >
-                <Messages />
+                <Messages modBusiness={props.business}/>
             </Tab>
         </Tabs>
     )

@@ -1,0 +1,44 @@
+.Left{
+    width: 90%;
+ 
+    border-radius: 5px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    padding: 10px;
+    margin: 10px auto;
+    /* box-sizing: border-box; */
+    background-color: #ddf1f1;
+    
+}
+
+.Right{
+    width: 90%;
+ 
+    border-radius: 5px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    padding: 10px;
+    margin: 10px auto;
+    /* box-sizing: border-box; */
+    background-color: #f4f5f5;
+    
+}
+
+.Page{
+    width: 90%;
+    margin: 10px auto;
+    overflow-y:scroll; 
+    height:500px;
+}
+
+.NewM{
+    width: 95%;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    padding: 10px;
+    margin: 10px auto;
+    margin-top: 40px;
+    /* box-sizing: border-box; */
+    background-color: #f4f5f5;
+}

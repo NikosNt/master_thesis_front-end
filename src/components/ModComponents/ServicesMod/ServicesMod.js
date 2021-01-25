@@ -8,9 +8,10 @@ import Modal from '../../UI/Modal/Modal';
 import classes from './ServicesMod.module.css';
 import {CardDeck,Button} from 'react-bootstrap';
 
+
 const ServicesMod = (props) =>{
 
-    const {OnFetchModBusinessServices,OnAddModService,onLoadModFail} = props;
+    const {OnFetchModBusinessServices,OnAddModService,OnLoadModFail} = props;
 
     useEffect(() => {
         async function fetchData() {
@@ -49,10 +50,10 @@ const ServicesMod = (props) =>{
 
     return(
       <>
-        <Modal show={props.modServiceFail} modalClosed={() => {  onLoadModFail(false)}} >
-          <p style={{textAlign:"center"}}> An error has occured !</p>
+        <Modal show={props.failModError} modalClosed={() => OnLoadModFail(false) }>
+          <p style={{textAlign:"center"}}>An error has occured !</p>
         </Modal>
-        <Modal  show={showModal} modalClosed={() => setShowModal(false)}>
+        <Modal style={{height:"1000px"}} show={showModal} modalClosed={() => setShowModal(false)}>
           <NewService businessId={props.modBusiness.id}
                       name={newName}
                       nameChange={(e)=>setNewName(e.target.value)}
@@ -80,7 +81,7 @@ const ServicesMod = (props) =>{
 const mapStateToProps = state => {
     return {
         modBusinessServices:state.services.modBusinessServices,
-        modServiceFail:state.services.modServiceFail
+        failModError:state.services.failModError
     };
   };
   
@@ -88,7 +89,7 @@ const mapStateToProps = state => {
     return {
         OnFetchModBusinessServices: (id)=> dispatch( actions.fetchModBusinessServices(id) ),
         OnAddModService: (newService)=> dispatch( actions.creteModNewService(newService)),
-        onLoadModFail:(err)=>dispatch(actions.loadFailServiceMod(err))
+        OnLoadModFail:(err)=>dispatch(actions.failMod(err))
     };
   };
 export default connect( mapStateToProps,mapDispatchToProps )( ServicesMod);

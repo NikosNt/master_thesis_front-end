@@ -1,0 +1,35 @@
+.Header{
+    text-align: center;
+    margin-top: 20px;
+ 
+}
+
+.Row{
+   margin-top: 20px;
+   margin: auto ;
+}
+
+.Left{
+    background-color: #eeeded;
+    overflow-y:auto; 
+    height: 700px;
+    border-radius: 2px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    padding: 10px;
+}
+.Right{
+    background-color: #f9f9f9;
+    overflow-y:auto; 
+    height: 700px;
+    border-radius: 2px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    padding: 10px; 
+}
+
+ /* .Div1{
+    margin-left:30px;
+ } */
+
+ 

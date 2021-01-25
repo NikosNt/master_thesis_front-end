@@ -112,6 +112,7 @@ const ScheduleDay = (props) =>{
                     </Col>
                 </Row>
             </div> 
+            <hr/>
         </>
     )
 }

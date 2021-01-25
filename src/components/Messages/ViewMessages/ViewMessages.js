@@ -1,12 +1,17 @@
 import React from 'react';
+import {Card} from 'react-bootstrap';
 
 const ViewMessages = (props) =>{
     return(
-            <div >
-                <p><b>Title : </b>{props.message.title}  </p>               
-                <p><b>Message :</b> </p><p>{props.message.message}</p>
-                <p> {props.message.date_time}</p>
-            </div>  
+            <Card >
+                <Card.Header><p><b>  {props.message.title} </b> </p> </Card.Header>
+                <Card.Body>
+                                  
+                    {/* <p><b>Message :</b> </p> */}
+                    <p>{props.message.message}</p>
+                    <p> {props.message.date_time}</p>
+                </Card.Body>
+            </Card>  
     )
 }
 

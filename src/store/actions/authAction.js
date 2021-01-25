@@ -8,11 +8,12 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token, userId,role) => {
+export const authSuccess = (token, userId,role,username) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
         userId: userId,
+        username:username,
         role:role
     };
 };
@@ -27,6 +28,7 @@ export const authFail = (error) => {
 export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('username');
     localStorage.removeItem('role');
     return {
         type: actionTypes.AUTH_LOGOUT
@@ -43,13 +45,14 @@ export const auth = (username, password) => {
         };
         axios.post('api/auth/signin', authData)
             .then(response => {
-                // console.log(response);
+                 console.log(response);
                // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 localStorage.setItem('token', response.data.accessToken);
                 //localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', response.data.id);    
+                localStorage.setItem('userId', response.data.id);
+                localStorage.setItem('username',response.data.username);    
                 localStorage.setItem('role',response.data.roles[0]);
-                dispatch(authSuccess(response.data.accessToken, response.data.id,response.data.roles[0]));
+                dispatch(authSuccess(response.data.accessToken, response.data.id,response.data.roles[0],response.data.username));
                 //dispatch(checkAuthTimeout(response.data.expiresIn));
             })
             .catch(err => {
@@ -100,7 +103,8 @@ export const authCheckState = () => {
             // } else {
                 const userId = localStorage.getItem('userId');
                 const role = localStorage.getItem('role')
-                dispatch(authSuccess(token, userId,role));
+                const username = localStorage.getItem('username')
+                dispatch(authSuccess(token, userId,role,username));
                // dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
            // }   
         }
