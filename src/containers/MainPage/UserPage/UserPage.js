@@ -35,6 +35,8 @@ const UserPage = (props) =>{
 
   let  selected_services = null;
 
+  console.log(props.loadedServices_Companies)
+
   selected_services = props.loadedServices_Companies.map(buss =>(
     <ViewBusiness key={buss.business_id}
                   business={buss}

@@ -34,14 +34,14 @@ const ScheduleDay = (props) =>{
 
     const deleteSetHourHandler = (id) => {
         onDeleteScheduleSetHourDay(props.schedule.businessId,id );
-        if(props.schedule.hours.length === 1){
-            console.log("edw")
+        if(props.schedule.hours.length === 1 && !props.failSchedule){
             const obj = {
                 businessId : props.schedule.businessId,
                 day : props.schedule.day,
                 state :  0,
                 hours : []
             }
+            console.log("mphka  "+props.failSchedule)
             onUpdateScheduleBusinessDay(obj,props.schedule.id);
         }     
     }
@@ -119,7 +119,7 @@ const ScheduleDay = (props) =>{
 
 const mapStateToProps = state => {
     return {
-        
+        failSchedule:state.schedule.failSchedule
     };
   };
   

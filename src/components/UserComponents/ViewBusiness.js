@@ -25,7 +25,7 @@ const ViewBusiness = (props) =>{
         })    
 
     if(!props.business.address.length ){
-        addressOutput = " No address available yet "
+        addressOutput = " Δεν υπάρχει διαθέσιμη διεύθυνση  "
     }
 
     let open = false;
@@ -69,7 +69,7 @@ const ViewBusiness = (props) =>{
                     <Card.Body>
                         {/* <p>Πληροφορίες : </p> <p>{props.business.info}</p>  */}
                         <p>Διεύθυνση :</p> {addressOutput}           
-                        <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  {scheduleDay}</p>
+                        <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  </p><p>{scheduleDay}</p>
                         {open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}
                         {!open && closed?<h6 className={classes.Closed} >Κλειστά</h6>:null}
 

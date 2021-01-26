@@ -26,14 +26,17 @@ export {
 
     fetchModScheduleBusiness,
     updateModScheduleBusinessDay,
-    deleteModScheduleSetHourDay
+    deleteModScheduleSetHourDay,
+
+    failSchedule
 }from './ScheduleAction'
     
 
 export {
     fetchdBusinessUserMessages,
     addUserNewMessageToBusiness,
-    fetchedModMessages
+    fetchedModMessages,
+    failMessage
 }from './MessagesAction'
 
 

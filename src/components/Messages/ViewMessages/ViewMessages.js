@@ -5,12 +5,13 @@ const ViewMessages = (props) =>{
     return(
             <Card >
                 <Card.Header><p><b>  {props.message.title} </b> </p> </Card.Header>
-                <Card.Body>
-                                  
+                <Card.Body>           
                     {/* <p><b>Message :</b> </p> */}
-                    <p>{props.message.message}</p>
-                    <p> {props.message.date_time}</p>
+                    <p>{props.message.message}</p>          
                 </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted"><p> {props.message.date_time}</p></small>
+                </Card.Footer>
             </Card>  
     )
 }

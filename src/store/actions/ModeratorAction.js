@@ -90,12 +90,12 @@ export const updateBusiness = (business,id) => {
     return dispatch => {
         axios.put('api/services/business/update/' +id , business)
         .then(response => {
-           // console.log("updated epitixos", response);
+            console.log("updated epitixos", response);
             dispatch(fetchBusiness(business.moderatorId));
         })
         .catch(err => {
             console.log(err)
-            //dispatch(loadModFail(err))
+            dispatch(loadModFail(true))
         });
     }
 }
@@ -114,7 +114,7 @@ export const deletePropBusiness = (id,prop,modId) => {
         })
         .catch(err => {
             console.log(err)
-            //dispatch(loadModFail(err))
+            dispatch(loadModFail(true))
         });
     }
 }

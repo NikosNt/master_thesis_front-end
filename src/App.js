@@ -34,9 +34,9 @@ const App = (props) => {
 
   //---------------------------
   //console log testing purposes
-  console.log(props.hasRole);
-  console.log(props.token);
-  console.log(props.username);
+  // console.log(props.hasRole);
+  // console.log(props.token);
+  // console.log(props.username);
 
   //---------------------------
   

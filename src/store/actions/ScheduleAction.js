@@ -1,6 +1,13 @@
 import axios from '../../axios-orders'
 import * as actionTypes from './actionTypes';
 
+export const failSchedule = (content) => {
+    return {
+        type: actionTypes.LOAD_SCHEDULE_FAIL,
+        failSchedule: content,
+    }
+ }
+
 //---------------------------------User------------------------------------------------
 
 export const loadUserScheduleBusiness = (content) => {
@@ -52,7 +59,7 @@ export const loadModBusinessSchedule = (content) => {
         })
         .catch(err => {
             console.log(err);
-            //dispatch(loadModFail(err));
+            dispatch(failSchedule(true))
         });
     } 
 }
@@ -66,7 +73,7 @@ export const updateModScheduleBusinessDay = (newScheduleHour,dayId) => {
         })
         .catch(err => {
             console.log(err)
-            //dispatch(loadModFail(err))
+            dispatch(failSchedule(true))
         });
     }
 }
@@ -80,7 +87,7 @@ export const deleteModScheduleSetHourDay = (busId,id ) =>{
         })
         .catch(err => {
             console.log(err)
-            //dispatch(loadModFail(err))
+            dispatch(failSchedule(true))
         });
     }
 }

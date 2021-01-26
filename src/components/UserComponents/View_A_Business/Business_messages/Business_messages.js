@@ -40,7 +40,7 @@ const Business_messages = (props) =>{
     ))
     
     if (!props.business_user_messages.length){
-        messages=(<p style={{textAlign:"center"}}>No messages yet! <br/>Send a message and communicate :) </p>)
+        messages=(<p style={{textAlign:"center"}}>Δεν υπάρχουν μηνύματα προς το παρόν ! <br/> Στείλε μήνυμα για να επικοινωνήσεις  :) </p>)
     }
 
     const sendMessageHandler = () => {
@@ -53,8 +53,8 @@ const Business_messages = (props) =>{
                 message: contentMessage,
                 date_time: getCurDate().day_time
          }
-         console.log(m)
-        // OnAddNewMessage(m);
+         //console.log(m)
+         OnAddNewMessage(m);
          setContentTitle('');
          setContentMessage('');
     }

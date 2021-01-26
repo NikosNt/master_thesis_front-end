@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
-import ServiceMod from './ServiceMod/ServiceMod';
+import ExistingService from './ExistingService/ExistingService';
 import NewService from './NewService/NewService';
 import Modal from '../../UI/Modal/Modal';
 import classes from './ServicesMod.module.css';
@@ -26,7 +26,7 @@ const ServicesMod = (props) =>{
     const [showModal,setShowModal] = useState(false);
 
     let showModServices =  props.modBusinessServices.map( service =>(
-        <ServiceMod key={service.id} serviceMod={service}/>
+        <ExistingService key={service.id} serviceMod={service}/>
       ))
 
     let noModServices='';

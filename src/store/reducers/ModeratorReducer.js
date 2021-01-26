@@ -25,7 +25,7 @@ const initialState = {
         address:[],
         phones:[]
     },
-    error : null,
+    error : false,
 };
 
 const loadModBusinessInit = ( state, action ) => {

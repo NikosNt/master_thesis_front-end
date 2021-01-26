@@ -1,6 +1,16 @@
 import axios from '../../axios-orders'
 import * as actionTypes from './actionTypes';
 
+
+export const failMessage = (content) => {
+    console.log(content)
+    return {
+        type: actionTypes.LOAD_MESSAGE_FAIL,
+        failMessage: content,
+    }
+ }
+
+
 //---------------------------------User------------------------------------------------
 
 export const loadBusinessUserMessages = (content) => {
@@ -25,6 +35,7 @@ export const loadBusinessUserMessages = (content) => {
         })
         .catch(err => {
             console.log(err)
+            dispatch(failMessage(true));
         //    dispatch(loadFail(err))
         });
     } 
@@ -35,12 +46,12 @@ export const addUserNewMessageToBusiness = (message) => {
      //http://localhost:8080/api/messages/add
         axios.post('api/messages/add',message)
         .then(res => {
-            console.log("added epitixos", res);
+            //console.log("added epitixos", res);
             dispatch(fetchdBusinessUserMessages(message.userId,message.businessId));
         })
         .catch(err => {
-            console.log(err)
-          //  dispatch(loadFail(err))
+          //  console.log(err)
+            dispatch(failMessage(true));
         });
     } 
 }
@@ -70,7 +81,8 @@ export const loadModMessages = (content) => {
             dispatch(loadModMessages(messages));
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
+            dispatch(failMessage(true));
         //    dispatch(loadFail(err))
         });
     } 

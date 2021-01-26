@@ -103,13 +103,13 @@ export const loadServicesCompanies = (content,message) => {
 }
 
 export const fetchServicesCompanies = (city, typeBusiness, searchText) => {
-    
     if (!city) { city = "empty" }
     if (!typeBusiness) { typeBusiness = "empty" }
     if (searchText === "") { searchText = "empty" }
  
     let all_business = [];
     let message = "" ;
+    console.log('api/services/business/by/' + city + '/' + typeBusiness + '/' + searchText + '/')
     return dispatch => {
         axios.get('api/services/business/by/' + city + '/' + typeBusiness + '/' + searchText + '/')
             .then(res => {

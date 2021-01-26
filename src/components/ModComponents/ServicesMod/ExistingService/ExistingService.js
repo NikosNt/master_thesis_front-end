@@ -1,22 +1,16 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import {Card,Col} from 'react-bootstrap';
-import classes from './ServiceMod.module.css' ;
+import classes from './ExistingService.module.css' ;
 import MyButton from '../../../UI/Button/MyButton';
 import * as actions from '../../../../store/actions/index';
 
-const ServiceMod = (props) => {
-    const {OnUpdateModService,OnDeleteModService,OnLoadModFail}=props;
+const ExistingService = (props) => {
+    const {OnUpdateModService,OnDeleteModService,}=props;
 
     const [name,setName] = useState(props.serviceMod.name);
     const [value,setValue] = useState(props.serviceMod.value);
     const [info,setInfo] = useState(props.serviceMod.info);
-
-    useEffect(()=>{
-        if(props.failModError){
-            OnLoadModFail(true);
-        }
-    })
 
     const updateServiceHandler = () =>{
         const updatedService ={
@@ -53,7 +47,7 @@ const ServiceMod = (props) => {
 }
 const mapStateToProps = state => {
     return {
-        failModError:state.services.failModError
+
     };
   };
   
@@ -61,9 +55,8 @@ const mapStateToProps = state => {
     return {
       OnUpdateModService: (updatedService,id)=> dispatch( actions.updateModService(updatedService,id)),
       OnDeleteModService: (id,busId)=> dispatch( actions.deleteModService(id,busId)),
-      OnLoadModFail:(err)=>dispatch(actions.failMod(err))
     };
   };
   
 
-export default  connect( mapStateToProps,mapDispatchToProps )( ServiceMod );
+export default  connect( null,mapDispatchToProps )( ExistingService );

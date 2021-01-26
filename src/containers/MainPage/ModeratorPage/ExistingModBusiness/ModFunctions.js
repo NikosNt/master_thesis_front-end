@@ -18,19 +18,19 @@ const ModFunctions = (props) =>{
 
     return(
         <Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)} >
-            <Tab eventKey="basicInfo" title="Information">
+            <Tab eventKey="basicInfo" title="Πληροφορίες">
                 <BasicBusinessInfo modBusiness={props.business} />
             </Tab>
-            <Tab eventKey="schedule" title="Schedule">
+            <Tab eventKey="schedule" title="Πρόγραμμα">
                  <BusinessModSchedule  modBusiness={props.business} />
             </Tab>
-            <Tab  eventKey="products" title="Products" >
+            <Tab  eventKey="products" title="Προιόντα" >
                 <Products />
             </Tab>
-            <Tab  eventKey="services" title="Services" >
+            <Tab  eventKey="services" title="Υπηρεσίες" >
                 <Services  modBusiness={props.business} />
             </Tab>            
-            <Tab eventKey="messages" title="Messages" >
+            <Tab eventKey="messages" title="Μηνύματα" >
                 <Messages modBusiness={props.business}/>
             </Tab>
         </Tabs>

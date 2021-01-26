@@ -8,7 +8,7 @@ import ViewMessages from '../../../Messages/ViewMessages/ViewMessages';
 import NewMessage from '../../../Messages/NewMessage/NewMessage';
 const Message = (props) =>{
 
-    const {OnFetchdBusinessUserMessages} = props;
+    const {OnFetchdBusinessUserMessages,OnAddNewMessage} = props;
 
     const [contentTitle,setContentTitle] = useState('')
     const [contentMessage,setContentMessage] = useState('')
@@ -51,8 +51,8 @@ const Message = (props) =>{
             message: contentMessage,
             date_time: getCurDate().day_time
         }
-        console.log(m);
-        //OnAddNewMessage(m);
+        //console.log(m);
+        OnAddNewMessage(m);
         setContentTitle('');
         setContentMessage('');
     }
@@ -63,13 +63,16 @@ const Message = (props) =>{
                 {messages}
             </div>
             <div className={classes.NewM}>
-                <NewMessage 
-                            changed={sendMessageHandler}
-                            cTitle={contentTitle}
-                            titleChanged={(e)=>setContentTitle(e.target.value)}
-                            cMessage={contentMessage}
-                            messageChanged={(e)=> setContentMessage(e.target.value)}
-                            />
+                {props.valueSender === -1 ? <p>Select to view messages</p> 
+                    :
+                        <NewMessage 
+                                    changed={sendMessageHandler}
+                                    cTitle={contentTitle}
+                                    titleChanged={(e)=>setContentTitle(e.target.value)}
+                                    cMessage={contentMessage}
+                                    messageChanged={(e)=> setContentMessage(e.target.value)}
+                                    />                
+                }
             </div>
         </> 
     )
@@ -85,6 +88,7 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
         OnFetchdBusinessUserMessages : (userId,busId) => dispatch(actions.fetchdBusinessUserMessages(userId,busId)),
+        OnAddNewMessage: (message)=> dispatch( actions.addUserNewMessageToBusiness(message) ),  
     };
   };
 

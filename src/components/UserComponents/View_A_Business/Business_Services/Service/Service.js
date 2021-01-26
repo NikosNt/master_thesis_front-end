@@ -15,7 +15,7 @@ const Service = (props) => {
                         
                     </Card.Body>
                     <Card.Footer>
-                        <small className="text-muted"> <p> Πληροφορίες : {props.service.info}</p></small>
+                        <p> Πληροφορίες : {props.service.info}</p>
                     </Card.Footer>
                 </Card>
             </Col>

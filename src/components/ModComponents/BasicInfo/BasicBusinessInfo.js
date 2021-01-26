@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import classes from './BasicBusinessInfo.module.css';
 import MyButton from '../../UI/Button/MyButton'
 import DeleteProp from '../DeleteProp'
+import Modal from '../../UI/Modal/Modal'
 
 
 import * as actions from '../../../store/actions/index';
 
 const BasicBusinessInfo = (props) =>{
 
-    const {OnupdateModBusiness,OnupdateBusiness,OndeletePropBusiness} = props;
+    const {OnupdateModBusiness,OnupdateBusiness,OndeletePropBusiness,OnLoadModFail} = props;
 
     const[businessUpdate,setBusinessUpdate]=useState({
         moderatorId: props.modBusiness.moderatorId,
@@ -86,7 +87,6 @@ const BasicBusinessInfo = (props) =>{
     }
 
     const updatePropValueHandler = (value,parentProp,prop) => {
-        
         setBusinessUpdate(prevState => ({ ...prevState, [parentProp]:{...prevState[parentProp],[prop]:value} }))
     }
 
@@ -97,6 +97,9 @@ const BasicBusinessInfo = (props) =>{
 
     return(
         <>
+            <Modal show={props.error} modalClosed={() => OnLoadModFail(false) }>
+                <p style={{textAlign:"center"}}>An error has occured !</p>
+            </Modal>
             <div className={classes.Title}>
                 <h1 > Update Business or Service</h1>
                 <h5 style={{marginTop:"20px"}}>In this step you can change some values of your Business / Service</h5>
@@ -161,6 +164,7 @@ const BasicBusinessInfo = (props) =>{
 const mapStateToProps = state => {
     return {
         updateBusiness:state.modPage.updateBusiness,
+        error:state.modPage.error
     };
   };
   
@@ -169,7 +173,7 @@ const mapStateToProps = state => {
         OnupdateModBusiness: ()=> dispatch( actions.updateModBusiness() ),
         OnupdateBusiness: (updatedBusiness,id)=> dispatch( actions.updateBusiness(updatedBusiness,id) ),
         OndeletePropBusiness: (id,prop,modId)=> dispatch( actions.deletePropBusiness(id,prop,modId) ),
-
+        OnLoadModFail:(err)=>dispatch(actions.loadModFail(err))
     };
   };
 

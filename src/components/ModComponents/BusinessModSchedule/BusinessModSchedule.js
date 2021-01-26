@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 
 import ScheduleDay from './ScheduleDay/ScheduleDay'
 import classes from './BusinessModSchedule.module.css';
+import Modal from '../../UI/Modal/Modal'
 
 import * as actions from '../../../store/actions/index';
 
     const BusinessModSchedule = (props) =>{
 
-    const {OnFetchModScheduleBusiness} = props;
+    const {OnFetchModScheduleBusiness,OnFailSchedule} = props;
 
     useEffect(() => {
         async function fetchData() {
@@ -30,6 +31,9 @@ import * as actions from '../../../store/actions/index';
 
     return(
         <React.Fragment>
+            <Modal show={props.failSchedule} modalClosed={() => OnFailSchedule(false) }>
+                <p style={{textAlign:"center"}}>An error has occured !</p>
+            </Modal>
             <div className={classes.Schedule}>
                 {days}
             </div>
@@ -42,12 +46,14 @@ import * as actions from '../../../store/actions/index';
 const mapStateToProps = state => {
     return {
         modBusinessSchedule:state.schedule.modBusinessSchedule,
+        failSchedule:state.schedule.failSchedule
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
         OnFetchModScheduleBusiness: (id)=> dispatch( actions.fetchModScheduleBusiness(id) ),
+        OnFailSchedule:(err)=>dispatch(actions.failSchedule(err))
     };
   };
 

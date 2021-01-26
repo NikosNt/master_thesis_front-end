@@ -70,8 +70,8 @@ export const creteModNewService = (newService) => {
             dispatch(fetchModBusinessServices(newService.business_id));
         })
         .catch(err => {
-            console.log(err)
-            //dispatch(loadFail(err))
+          //  console.log(err)
+            dispatch(failMod(true));
         });
     }
 }
@@ -83,8 +83,8 @@ export const updateModService = (updatedService,id) => {
             dispatch(fetchModBusinessServices(updatedService.business_id));
         })
         .catch(err => {
-            console.log(err)
-            dispatch(failMod(err))
+          //  console.log(err)
+            dispatch(failMod(true));
         });
     }
 }
@@ -96,8 +96,8 @@ export const deleteModService = (id,busId) => {
             dispatch(fetchModBusinessServices(busId));
         })
         .catch(err => {
-            console.log(err)
-            dispatch(failMod(err))
+           // console.log(err)
+            dispatch(failMod(true));
         });
     }
 }

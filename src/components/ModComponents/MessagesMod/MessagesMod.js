@@ -1,16 +1,26 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
+import { connect } from 'react-redux';
+
 import Message from './Message/Message';
 import ViewSenders from './ViewSenders/ViewSenders';
+import Modal from '../../UI/Modal/Modal';
+import * as actions from '../../../store/actions/index';
+
 import classes from './MessagesMod.module.css';
 import {Row,Col} from 'react-bootstrap';
  
 
 const MessagesMod = (props) =>{
 
+    const {OnLoadFail} = props;
+  
     const [senderSelected,setSenderSelected] = useState(-1)
 
     return(
         <>
+        <Modal show={props.failMessage} modalClosed={() => OnLoadFail(false) }>
+          <p style={{textAlign:"center"}}>An error has occured !</p>
+        </Modal>
         <h4 className={classes.Header}> Ta Messages</h4>
         <div style={{margin:"10px"}}>
             <Row  className={classes.Row}>
@@ -26,4 +36,15 @@ const MessagesMod = (props) =>{
     )
 }
 
-export default  MessagesMod;
+const mapStateToProps = state => {
+    return {
+        failMessage:state.messages.failMessage
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        OnLoadFail:(err)=>dispatch(actions.failMessage(err))
+    };
+  };
+export default connect( mapStateToProps,mapDispatchToProps )(  MessagesMod);
