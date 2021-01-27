@@ -24,7 +24,7 @@ const ViewSenders = (props) =>{
          await axios.get('api/messages/view/'+ props.businessId )
         .then(res =>{
             const data = res.data;
-            //console.log(data)
+            console.log(data)
             if(data !== ""){   
                 const slice =data.slice(offset, offset + perPage);
                 //console.log(slice)
