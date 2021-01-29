@@ -11,7 +11,7 @@ const toolbar = ( props ) => (
     <header className={classes.Toolbar}>
         <DrawerToggle clicked={props.drawerToggleClicked} />
         <div className={classes.Logo}>
-            <NavigationItem link="/" exact> <Icon.HouseFill  size={30}/> </NavigationItem>
+            <NavigationItem link="/" exact> <Icon.House  size={30}/> </NavigationItem>
             {/* <Logo /> */}
         </div>
         <nav className={classes.DesktopOnly}>
