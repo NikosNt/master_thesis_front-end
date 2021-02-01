@@ -9,23 +9,21 @@ import Modal from '../UI/Modal/Modal';
 import {getDay,getCurDate} from '../../shared/utility';
 import {Col,Card} from 'react-bootstrap';
 import {Rating} from '@material-ui/lab'; 
+import * as Icon from 'react-bootstrap-icons';
 const ViewBusiness = (props) =>{
 
-    const {OnLoadBusiness,OnFetchBusinesRatingOfUser,OnInitBusinesRatingOfUser} = props;
+    const {OnLoadBusiness} = props;
 
     const [showModal,setShowModal] = useState(false);
     // const [open,setOpen] = useState(false)   ;
     // const [closed,setClosed] = useState(false)   ; to many rerenders
 
-    useEffect(() => {//GIA TO RATING
-      // OnInitBusinesRatingOfUser(null)
-    }, [OnInitBusinesRatingOfUser]); 
 
 
     let addressOutput = props.business.address.map(address =>{
-            return <span className={classes.SpanStyle} key={address.id}>
-                   <li> {address.city} {address.zipcode} {address.street} {address.street_number} </li>
-                </span>
+            return <div className={classes.SpanStyle} key={address.id}>
+                   <Icon.GeoFill size={20} /> {address.city} {address.zipcode} {address.street} {address.street_number}  
+                </div>
         })    
 
     if(!props.business.address.length ){
@@ -49,14 +47,13 @@ const ViewBusiness = (props) =>{
         scheduleDay =<i>Το ωράριο λειτουργίας δεν είναι διαθέσιμο !</i> }
     }
 
-    const viewBusinessHandler = () => {   
+    const viewBusinessHandler =   () => {   
         if(props.authenticated){
             OnLoadBusiness(props.business)
-            OnFetchBusinesRatingOfUser(props.business.business_id,props.userId)//GIA TO RATING
             props.history.push({
                 pathname:"/view_a_business",
             });
-            console.log(props.business)
+            //console.log(props.business)
         } 
         setShowModal(true);      
     }
@@ -73,13 +70,9 @@ const ViewBusiness = (props) =>{
                 
                     <Card.Header style={{color:"#39a8a8",textAlign:"center"}}>{props.business.business_name}</Card.Header>  
                     <Card.Body>
-                        {/* <p>Πληροφορίες : </p> <p>{props.business.info}</p>  */}
-                        <div className={classes.Rating}>  
-                           
+                        <div className={classes.Rating}>             
                            {props.business.rating === -1 ?<p>Δεν υπάρχει αξιολόγηση</p> : <Rating  name="half-rating" defaultValue={props.business.rating} precision={0.1} readOnly  />} 
-                        </div>
-                        
-                        
+                        </div>                      
                         <p>Διεύθυνση :</p> {addressOutput}           
                         <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  </p><p>{scheduleDay}</p>
                         {open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}
@@ -111,8 +104,6 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
       OnLoadBusiness: (business)=> dispatch( actions.loadBusiness(business) ),  
-      OnFetchBusinesRatingOfUser: (businessId,userId)=> dispatch( actions.fetchBusinesRatingOfUser(businessId,userId) ),
-      OnInitBusinesRatingOfUser: ()=> dispatch( actions.businesRatingOfUser() )
     };
   };
 export default connect( mapStateToProps,mapDispatchToProps )(withRouter(ViewBusiness));

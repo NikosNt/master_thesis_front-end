@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useState,useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import classes from './Business_Info.module.css' ;
@@ -6,24 +6,48 @@ import {getDay} from '../../../../shared/utility';
 import {Row,Col} from 'react-bootstrap'
 import * as actions from '../../../../store/actions/index';
 import {Rating} from '@material-ui/lab';
+import axios from '../../../../axios-orders';
+import * as Icon from 'react-bootstrap-icons';
 
 const Business_Info = (props) =>{
  
 
-   const {OnFetchScheduleBusiness,} = props;
+   const {OnFetchScheduleBusiness,OnUserUpdateRatingToBusiness} = props;
 
-   const [valueRating, setValueRating] = React.useState(props.businesRatingOfUser);//GIA TO RATING
+   const [valueRating, setValueRating] = React.useState(0);
+   const [isRated,setIsRated] = useState(false);
+   const [ratingId,setRatingId] = useState(-1);
+
+   const getData = async () =>{
+        await axios.get('api/rating/by/' + props.business.business_id +'/'+props.userId)
+        .then(res => {
+            const data = res.data;
+            console.log(data)
+            if(data){
+                setValueRating(data.rating);
+                setIsRated(true);
+                setRatingId(data.id)
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        });
+   }
+
+    useEffect(() => {
+        getData();
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         async function fetchData() {
             await OnFetchScheduleBusiness(props.business.business_id);
         }
         fetchData();
-    }, [OnFetchScheduleBusiness,props.business.business_id]); 
+    }, [OnFetchScheduleBusiness,props.business.business_id,]); 
   
     let phoneOutput = props.business.phones.map(ph =>{
             return <React.Fragment key={ph.id}><span  className={classes.SpanStyle} >
-                    {ph.phone_number}
+                    <Icon.TelephoneFill  /> {ph.phone_number}
                 </span><br/></React.Fragment>
         })
     let ownerOutput = props.business.owner.map(owner =>{
@@ -33,7 +57,7 @@ const Business_Info = (props) =>{
         })
     let addressOutput = props.business.address.map(address =>{
         return <React.Fragment key={address.id}><span className={classes.SpanStyle}>
-                {address.city} {address.zipcode} {address.street} {address.street_number} 
+                  <Icon.GeoFill size={20} /> {address.city} {address.zipcode} {address.street} {address.street_number} 
             </span><br/></React.Fragment>
     })    
 
@@ -68,17 +92,49 @@ const Business_Info = (props) =>{
     })
 
 
-    console.log(props.businesRatingOfUser);
+    const addNewRating = async (newRating) =>{
+       // console.log(newRating);
+        await axios.post('api/rating/add' , newRating)
+        .then(res => {
+            console.log("added epitixos", res);
+            setIsRated(true);
+            setRatingId(res.data.id)
+        })
+        .catch(err => {
+            console.log(err)
+        });
+   }
+
+    const changeRatingHandler = (newValue) =>{
+        setValueRating(newValue);
+        if(isRated){
+            console.log("Exei eidh ginei")
+            const updateRating ={
+                businessId:props.business.business_id,
+                userId:Number(props.userId),
+                rating:newValue
+            }
+           // console.log(updateRating)
+            OnUserUpdateRatingToBusiness(updateRating,ratingId);
+        }else{
+            console.log("Den exei ginei")
+            const newRating ={
+                businessId:props.business.business_id,
+                userId:Number(props.userId),
+                rating:newValue
+            }
+            addNewRating(newRating);           
+        }
+        
+    }
+
+
     return(
         <>
-            <div className={classes.Rating}>
-                <span>
-                    <p>Αξιολόγηση : </p>   
-                    <Rating name="half-rating" defaultValue={valueRating} precision={0.1} onChange={(event, newValue) => {console.log(newValue) }} />
-                </span>            
-            </div>
+
             <div className={classes.ViewBusiness}>
-                <p><b>Πληροφορίες</b> : </p> <p>{props.business.info}</p> 
+                <Icon.InfoCircle size={30}  />  
+                <p style={{marginTop:"10px"}}>{props.business.info}</p> 
             </div>
             <p className={classes.Rows}><b>Ιδιοκτήτες</b> : {ownerOutput}</p>
 
@@ -92,6 +148,12 @@ const Business_Info = (props) =>{
                     <p><b>Διεύθυνση</b> : </p> <p>{addressOutput}</p>
                 </Col>
             </Row>
+            <div className={classes.Rating}>
+                <span>
+                    <p>Αξιολόγηση : </p>   
+                    <Rating name="half-rating" value={valueRating} precision={0.5} onChange={(event, newValue) => {changeRatingHandler(newValue) }} />
+                </span>            
+            </div>            
         </>
     )
 }
@@ -99,16 +161,20 @@ const Business_Info = (props) =>{
 const mapStateToProps = state => {
     return {
         businessSchedule: state.schedule.businessUserSchedule,
-        businesRatingOfUser:state.rating.businesRatingOfUser
+       // businesRatingOfUser:state.rating.businesRatingOfUser,
+        //newRatingId:state.rating.newRatingId,
+        userId:state.auth.userId,
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
-      OnFetchScheduleBusiness: (id)=> dispatch( actions.fetchUserScheduleBusiness(id) ),
+        OnFetchScheduleBusiness: (id)=> dispatch( actions.fetchUserScheduleBusiness(id) ),
+  //    OnFetchBusinesRatingOfUser: (businessId,userId)=> dispatch( actions.fetchBusinesRatingOfUser(businessId,userId) ),
+  //      OnUserAddRatingToBusiness: (rating)=> dispatch( actions.userAddRatingToBusiness(rating) ),
+        OnUserUpdateRatingToBusiness: (rating,id)=> dispatch( actions.userUpdateRatingToBusiness(rating,id) ),
     };
   };
   
   export default connect( mapStateToProps,mapDispatchToProps )(  Business_Info);
 
-//npm install @material-ui/lab

@@ -56,8 +56,11 @@ export {
 }from './ProductsAction'
 
 export {
-    fetchBusinesRatingOfUser,
-    businesRatingOfUser
+    //fetchBusinesRatingOfUser,
+    //businesRatingOfUser,
+    userAddRatingToBusiness,
+    userUpdateRatingToBusiness,
+
 }from './RatingAction'
 
 
