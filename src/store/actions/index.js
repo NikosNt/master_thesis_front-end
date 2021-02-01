@@ -55,6 +55,10 @@ export {
     fetchUserBusinessProducts,
 }from './ProductsAction'
 
+export {
+    fetchBusinesRatingOfUser,
+    businesRatingOfUser
+}from './RatingAction'
 
 
 export {

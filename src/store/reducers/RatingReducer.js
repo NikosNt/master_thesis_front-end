@@ -2,18 +2,19 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState={
-    loadUserBusinessProducts:[],
+   businesRatingOfUser:null,
 };
 
-const loadUserBusinessProducts = ( state, action ) => {
+const businesRatingOfUser = ( state, action ) => {
     return updateObject( state,{
-        loadUserBusinessProducts:action.loadUserBusinessProducts
+        businesRatingOfUser:action.businesRatingOfUser
     });
 };
 
+
 const reducer = (state=initialState,action) =>{
     switch(action.type) {
-        case actionTypes.LOAD_BUSINESS_PRODUCTS: return loadUserBusinessProducts(state,action);
+        case actionTypes.RATING_OF_USER_TO_BUSINESS: return businesRatingOfUser(state,action);
         default: return state;
     }
 }

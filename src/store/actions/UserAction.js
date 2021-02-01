@@ -109,7 +109,7 @@ export const fetchServicesCompanies = (city, typeBusiness, searchText) => {
  
     let all_business = [];
     let message = "" ;
-    console.log('api/services/business/by/' + city + '/' + typeBusiness + '/' + searchText + '/')
+    //console.log('api/services/business/by/' + city + '/' + typeBusiness + '/' + searchText + '/')
     return dispatch => {
         axios.get('api/services/business/by/' + city + '/' + typeBusiness + '/' + searchText + '/')
             .then(res => {

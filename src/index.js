@@ -11,14 +11,15 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 
-import userPageReducer from './store/reducers/UserReducer'
-import authReducer from './store/reducers/authReducer'
-import moderatorReducer from './store/reducers/ModeratorReducer'
-import adminReducer from './store/reducers/AdminReducer'
-import ScheduleReducer from './store/reducers/ScheduleReducer'
-import MessagesReducer from './store/reducers/MessagesReducer'
-import ServicesReducer from './store/reducers/ServicesReducer'
-import ProductsReducer from './store/reducers/ProductsReducer'
+import userPageReducer from './store/reducers/UserReducer';
+import authReducer from './store/reducers/authReducer';
+import moderatorReducer from './store/reducers/ModeratorReducer';
+import adminReducer from './store/reducers/AdminReducer';
+import ScheduleReducer from './store/reducers/ScheduleReducer';
+import MessagesReducer from './store/reducers/MessagesReducer';
+import ServicesReducer from './store/reducers/ServicesReducer';
+import ProductsReducer from './store/reducers/ProductsReducer';
+import RatingReducer from './store/reducers/RatingReducer'
 
 
 
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
     messages:MessagesReducer,
     services:ServicesReducer,
     products:ProductsReducer,
+    rating:RatingReducer,
     adminPage:adminReducer
 });
 

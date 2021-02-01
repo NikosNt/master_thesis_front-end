@@ -5,11 +5,14 @@ import classes from './Business_Info.module.css' ;
 import {getDay} from '../../../../shared/utility';
 import {Row,Col} from 'react-bootstrap'
 import * as actions from '../../../../store/actions/index';
-
+import {Rating} from '@material-ui/lab';
 
 const Business_Info = (props) =>{
+ 
 
-   const {OnFetchScheduleBusiness} = props;
+   const {OnFetchScheduleBusiness,} = props;
+
+   const [valueRating, setValueRating] = React.useState(props.businesRatingOfUser);//GIA TO RATING
 
     useEffect(() => {
         async function fetchData() {
@@ -64,12 +67,21 @@ const Business_Info = (props) =>{
                 </React.Fragment>
     })
 
+
+    console.log(props.businesRatingOfUser);
     return(
         <>
+            <div className={classes.Rating}>
+                <span>
+                    <p>Αξιολόγηση : </p>   
+                    <Rating name="half-rating" defaultValue={valueRating} precision={0.1} onChange={(event, newValue) => {console.log(newValue) }} />
+                </span>            
+            </div>
             <div className={classes.ViewBusiness}>
                 <p><b>Πληροφορίες</b> : </p> <p>{props.business.info}</p> 
             </div>
             <p className={classes.Rows}><b>Ιδιοκτήτες</b> : {ownerOutput}</p>
+
             <Row className={classes.Rows}>
                 <Col sm={12} md={6} className={classes.Cols}   >
                     <p><b>Ωράριο λειτουργίας</b> : </p> 
@@ -87,15 +99,16 @@ const Business_Info = (props) =>{
 const mapStateToProps = state => {
     return {
         businessSchedule: state.schedule.businessUserSchedule,
+        businesRatingOfUser:state.rating.businesRatingOfUser
     };
   };
   
   const mapDispatchToProps = dispatch => {
     return {
       OnFetchScheduleBusiness: (id)=> dispatch( actions.fetchUserScheduleBusiness(id) ),
-
     };
   };
   
   export default connect( mapStateToProps,mapDispatchToProps )(  Business_Info);
 
+//npm install @material-ui/lab

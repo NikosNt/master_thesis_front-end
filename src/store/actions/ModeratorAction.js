@@ -40,7 +40,7 @@ export const createModBusiness = () => {
         newModBusiness:  {
             moderatorId:'',
             business_name:'',
-            rating:0,
+            rating:-1,
             info:'',
             ref:'',
             owner:[],
