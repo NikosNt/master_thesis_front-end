@@ -53,6 +53,7 @@ export {
 
 export {
     fetchUserBusinessProducts,
+    uploadImage
 }from './ProductsAction'
 
 export {

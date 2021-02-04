@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import classes from './ViewBusiness.module.css';
 import MyButton from '../UI/Button/MyButton';

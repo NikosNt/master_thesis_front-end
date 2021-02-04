@@ -1,6 +1,8 @@
 import React  from 'react';
 import MyButton from '../UI/Button/MyButton'
 import {Col,Row} from 'react-bootstrap';
+import * as Icon from 'react-bootstrap-icons';
+
 const deleteProp = (props) =>{
  
     return (
@@ -11,7 +13,7 @@ const deleteProp = (props) =>{
                     <span>{props.children}</span>
                 </Col>
                 <Col xs={12} md={2}>
-                    <MyButton variant="danger" clicked={props.onClick}> Delete</MyButton>
+                    <MyButton variant="danger" clicked={props.onClick}>   <Icon.Trash />  </MyButton>
                 </Col>
             </Row>
             

@@ -4,7 +4,7 @@ import classes from './BasicBusinessInfo.module.css';
 import MyButton from '../../UI/Button/MyButton'
 import DeleteProp from '../DeleteProp'
 import Modal from '../../UI/Modal/Modal'
-
+import * as Icon from 'react-bootstrap-icons';
 
 import * as actions from '../../../store/actions/index';
 
@@ -26,25 +26,25 @@ const BasicBusinessInfo = (props) =>{
 
     let phoneOutput=props.modBusiness.phones.map(ph =>(
         <DeleteProp key={ph.id} onClick={() => propDelete(ph.id,"phone")}>
-            {ph.phone_number}
+            <Icon.TelephoneFill  /> {ph.phone_number}
         </DeleteProp>
     ))
      
     let ownerOutput = props.modBusiness.owner.map(owner =>(
         <DeleteProp key={owner.id} onClick={() => propDelete(owner.id,"owner")}>
-            {owner.fname} {owner.lname}
+            <Icon.FilePerson  /> {owner.fname} {owner.lname}
         </DeleteProp>
     ))
 
     let addressOutput = props.modBusiness.address.map(address =>(
         <DeleteProp key={address.id} onClick={() => propDelete(address.id,"address")}>
-            {address.city} {address.zip_code} {address.street} {address.street_number}
+            <Icon.GeoFill   /> {address.city} {address.zip_code} {address.street} {address.street_number}
         </DeleteProp>
     ))
 
     let TypeOutput = props.modBusiness.b_type.map(tupos =>(
         <DeleteProp key={tupos.id} onClick={() => propDelete(tupos.id,"type")}>
-           {tupos.type}
+           <Icon.Filter  /> {tupos.type}
         </DeleteProp>
     ))
 
@@ -124,7 +124,7 @@ const BasicBusinessInfo = (props) =>{
                 <hr/>
                 <input className={classes.InputStyle}  maxLength="10" placeholder="Phone" onChange={ (event) => {updatePropValueHandler(event.target.value,"phones","phone_number") }}/>
                 <br/>
-                <MyButton variant="success"  clicked={() => addPropHandler("phone")} > Add </MyButton>
+                <MyButton variant="success"  clicked={() => addPropHandler("phone")} > <Icon.Plus  /> </MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Owners:</h5>
@@ -133,7 +133,7 @@ const BasicBusinessInfo = (props) =>{
                 <input className={classes.InputStyle} placeholder="Name" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","fname") }}/>
                 <input className={classes.InputStyle} placeholder="Last Name" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","lname")}}/> 
                         {/* onChange={ (event) =>{setBusinessUpdate(prevState => ({ ...prevState, owner:{...prevState.owner,lname:event.target.value} }))}  } */}
-                <br/><MyButton variant="success"  clicked={() => addPropHandler("owner")} > Add</MyButton>
+                <br/><MyButton variant="success"  clicked={() => addPropHandler("owner")} >  <Icon.Plus  /></MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Address:</h5>
@@ -145,14 +145,14 @@ const BasicBusinessInfo = (props) =>{
                 <input className={classes.InputStyle} placeholder="street number" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street_number")} }/>
                 <input className={classes.InputStyle} maxLength="7" placeholder="Latitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","latitude")} }/>
                 <input className={classes.InputStyle} maxLength="7" placeholder="Longitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
-                <MyButton variant="success" clicked={() => addPropHandler("address")} > Add </MyButton>
+                <MyButton variant="success" clicked={() => addPropHandler("address")} > <Icon.Plus  /></MyButton>
             </div>
             <div className={classes.View}>
                 <h5>Types:</h5>
                 {TypeOutput}
                 <hr/>
                 <input  className={classes.InputStyle} placeholder="type" onChange={ (event) => {updatePropValueHandler(event.target.value,"b_type","type") }}/>
-                <br/><MyButton variant="success"  clicked={() => addPropHandler("type")}> Add </MyButton>
+                <br/><MyButton variant="success"  clicked={() => addPropHandler("type")}> <Icon.Plus  /></MyButton>
             </div> 
             <br/>
             <br/><br/>

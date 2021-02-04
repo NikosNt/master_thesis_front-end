@@ -22,7 +22,7 @@ const Business_Info = (props) =>{
         await axios.get('api/rating/by/' + props.business.business_id +'/'+props.userId)
         .then(res => {
             const data = res.data;
-            console.log(data)
+           // console.log(data)
             if(data){
                 setValueRating(data.rating);
                 setIsRated(true);

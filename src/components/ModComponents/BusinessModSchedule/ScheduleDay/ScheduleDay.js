@@ -11,7 +11,8 @@ import {Row,Col} from 'react-bootstrap';
 import {getDay,getHourMin} from '../../../../shared/utility';
 import DateFnsUtils from "@date-io/date-fns";
 import {TimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
- 
+import * as Icon from 'react-bootstrap-icons';
+
 
 const ScheduleDay = (props) =>{
     const {onDeleteScheduleSetHourDay,onUpdateScheduleBusinessDay} = props;
@@ -109,7 +110,7 @@ const ScheduleDay = (props) =>{
                         { checkbox  }
                     </Col>
                     <Col md={2}>
-                        <Button  variant="success" clicked={() => addHourHandler()}> Add</Button>
+                        <Button  variant="success" clicked={() => addHourHandler()}> <Icon.Plus  /></Button>
                     </Col>
                 </Row>
             </div> 

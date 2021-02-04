@@ -25,7 +25,7 @@ const ModFunctions = (props) =>{
                  <BusinessModSchedule  modBusiness={props.business} />
             </Tab>
             <Tab  eventKey="products" title="Προιόντα" >
-                <Products />
+                <Products modBusiness={props.business}/>
             </Tab>
             <Tab  eventKey="services" title="Υπηρεσίες" >
                 <Services  modBusiness={props.business} />

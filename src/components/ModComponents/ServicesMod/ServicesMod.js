@@ -7,6 +7,7 @@ import NewService from './NewService/NewService';
 import Modal from '../../UI/Modal/Modal';
 import classes from './ServicesMod.module.css';
 import {CardDeck,Button} from 'react-bootstrap';
+import * as Icon from 'react-bootstrap-icons';
 
 
 const ServicesMod = (props) =>{
@@ -71,7 +72,7 @@ const ServicesMod = (props) =>{
           {noModServices}
         </div> 
         <div className={classes.DivButton}>
-          <Button variant="success" className={classes.Button} onClick={()=>setShowModal(true)}>Add</Button>
+          <Button variant="success" className={classes.Button} onClick={()=>setShowModal(true)}><Icon.Plus size={25} /></Button>
         </div>
         <br/><br/><br/>
 
