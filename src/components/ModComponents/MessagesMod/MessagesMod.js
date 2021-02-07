@@ -21,7 +21,7 @@ const MessagesMod = (props) =>{
         <Modal show={props.failMessage} modalClosed={() => OnLoadFail(false) }>
           <p style={{textAlign:"center"}}>An error has occured !</p>
         </Modal>
-        <h4 className={classes.Header}> Ta Messages</h4>
+         <h4 className={classes.Header} style={{textAlign:'center'}}> Διαχείριση Μυνημάτων</h4><br/>
         <div style={{margin:"10px"}}>
             <Row  className={classes.Row}>
                 <Col xs={12} md={6}  lg={4}  className={classes.Left}  >

@@ -51,6 +51,7 @@ const ServicesMod = (props) =>{
 
     return(
       <>
+      <br/><h4 style={{textAlign:'center'}}>Προσθήκη, Διαγραφή και Επεξεργασία Υπηρεσιών  </h4><br/>
         <Modal show={props.failModError} modalClosed={() => OnLoadModFail(false) }>
           <p style={{textAlign:"center"}}>An error has occured !</p>
         </Modal>

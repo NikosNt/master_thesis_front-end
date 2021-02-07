@@ -129,6 +129,7 @@ const Business_Info = (props) =>{
     }
 
 
+    console.log(props)
     return(
         <>
 
@@ -137,6 +138,7 @@ const Business_Info = (props) =>{
                 <p style={{marginTop:"10px"}}>{props.business.info}</p> 
             </div>
             <p className={classes.Rows}><b>Ιδιοκτήτες</b> : {ownerOutput}</p>
+            
 
             <Row className={classes.Rows}>
                 <Col sm={12} md={6} className={classes.Cols}   >
@@ -144,8 +146,9 @@ const Business_Info = (props) =>{
                     {schedule}                   
                 </Col>
                 <Col sm={12} md={6}  className={classes.Cols} >
-                    <p><b>Τηλέφωνα επικοινωνίας :</b></p> <p>  {phoneOutput}</p>
-                    <p><b>Διεύθυνση</b> : </p> <p>{addressOutput}</p>
+                    <p><b>Τηλέφωνα επικοινωνίας :</b></p><p>{phoneOutput}</p>
+                    <p><b>E-mail :</b> </p><p><Icon.EnvelopeFill/> {props.business.ref}</p>
+                    <p><b>Διεύθυνση :</b></p><p>{addressOutput}</p>
                 </Col>
             </Row>
             <div className={classes.Rating}>

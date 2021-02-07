@@ -45,3 +45,56 @@ export const uploadImage = (file,businessId,productId, onUploadProgress) => {
     });
   };
   
+  export const createModNewProduct = (newProduct) => {
+    return dispatch =>{
+        axios.post('api/product_services/products/add',newProduct )
+        .then(res =>{
+            console.log("added epitixos", res);
+            dispatch(fetchUserBusinessProducts(newProduct.business_id));
+        })
+        .catch(err => {
+            console.log(err)
+          //  dispatch(failMod(true));
+        });
+    }
+}
+  export const updateModProduct = (updatedProduct,id) => {
+    return dispatch =>{
+        axios.put('api/product_services/products/update/'+ id ,updatedProduct )
+        .then(res =>{
+            console.log("updated epitixos", res);
+            dispatch(fetchUserBusinessProducts(updatedProduct.business_id ));
+        })
+        .catch(err => {
+            console.log(err)
+          //  dispatch(failMod(true));
+        });
+    }
+}
+export const deleteModProduct = (id,busId) => {
+    return dispatch =>{
+        axios.delete('api/product_services/products/delete/'+ id)
+        .then(res =>{
+            console.log("deleted epitixos", res);
+            dispatch(fetchUserBusinessProducts(busId));
+        })
+        .catch(err => {
+            console.log(err)
+           // dispatch(failMod(true));
+        });
+    }
+}
+
+export const deleteModImageProduct = (id,busId) => {
+    return dispatch =>{
+        axios.delete('api/product_services/products/image/delete/'+ id)
+        .then(res =>{
+            console.log("deleted epitixos", res);
+            dispatch(fetchUserBusinessProducts(busId));
+        })
+        .catch(err => {
+            console.log(err)
+           // dispatch(failMod(true));
+        });
+    }
+}

@@ -11,7 +11,7 @@ const Service = (props) => {
                 <Card key={props.service.id} className={classes.ViewService}  >
                     <Card.Header style={{/*color:"#39a8a8",*/textAlign:"center"}}>{props.service.name}</Card.Header>
                     <Card.Body>
-                        <p> Τιμή : {props.service.value}</p>
+                        <p> Τιμή : {props.service.value} €</p>
                         
                     </Card.Body>
                     <Card.Footer>

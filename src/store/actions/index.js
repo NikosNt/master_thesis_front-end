@@ -53,7 +53,12 @@ export {
 
 export {
     fetchUserBusinessProducts,
-    uploadImage
+    uploadImage,
+
+    createModNewProduct,
+    updateModProduct,
+    deleteModProduct,
+    deleteModImageProduct
 }from './ProductsAction'
 
 export {

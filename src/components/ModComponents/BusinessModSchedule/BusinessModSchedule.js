@@ -34,6 +34,7 @@ import * as actions from '../../../store/actions/index';
             <Modal show={props.failSchedule} modalClosed={() => OnFailSchedule(false) }>
                 <p style={{textAlign:"center"}}>An error has occured !</p>
             </Modal>
+            <br/><h4 style={{textAlign:'center'}}>Διαχείριση εβδομαδιαίου προγράμματος </h4><br/>
             <div className={classes.Schedule}>
                 {days}
             </div>

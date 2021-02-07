@@ -83,7 +83,7 @@ export const updateModService = (updatedService,id) => {
             dispatch(fetchModBusinessServices(updatedService.business_id));
         })
         .catch(err => {
-          //  console.log(err)
+            console.log(err)
             dispatch(failMod(true));
         });
     }
@@ -96,7 +96,7 @@ export const deleteModService = (id,busId) => {
             dispatch(fetchModBusinessServices(busId));
         })
         .catch(err => {
-           // console.log(err)
+            console.log(err)
             dispatch(failMod(true));
         });
     }

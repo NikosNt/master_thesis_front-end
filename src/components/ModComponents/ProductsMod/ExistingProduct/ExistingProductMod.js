@@ -1,14 +1,14 @@
 import React,{useState} from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/index';
-//import {Card,Col,Carousel} from 'react-bootstrap';
+import {Row,Col} from 'react-bootstrap';
 import classes from './ExistingProductMod.module.css' ;
 import MyButton from '../../../UI/Button/MyButton'; 
 
 import UploadService from './FileUploadService';
 
 const ProductMod = (props) => {
-    const {OnUploadImage,OnfetchBusinessProducts} = props;
+    const {OnfetchBusinessProducts,OnUpdateProduct,OnDeleteProduct,OnDeleteImage} = props;
 
     const [name,setName] = useState(props.product.name);
     const [number,setNumber] = useState(props.product.number);
@@ -20,31 +20,39 @@ const ProductMod = (props) => {
     const [progress, setProgress] = useState(0);
     const [message, setMessage] = useState("");
     
-   // console.log(props)
  
     let images = props.product.files.map( (img,index) =>(
-        <ul  key={index}>
-           <img src={img.url}  alt="" height={150} />
-           <MyButton variant="danger" clicked={()=> deleteImageHanler(img.id)} >Delete</MyButton>
-        </ul>
+        <div  key={index} style={{marginTop:"20px"}}>
+        <Row>
+            <Col sm={12} md={6} lg={8}>
+                <img src={img.url}  alt="" height={150} />
+            </Col>
+            <Col sm={12} md={6} lg={4}>
+                <MyButton variant="danger" clicked={()=> deleteImageHanler(img.id)} >Delete</MyButton>
+            </Col>
+        </Row>
+           
+           
+        </div>
     ))
 
-    if(!props.product.files.length ){ images=( <img  src="/logo512.png"  alt="" height={150} />) }
+    if(!props.product.files.length ){ images=( <img src="/logo512.png" alt="" height={150} />) }
 
-    const deleteImageHanler = (id) =>{ console.log(id); }
+    const deleteImageHanler = (id) =>{OnDeleteImage(id,props.businessId)}
 
     const updateProductHandler = () =>{
         const updatedProduct ={
-                product_id: props.product.productId,
+                business_id: props.businessId,
                 name: name,
                 number:number,
                 value:Number(value),
                 info: info
         }
         console.log(updatedProduct);
+        OnUpdateProduct(updatedProduct,props.product.productId)
     }
    
-    const deleteProductHandler = () =>{ console.log(props.product.productId);}
+    const deleteProductHandler = () =>{OnDeleteProduct(props.product.productId,props.businessId)}
 
     
     const upload = () => {
@@ -74,16 +82,15 @@ const ProductMod = (props) => {
         <> 
             <div className={classes.Product}>
                 <div>
-                    <input style={{width:"40%"}} value={name} onChange={(e)=> setName(e.target.value)}></input>
+                    <input style={{width:"40%", margin:"auto",display:"block"}} value={name} onChange={(e)=> setName(e.target.value)}></input>
                 </div>
                 <hr/>
                 <div className={classes.Images}>
                         {images}
-
+                        <hr/>
                         {currentFile && (
                         <div className="progress">
-                            <div
-                                className="progress-bar progress-bar-info progress-bar-striped"
+                            <div className="progress-bar progress-bar-info progress-bar-striped"
                                 role="progressbar"
                                 aria-valuenow={progress}
                                 aria-valuemin="0"
@@ -100,7 +107,6 @@ const ProductMod = (props) => {
                     </label>
                     <button className="btn btn-success" disabled={!selectedFiles} onClick={upload} >Upload</button>
                     <div className="alert alert-light" role="alert">{message}</div>
-
                 </div>
                 <hr/>
                 <div style={{marginTop:"20px"}}>
@@ -127,7 +133,11 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
         OnfetchBusinessProducts: (busId)=> dispatch( actions.fetchUserBusinessProducts(busId) ), 
-        OnUploadImage: (file,businessId,productId, onUploadProgress)=> dispatch( actions.uploadImage(file,businessId,productId, onUploadProgress) ),  
+       // OnUploadImage: (file,businessId,productId, onUploadProgress)=> dispatch( actions.uploadImage(file,businessId,productId, onUploadProgress) ),  
+        OnUpdateProduct: (product,id)=> dispatch( actions.updateModProduct(product,id) ), 
+        OnDeleteProduct: (id,businessId)=> dispatch( actions.deleteModProduct(id,businessId) ), 
+        OnDeleteImage: (id,businessId)=> dispatch( actions.deleteModImageProduct(id,businessId) ), 
+
     };
   };
 export default connect( mapStateToProps,mapDispatchToProps )(ProductMod) ;

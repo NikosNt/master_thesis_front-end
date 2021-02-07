@@ -101,9 +101,10 @@ const BasicBusinessInfo = (props) =>{
                 <p style={{textAlign:"center"}}>An error has occured !</p>
             </Modal>
             <div className={classes.Title}>
-                <h1 > Update Business or Service</h1>
-                <h5 style={{marginTop:"20px"}}>In this step you can change some values of your Business / Service</h5>
-                <p>Change values for Business name, Information and your Reference Site and delete or add a phone, owner, address, type</p>
+                <h1 >Επεξεργασία βασικών πληροφοριών</h1>
+                <h5 style={{marginTop:"20px"}}>Σε αυτό το βήμα μπορείς να αλλάξεις διάφορες τιμές.</h5>
+                <p>Άλλαξε τιμές για το όνομα της επιχείρησης, τις πληροφορίες και τον ιστότοπο και διέγραψε ή πρόσθεσε ένα τηλέφωνο, κάτοχο, διεύθυνση, τύπο</p>
+
             </div>
             <div className={classes.View}>
                 <p>Business ID : {props.modBusiness.id}</p>

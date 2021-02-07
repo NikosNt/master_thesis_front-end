@@ -34,7 +34,7 @@ const Product = (props) => {
                         <hr/>
                         <div style={{marginTop:"20px"}}>
                             <p> Διαθέσιμα : {props.product.number}</p>
-                            <p> Τιμή : {props.product.value}</p>
+                            <p> Τιμή : {props.product.value} €</p>
                             <p> Πληροφορίες : {props.product.info}</p>
                         </div> 
                     </Card.Body>

@@ -30,6 +30,16 @@ const ViewBusiness = (props) =>{
         addressOutput = " Δεν υπάρχει διαθέσιμη διεύθυνση  "
     }
 
+    let phonesOutput = props.business.phones.map(phone =>{
+        return <div className={classes.SpanStyle} key={phone.id}>
+              <Icon.TelephoneFill size={20} /> {phone.phone_number}  
+            </div>
+    })    
+
+    if(!props.business.phones.length ){
+        phonesOutput = (<><i> Δεν υπάρχει διαθέσιμο τηλέφωνο </i></>);
+    }
+
     let open = false;
     let closed = false;
     let scheduleDay = props.business.hours.map(hours =>{
@@ -58,31 +68,30 @@ const ViewBusiness = (props) =>{
         setShowModal(true);      
     }
 
-  
-
     return(
         <>
             <Modal show={showModal} modalClosed={() => setShowModal(false)}>
                 <h4 style={{textAlign:"center"}}>Please log in first :)</h4>
             </Modal>
-            <Col  sm={12} md={6} lg={4} className={classes.Column} >
+            <Col  sm={12} md={6} lg={6} xl={4} className={classes.Column} >
                 <Card  className={classes.ViewBusiness}  >
-                
-                    <Card.Header style={{color:"#39a8a8",textAlign:"center"}}>{props.business.business_name}</Card.Header>  
+                    <Card.Header style={{color:"#39a8a8",textAlign:"center",fontSize:"22px"}}>{props.business.business_name}</Card.Header>  
                     <Card.Body>
                         <div className={classes.Rating}>             
                            {props.business.rating === -1 ?<p>Δεν υπάρχει αξιολόγηση</p> : <Rating  name="half-rating" defaultValue={props.business.rating} precision={0.1} readOnly  />} 
                         </div>                      
-                        <p>Διεύθυνση :</p> {addressOutput}           
+                        {/* <p>Διεύθυνση :</p> {addressOutput}            */}
+                        <p>Τηλέφωνα : </p>{phonesOutput}<br/><br/>
                         <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  </p><p>{scheduleDay}</p>
                         {open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}
                         {!open && closed?<h6 className={classes.Closed} >Κλειστά</h6>:null}
 
                         <hr/><MyButton  variant="custom"  clicked={viewBusinessHandler } > View more information</MyButton>
+                             <MyButton variant="success">Άνοιγμα στον χάρτη</MyButton>
                     </Card.Body>
                 </Card>
             </Col>
-             {/* <MyButton variant="secondary">Open in Map</MyButton> */}
+             
             <style type="text/css">
                 {`
                     .btn-custom {
