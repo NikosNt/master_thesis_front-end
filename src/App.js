@@ -24,6 +24,10 @@ const View_A_Business = React.lazy(()=>{
   return import('./components/UserComponents/View_A_Business/View_A_Business')
 })
 
+const ViewMap = React.lazy(()=>{
+  return import('./components/UserComponents/ViewMap/ViewMap')
+})
+
 const App = (props) => {
 
   const { onTryAutoSignup } = props;  //to kanw giati apo ta props  mono to "onTryAutoSignup" 8a alaksei
@@ -55,6 +59,8 @@ const App = (props) => {
       <Switch>
         <Route path="/profile" render={(props) => <Profile {...props}/>} />
         <Route path="/view_a_business" render={(props) => <View_A_Business {...props}/>} />
+        <Route path="/viewMap" render={(props) => <ViewMap {...props}/>} />
+
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={MainPage} />
         <Redirect to="/" />

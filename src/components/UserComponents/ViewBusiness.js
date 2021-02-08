@@ -67,6 +67,15 @@ const ViewBusiness = (props) =>{
         } 
         setShowModal(true);      
     }
+    const viewMapOfBusinessHandler =   () => {   
+        if(props.authenticated){
+            props.history.push({
+                pathname:"/viewMap",
+            });
+        } 
+        setShowModal(true);      
+    }
+
 
     return(
         <>
@@ -87,7 +96,7 @@ const ViewBusiness = (props) =>{
                         {!open && closed?<h6 className={classes.Closed} >Κλειστά</h6>:null}
 
                         <hr/><MyButton  variant="custom"  clicked={viewBusinessHandler } > View more information</MyButton>
-                             <MyButton variant="success">Άνοιγμα στον χάρτη</MyButton>
+                             <MyButton variant="success" clicked={viewMapOfBusinessHandler }>Άνοιγμα στον χάρτη</MyButton>
                     </Card.Body>
                 </Card>
             </Col>
