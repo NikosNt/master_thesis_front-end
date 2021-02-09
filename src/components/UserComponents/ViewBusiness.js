@@ -57,6 +57,8 @@ const ViewBusiness = (props) =>{
         scheduleDay =<i>Το ωράριο λειτουργίας δεν είναι διαθέσιμο !</i> }
     }
 
+    //console.log(props.business.address)
+
     const viewBusinessHandler =   () => {   
         if(props.authenticated){
             OnLoadBusiness(props.business)
@@ -71,6 +73,7 @@ const ViewBusiness = (props) =>{
         if(props.authenticated){
             props.history.push({
                 pathname:"/viewMap",
+                state: {business:props.business}
             });
         } 
         setShowModal(true);      
