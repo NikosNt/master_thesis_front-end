@@ -109,7 +109,7 @@ const BasicBusinessInfo = (props) =>{
             <div className={classes.View}>
                 <p>Business ID : {props.modBusiness.id}</p>
                 <p>Business owner ID : {props.modBusiness.moderatorId}</p>
-                <p >Business Rating : {props.modBusiness.rating}</p>
+                <p >Business Rating : {props.modBusiness.rating === -1 ? "Δεν υπάρχει αξιολόγηση ακομα" :props.modBusiness.rating}</p>
                 <span>Business Name: </span> <input style={{width:"70%"}} defaultValue={props.modBusiness.business_name}
                                                                           onChange={ (event) =>{updateBasicValueHandler(event.target.value,"business_name")} }/><p/>
                 <span>Reference Site: </span> <input style={{width:"70%"}}  defaultValue={props.modBusiness.ref}

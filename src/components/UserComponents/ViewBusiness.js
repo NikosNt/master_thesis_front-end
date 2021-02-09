@@ -18,8 +18,6 @@ const ViewBusiness = (props) =>{
     // const [open,setOpen] = useState(false)   ;
     // const [closed,setClosed] = useState(false)   ; to many rerenders
 
-
-
     let addressOutput = props.business.address.map(address =>{
             return <div className={classes.SpanStyle} key={address.id}>
                    <Icon.GeoFill size={20} /> {address.city} {address.zipcode} {address.street} {address.street_number}  
@@ -59,7 +57,7 @@ const ViewBusiness = (props) =>{
 
     //console.log(props.business.address)
 
-    const viewBusinessHandler =   () => {   
+    const viewBusinessHandler = () => {   
         if(props.authenticated){
             OnLoadBusiness(props.business)
             props.history.push({
@@ -69,15 +67,21 @@ const ViewBusiness = (props) =>{
         } 
         setShowModal(true);      
     }
-    const viewMapOfBusinessHandler =   () => {   
-        if(props.authenticated){
+    const viewMapOfBusinessHandler = () => {   
+       //if(props.authenticated){
             props.history.push({
                 pathname:"/viewMap",
                 state: {business:props.business}
             });
-        } 
-        setShowModal(true);      
+       //} 
+       //setShowModal(true);      
     }
+    // const mapHandler = () => {
+    //     props.history.push({
+    //         pathname:"/viewMap",
+    //         state: {business:props.business}
+    //     });
+    // }
 
 
     return(
@@ -97,9 +101,9 @@ const ViewBusiness = (props) =>{
                         <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  </p><p>{scheduleDay}</p>
                         {open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}
                         {!open && closed?<h6 className={classes.Closed} >Κλειστά</h6>:null}
-
-                        <hr/><MyButton  variant="custom"  clicked={viewBusinessHandler } > View more information</MyButton>
-                             <MyButton variant="success" clicked={viewMapOfBusinessHandler }>Άνοιγμα στον χάρτη</MyButton>
+                        <hr/>
+                        <MyButton  variant="custom"  clicked={viewBusinessHandler } >Δείτε περισσότερες πληροφορίες</MyButton>
+                        <MyButton variant="success" clicked={viewMapOfBusinessHandler }>Άνοιγμα στον χάρτη</MyButton>
                     </Card.Body>
                 </Card>
             </Col>

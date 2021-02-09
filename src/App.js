@@ -48,6 +48,7 @@ const App = (props) => {
     <Switch>
       <Route path="/login" render={(props) => <Login {...props}/>} />
       <Route path="/register" render={(props) => <Register {...props}/>} />
+      <Route path="/viewMap" render={(props) => <ViewMap {...props}/>} />
       <Route path="/" exact component={MainPage} />
       <Redirect to="/" />
     </Switch>
@@ -58,8 +59,7 @@ const App = (props) => {
      routes = (
       <Switch>
         <Route path="/profile" render={(props) => <Profile {...props}/>} />
-        <Route path="/view_a_business" render={(props) => <View_A_Business {...props}/>} />
-        <Route path="/viewMap" render={(props) => <ViewMap {...props}/>} />
+        <Route path="/view_a_business" render={(props) => <View_A_Business {...props}/>} />        
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={MainPage} />
         <Redirect to="/" />
