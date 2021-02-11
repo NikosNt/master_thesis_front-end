@@ -1,14 +1,13 @@
-/* .ViewBusiness {
-    width: 95%;
-    border-radius: 5px;
-    border: 1px solid rgb(209, 204, 204);
-    box-shadow: 0 2px 3px rgb(214, 212, 212);
-    padding: 10px;
-    margin: 10px auto;
-    background-color: #ffffff;
-} */
- 
- 
+.ViewBusiness {
+    margin-top:20px;
+}
+
+.Column{
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
 .SpanStyle{
     text-transform: capitalize;
     display: inline-block;
@@ -19,9 +18,19 @@
     /* background-color: white; */
 }
 
+.Open{
+  color:rgb(61, 173, 61);
+    
+}
+
+.Closed{
+    color:rgb(209, 53, 53);
+}
  
 .LogMessage{
     text-align:"center";
     font-family: 'Times New Roman', Times, serif;
 }
- 
+.Rating{
+   text-align: center;
+}

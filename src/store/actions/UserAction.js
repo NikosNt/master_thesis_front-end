@@ -23,6 +23,20 @@ export const setSearchText = (text) => {
     }
 }
 
+export const setCheckedOpen = (checkedOpen) => {
+    return {
+        type: actionTypes.CHECKED_OPEN,
+        checkedOpen: checkedOpen
+    }
+}
+export const setRadiousValue = (radiousValue) => {
+    return {
+        type: actionTypes.RADIOUS_VALUE,
+        radiousValue: radiousValue
+    }
+}
+
+
 export const citiesInit = (cities) => {
     return {
         type: actionTypes.CITIES_INIT,

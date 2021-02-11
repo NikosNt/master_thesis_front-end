@@ -1,11 +1,11 @@
-import React,{useState}  from 'react';
+import React   from 'react';
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup ,Circle, } from 'react-leaflet';
 import {geolocated} from 'react-geolocated';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import Routing from "./RoutingMachine";
+//import Routing from "./RoutingMachine";
 
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -21,13 +21,11 @@ const DEFAULT_LATITUDE = 0;
 const DEFAULT_LONGITUDE = 0;
 
 const ViewMap = (props) => {
-    const [isMapInit,setIsMapInit] = useState(false);
+    //const [isMapInit,setIsMapInit] = useState(false);
    
     const  mylatitude = props.coords ? props.coords.latitude : DEFAULT_LATITUDE;
     const  mylongitude = props.coords ? props.coords.longitude : DEFAULT_LONGITUDE;
         
-    console.log(props.location.state.business)
-
     // const redMarker = L.icon({ iconUrl:  '/marker-icon-red.png',
     //                            shadowUrl:'/marker-shadow.png' ,})
     const greenMarker = L.icon({ iconUrl:  '/marker-icon-green.png',
@@ -49,7 +47,9 @@ const ViewMap = (props) => {
     //     setIsMapInit(true);
     //   };
 
-    console.log(mylatitude+" , "+mylongitude)
+   // console.log(mylatitude+" , "+mylongitude)
+   // console.log(props.location.state.radious)
+
     return(
         <>  
         {  mylatitude === 0 && mylongitude === 0
@@ -64,15 +64,19 @@ const ViewMap = (props) => {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {
-                    !props.coords 
-                    ?
+                    !props.coords ?
                         <div>loading</div>
-                    :
+                    :   
                         <Marker position={[mylatitude,mylongitude]}  >
                             <Popup >
-                                <span  >You are here</span>
+                                <span  >Είσαι εδώ !</span>
                             </Popup>
-                        </Marker>                         
+                        </Marker> 
+                           
+                }
+                {
+                    props.location.state.radious !== -1  
+                    ? <Circle center={[mylatitude,mylongitude]}  radius={props.location.state.radious} /> : null
                 }
                 {address}
 

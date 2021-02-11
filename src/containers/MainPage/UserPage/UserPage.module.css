@@ -24,3 +24,12 @@
     color:rgb(218, 143, 32)
 
   }
+
+  .Filters{
+    
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:  auto;
+  }

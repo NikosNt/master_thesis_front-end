@@ -128,8 +128,6 @@ const Business_Info = (props) =>{
         
     }
 
-
-    console.log(props)
     return(
         <>
 

@@ -7,12 +7,23 @@ const initialState={
     searchText:'',
     cities:[],
     services:[],
-    cityContent:'',
-    serviceContent:'',
+    cityContent:-1,
+    serviceContent:-1,
     error: null,
     loadedServices_Companies:[],
     resultMessage:'',
     loadBusiness:[],
+    checkedOpen:false,
+    radiousValue:-1,
+    radiousOptions:[{name:1000,id:1},
+                    {name:2000,id:2},
+                    {name:3000,id:3},
+                    {name:4000,id:4},
+                    {name:5000,id:5},
+                    {name:10000,id:6},
+                    {name:20000,id:7},
+                    {name:50000,id:8},
+                    {name:'Χωρίς ακτίνα',id:9}]
 };
 
 const setSearchText =(state,action) =>{
@@ -34,7 +45,6 @@ const citiesInit = ( state, action ) => {
         cities:action.cities
     });
 };
-
 
 const servicesInit = ( state, action ) => {
     return updateObject( state, {
@@ -77,7 +87,16 @@ const loadBusiness = ( state, action ) => {
         loadBusiness:action.loadBusiness
     });
 };
-
+const setCheckedOpen = ( state, action ) => {
+    return updateObject( state,{
+        checkedOpen:action.checkedOpen
+    });
+};
+const setRadiousValue = ( state, action ) => {
+    return updateObject( state,{
+        radiousValue:action.radiousValue
+    });
+};
 
 const reducer = (state=initialState,action) =>{
     switch(action.type) {
@@ -89,7 +108,9 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.SERVICE_CONTENT: return updateServiceContent(state,action);
         case actionTypes.LOAD_SERVICES_COMPANIES: return loadServicesCompanies(state,action);
         case actionTypes.LOAD_BUSINESS: return loadBusiness(state,action);
-        case actionTypes.RESULT_MESSAGE: return setResultMessage(state,action); 
+        case actionTypes.RESULT_MESSAGE: return setResultMessage(state,action);
+        case actionTypes.CHECKED_OPEN : return setCheckedOpen(state,action);
+        case actionTypes.RADIOUS_VALUE : return setRadiousValue(state,action);
         default: return state;
     }
 

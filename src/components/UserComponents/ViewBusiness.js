@@ -1,32 +1,36 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import classes from './ViewBusiness.module.css';
-import MyButton from '../UI/Button/MyButton';
  
+import UIBusiness from './UI_Business'
+
 import { withRouter } from "react-router-dom";
 import * as actions from '../../store/actions/index';
 import Modal from '../UI/Modal/Modal';
-import {getDay,getCurDate} from '../../shared/utility';
-import {Col,Card} from 'react-bootstrap';
-import {Rating} from '@material-ui/lab'; 
+import {getCurDate} from '../../shared/utility';
+import { getDistance } from 'geolib';
 import * as Icon from 'react-bootstrap-icons';
 const ViewBusiness = (props) =>{
 
     const {OnLoadBusiness} = props;
 
     const [showModal,setShowModal] = useState(false);
+    //const [nearMe,setNearMe] = useState(false);
+    
+    //console.log(props.lat +" - "+props.long)
+ 
     // const [open,setOpen] = useState(false)   ;
     // const [closed,setClosed] = useState(false)   ; to many rerenders
 
-    let addressOutput = props.business.address.map(address =>{
-            return <div className={classes.SpanStyle} key={address.id}>
-                   <Icon.GeoFill size={20} /> {address.city} {address.zipcode} {address.street} {address.street_number}  
-                </div>
-        })    
+    // let addressOutput = props.business.address.map(address =>{
+    //         return <div className={classes.SpanStyle} key={address.id}>
+    //                <Icon.GeoFill size={20} /> {address.city} {address.zipcode} {address.street} {address.street_number}  
+    //             </div>
+    //     })    
 
-    if(!props.business.address.length ){
-        addressOutput = " Δεν υπάρχει διαθέσιμη διεύθυνση  "
-    }
+    // if(!props.business.address.length ){
+    //     addressOutput = " Δεν υπάρχει διαθέσιμη διεύθυνση  "
+    // }
 
     let phonesOutput = props.business.phones.map(phone =>{
         return <div className={classes.SpanStyle} key={phone.id}>
@@ -55,7 +59,22 @@ const ViewBusiness = (props) =>{
         scheduleDay =<i>Το ωράριο λειτουργίας δεν είναι διαθέσιμο !</i> }
     }
 
-    //console.log(props.business.address)
+  //  console.log(props.business)
+  let nearMe=false;
+    if(props.business.address.length){
+        for (let i=0;i<props.business.address.length;i++){
+         let ap = getDistance(
+            { latitude: props.lat , longitude: props.long  },
+            { latitude:props.business.address[i].latitude, longitude: props.business.address[i].longitude }
+            );
+            if(ap <=props.radiousValue ){
+                nearMe = true;
+              //  console.log(nearMe)
+            }
+    
+          //  console.log("H apostash", ap);
+        }
+    }
 
     const viewBusinessHandler = () => {   
         if(props.authenticated){
@@ -68,46 +87,50 @@ const ViewBusiness = (props) =>{
         setShowModal(true);      
     }
     const viewMapOfBusinessHandler = () => {   
-       //if(props.authenticated){
             props.history.push({
                 pathname:"/viewMap",
-                state: {business:props.business}
-            });
-       //} 
-       //setShowModal(true);      
+                state: {business:props.business,
+                        radious:props.radiousValue}
+            }); 
     }
-    // const mapHandler = () => {
-    //     props.history.push({
-    //         pathname:"/viewMap",
-    //         state: {business:props.business}
-    //     });
+
+    let setComponentBusiness = ( <UIBusiness  business={props.business}
+                                                phones={phonesOutput}
+                                                schedule={scheduleDay}
+                                                open={open}
+                                                close={closed}
+                                                infoClicked={viewBusinessHandler}
+                                                mapClicked={viewMapOfBusinessHandler}/>
+                                ); 
+    let viewBusiness = '';
+    if( !props.checkedOpen &&  props.radiousValue === -1){//den xrisimopoiei ekstra filtra
+        viewBusiness = setComponentBusiness
+    }
+    if(  props.checkedOpen && open  && !nearMe){//mono to open
+        viewBusiness = setComponentBusiness
+    }
+    if (nearMe && !props.checkedOpen){//mono to near me
+        viewBusiness = setComponentBusiness 
+    }
+    if(nearMe && props.checkedOpen && open){//xrhsimopoiei kai ta 2 filtra
+        viewBusiness = setComponentBusiness
+    }
+
+    // switch (true ) {
+    //     case  (!props.checkedOpen &&  props.radiousValue === -1 ) :console.log("1"); viewBusiness = setComponentBusiness ;break;//den xrisimopoiei ekstra filtra
+    //     case  (props.checkedOpen && open  && !nearMe) :console.log("2"); viewBusiness = setComponentBusiness ;break;//mono to open
+    //     case  (nearMe && !props.checkedOpen) :console.log("3"); viewBusiness = setComponentBusiness ;break;//mono to near me
+    //     case  (nearMe && props.checkedOpen && open) :console.log("4"); viewBusiness = setComponentBusiness ;break;//xrhsimopoiei kai ta 2 filtra
+    //     default :console.log("5"); viewBusiness = setComponentBusiness;
     // }
 
-
+ 
     return(
         <>
             <Modal show={showModal} modalClosed={() => setShowModal(false)}>
                 <h4 style={{textAlign:"center"}}>Please log in first :)</h4>
             </Modal>
-            <Col  sm={12} md={6} lg={6} xl={4} className={classes.Column} >
-                <Card  className={classes.ViewBusiness}  >
-                    <Card.Header style={{color:"#39a8a8",textAlign:"center",fontSize:"22px"}}>{props.business.business_name}</Card.Header>  
-                    <Card.Body>
-                        <div className={classes.Rating}>             
-                           {props.business.rating === -1 ?<p>Δεν υπάρχει αξιολόγηση</p> : <Rating  name="half-rating" defaultValue={props.business.rating} precision={0.1} readOnly  />} 
-                        </div>                      
-                        {/* <p>Διεύθυνση :</p> {addressOutput}            */}
-                        <p>Τηλέφωνα : </p>{phonesOutput}<br/><br/>
-                        <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  </p><p>{scheduleDay}</p>
-                        {open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}
-                        {!open && closed?<h6 className={classes.Closed} >Κλειστά</h6>:null}
-                        <hr/>
-                        <MyButton  variant="custom"  clicked={viewBusinessHandler } >Δείτε περισσότερες πληροφορίες</MyButton>
-                        <MyButton variant="success" clicked={viewMapOfBusinessHandler }>Άνοιγμα στον χάρτη</MyButton>
-                    </Card.Body>
-                </Card>
-            </Col>
-             
+            {!viewBusiness ? null : viewBusiness}
             <style type="text/css">
                 {`
                     .btn-custom {
@@ -123,6 +146,8 @@ const ViewBusiness = (props) =>{
 const mapStateToProps = state => {
     return {
         userId:state.auth.userId,
+        checkedOpen:state.userPage.checkedOpen,
+        radiousValue:state.userPage.radiousValue
     };
   };
   

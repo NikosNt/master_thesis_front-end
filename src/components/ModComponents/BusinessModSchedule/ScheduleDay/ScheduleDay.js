@@ -100,10 +100,10 @@ const ScheduleDay = (props) =>{
                 <Row>
                     <Col md={8}>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <TimePicker clearable ampm={false} label="24 hours" value={newOpening} onChange={(event) =>handleTimeChangeHandler(event,"open")}  disabled={checked}/>
+                            <span>Άνοιγμα : &nbsp;</span><TimePicker clearable ampm={false} label="24 hours" value={newOpening} onChange={(event) =>handleTimeChangeHandler(event,"open")}  disabled={checked}/>
                         </MuiPickersUtilsProvider>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <TimePicker clearable ampm={false} label="24 hours" value={newClosing} onChange={(event) =>handleTimeChangeHandler(event,"close")}   disabled={checked}/>
+                        <span>Κλείσιμο : &nbsp;</span><TimePicker clearable ampm={false} label="24 hours" value={newClosing} onChange={(event) =>handleTimeChangeHandler(event,"close")}   disabled={checked}/>
                         </MuiPickersUtilsProvider>
                     </Col>
                     <Col md={2}>
