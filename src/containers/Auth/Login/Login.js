@@ -98,9 +98,10 @@ const LogIn = (props) => {
     let errorMessage = null;
     if ( props.error ) {
         errorMessage = (
-            <p style={{fontWeight: 'bold',color:'red'}}>{props.error}</p>
+            <p style={{fontWeight: 'bold',color:'red'}}> Σφάλμα </p>
         );
     }
+
 
     let authRedirect = null;
     if ( props.isAuthenticated ) {

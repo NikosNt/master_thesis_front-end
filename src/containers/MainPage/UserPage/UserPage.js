@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import classes from './UserPage.module.css';
@@ -14,8 +14,8 @@ import * as actions from '../../../store/actions/index';
 
 const UserPage = (props) =>{
 
-  const [latitude,setLatitude] =useState(0);
-  const [longitude,setLongitude] =useState(0);
+  // const [latitude,setLatitude] =useState(0);
+  // const [longitude,setLongitude] =useState(0);
 
   const { OnfetchCities,
           OnfetchServices,
@@ -24,7 +24,8 @@ const UserPage = (props) =>{
           onInitUpdateServiceContent,
           OnfetchServicesCompanies,
           OnInitSetResultMessage,
-          OnSetCheckedOpen, OnSetRadiousValue,
+          OnSetUserLat,OnSetUserLong,
+          OnSetCheckedOpen, OnSetRadiousValue,OnSetViewUserFilters
         } = props;
 
   useEffect(()=>{
@@ -36,10 +37,13 @@ const UserPage = (props) =>{
 
   useEffect(()=>{
     navigator.geolocation.getCurrentPosition(function(position) {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
+     // setLatitude(position.coords.latitude);
+     // setLongitude(position.coords.longitude);
+     OnSetUserLat(position.coords.latitude);
+     OnSetUserLong(position.coords.longitude);
+       
     });
-  })
+  },[OnSetUserLong,OnSetUserLat])
 
   // for(let klidi in props.loadedServices_Companies){
   //       console.log(props.loadedServices_Companies[klidi]);
@@ -50,12 +54,20 @@ const UserPage = (props) =>{
     <ViewBusiness key={buss.business_id}
                   business={buss}
                   authenticated={props.isAuthenticated}
-                  lat={latitude}
-                  long={longitude}
+                  //lat={latitude}
+                  //long={longitude}
+                  lat={props.userlat}
+                  long={props.userlong}                
     />
   ))
 
   const radiousHandler = (value) => {
+
+    // navigator.geolocation.getCurrentPosition(function(position) {
+    //   setLatitude(position.coords.latitude);
+    //   setLongitude(position.coords.longitude);
+    // });
+
     if(value === 'Χωρίς ακτίνα'){
       OnSetRadiousValue(-1)
     }else{
@@ -80,31 +92,32 @@ const UserPage = (props) =>{
           </Dropdown> 
         </div>
         <br/>  
-        <div className={classes.Filters} > 
-          <span>Ανοιχτά &nbsp;
-            <input type="checkbox" checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;
-          </span>
-          <span> &nbsp;| Near Me&nbsp;</span>
-          <Dropdown list={props.radiousOptions} 
-                    label={props.radiousValue ===-1 ? 'Χωρίς ακτίνα':props.radiousValue} 
-                    changed={(value)=>{radiousHandler(value.name) } }
-          /> 
-        </div>
-        <br/>   
         <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
         <br/>
         <div className={classes.Button}>
-          <MyButton variant="outline-info" size="xxl" clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText);} } >Εύρεση !</MyButton>
+          <MyButton variant="outline-info" 
+                    size="xxl" 
+                    clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText);
+                    OnSetViewUserFilters(true)} } 
+          > 
+            Αναζήτηση
+          </MyButton>
         </div>
         <br/>
-        {/* {searched 
-         ?
+        {
+          props.viewFilters ? 
           <div className={classes.Filters} > 
-            <span>Ανοιχτά &nbsp;<input type="checkbox"   checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;</span>
-            <span> &nbsp;Near Me&nbsp;</span><Dropdown list={props.radiousOptions} label={"Ακτίνα σε (m)"} changed={(value)=>radiousHandler(value.name) }></Dropdown>
+            <span>Ανοιχτά &nbsp;
+              <input type="checkbox" checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;
+            </span>
+            <span> &nbsp;| Near Me&nbsp;</span>
+            <Dropdown list={props.radiousOptions} 
+                      label={props.radiousValue ===-1 ? 'Ακτίνα (σε m) ':props.radiousValue} 
+                      changed={(value)=>{radiousHandler(value.name) } }
+            /> 
           </div>
-         : null
-        } */}
+          : null
+        }
         <br/> 
         <h4 className={classes.NoResult} > {props.resultMessage} </h4>
         <CardDeck >
@@ -136,6 +149,9 @@ const mapStateToProps = state => {
       loadedServices_Companies:state.userPage.loadedServices_Companies,
       resultMessage:state.userPage.resultMessage,
       checkedOpen:state.userPage.checkedOpen,
+      userlat:state.userPage.userlat,
+      userlong:state.userPage.userlong,
+      viewFilters:state.userPage.viewFilters,
       radiousValue:state.userPage.radiousValue,
       radiousOptions:state.userPage.radiousOptions,
       isAuthenticated: state.auth.token !== null
@@ -148,13 +164,14 @@ const mapDispatchToProps = dispatch => {
     OnfetchServices: () => dispatch( actions.fetchServices() ),
     OnInitSearchText: (text) => dispatch( actions.setSearchText(text) ),
     OnInitSetResultMessage: (message) => dispatch( actions.setResultMessage(message) ),
-    // OnSetSelectedCity: (state) => dispatch( actions.setSelectedCity(state) ),
-    // OnSetSelectedService: (state) => dispatch( actions.setSelectedService(state) ),
+    OnSetViewUserFilters: (state) => dispatch( actions.setViewUserFilters(state) ),
     OnSetCheckedOpen: (state) => dispatch( actions.setCheckedOpen(state) ),
     OnSetRadiousValue: (state) => dispatch( actions.setRadiousValue(state) ),
     onInitUpdateCityContent:(content) => dispatch( actions.updateCityContent(content) ),
     onInitUpdateServiceContent:(content) => dispatch( actions.updateServiceContent(content) ),
     OnfetchServicesCompanies: (city,typeBusiness,searchText)=> dispatch( actions.fetchServicesCompanies(city,typeBusiness,searchText) ),
+    OnSetUserLat: (state) => dispatch( actions.setUserLat(state) ),
+    OnSetUserLong: (state) => dispatch( actions.setUserLong(state) ),
   };
 };
 

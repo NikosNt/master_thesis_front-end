@@ -38,7 +38,7 @@ const Message = (props) =>{
     ))
    
     if (!props.business_user_messages.length){
-       messages=(<p style={{textAlign:"center"}}>No messages Available  </p>)
+       messages=(<p style={{textAlign:"center"}}>Δεν υπάρχουν διαθέσιμα μηνύματα</p>)
     }
 
     const sendMessageHandler = () => {
@@ -63,7 +63,7 @@ const Message = (props) =>{
                 {messages}
             </div>
             <div className={classes.NewM}>
-                {props.valueSender === -1 ? <p>Select to view messages</p> 
+                {props.valueSender === -1 ? <p>Επιλέξτε για προβολή μηνυμάτων</p> 
                     :
                         <NewMessage 
                                     changed={sendMessageHandler}

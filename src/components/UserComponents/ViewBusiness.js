@@ -83,8 +83,12 @@ const ViewBusiness = (props) =>{
                 pathname:"/view_a_business",
             });
             //console.log(props.business)
+        }else{
+            props.history.push({
+                pathname:"/login",
+            });
         } 
-        setShowModal(true);      
+        //setShowModal(true);      
     }
     const viewMapOfBusinessHandler = () => {   
             props.history.push({
@@ -104,17 +108,22 @@ const ViewBusiness = (props) =>{
                                 ); 
     let viewBusiness = '';
     if( !props.checkedOpen &&  props.radiousValue === -1){//den xrisimopoiei ekstra filtra
+      //  console.log("1");
         viewBusiness = setComponentBusiness
     }
-    if(  props.checkedOpen && open  && !nearMe){//mono to open
+    else if(nearMe && props.checkedOpen && open){//xrhsimopoiei kai ta 2 filtra
+     //   console.log("2");
         viewBusiness = setComponentBusiness
     }
-    if (nearMe && !props.checkedOpen){//mono to near me
+    else if(  props.checkedOpen && open  &&  props.radiousValue === -1){//mono to open
+     //   console.log("3");
+        viewBusiness = setComponentBusiness
+    }
+    else if (nearMe && !props.checkedOpen){//mono to near me
+      //  console.log("4");
         viewBusiness = setComponentBusiness 
     }
-    if(nearMe && props.checkedOpen && open){//xrhsimopoiei kai ta 2 filtra
-        viewBusiness = setComponentBusiness
-    }
+
 
     // switch (true ) {
     //     case  (!props.checkedOpen &&  props.radiousValue === -1 ) :console.log("1"); viewBusiness = setComponentBusiness ;break;//den xrisimopoiei ekstra filtra

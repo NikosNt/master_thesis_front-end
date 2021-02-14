@@ -56,15 +56,25 @@ const ScheduleDay = (props) =>{
         if(  openHourMin > closeHourMin){
             setShowModal(true);
         }else{
-            const obj = {
-                businessId : props.schedule.businessId,
-                day : props.schedule.day,
-                state : !checked ? 1 :   0,
-                hours : [{
-                    opening : openHourMin,
-                    closing : closeHourMin,
-                }]
+            let obj = []
+            if(!checked){
+                obj = {
+                    businessId : props.schedule.businessId,
+                    day : props.schedule.day,
+                    state : 1,
+                    hours : [{
+                        opening : openHourMin,
+                        closing : closeHourMin,
+                    }]
+                }
+            }else{
+                obj = {
+                    businessId : props.schedule.businessId,
+                    day : props.schedule.day,
+                    state : 0
+                }
             }
+            console.log(obj)
             onUpdateScheduleBusinessDay(obj,props.schedule.id);
         }
     }
@@ -99,12 +109,19 @@ const ScheduleDay = (props) =>{
                 </Row>
                 <Row>
                     <Col md={8}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <span>Άνοιγμα : &nbsp;</span><TimePicker clearable ampm={false} label="24 hours" value={newOpening} onChange={(event) =>handleTimeChangeHandler(event,"open")}  disabled={checked}/>
-                        </MuiPickersUtilsProvider>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <span>Κλείσιμο : &nbsp;</span><TimePicker clearable ampm={false} label="24 hours" value={newClosing} onChange={(event) =>handleTimeChangeHandler(event,"close")}   disabled={checked}/>
-                        </MuiPickersUtilsProvider>
+                        <Row>
+                            <Col lg={6}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <span>Άνοιγμα : &nbsp;</span><TimePicker clearable ampm={false} label="24 hours" value={newOpening} onChange={(event) =>handleTimeChangeHandler(event,"open")}  disabled={checked}/>
+                                </MuiPickersUtilsProvider>
+                            </Col>
+                            <Col lg={6}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <span>Κλείσιμο : &nbsp;</span><TimePicker clearable ampm={false} label="24 hours" value={newClosing} onChange={(event) =>handleTimeChangeHandler(event,"close")}   disabled={checked}/>
+                                </MuiPickersUtilsProvider>
+                            </Col>
+                        </Row>
+
                     </Col>
                     <Col md={2}>
                         { checkbox  }

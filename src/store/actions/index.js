@@ -7,9 +7,12 @@ export {
     updateServiceContent,
     fetchServicesCompanies,
     loadBusiness,
-
+    setViewUserFilters,
     setCheckedOpen,
-    setRadiousValue
+    setRadiousValue,
+
+    setUserLat,
+    setUserLong,
 } from './UserAction';
 
 
@@ -84,5 +87,6 @@ export{
     setAuthRedirectPath,
     authCheckState,
     logout,
-    registerUser
+    registerUser,
+    getUserData
 }from './authAction'

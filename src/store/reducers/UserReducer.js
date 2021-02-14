@@ -13,6 +13,9 @@ const initialState={
     loadedServices_Companies:[],
     resultMessage:'',
     loadBusiness:[],
+    userlat:0,
+    userlong:0,
+    viewFilters:false,
     checkedOpen:false,
     radiousValue:-1,
     radiousOptions:[{name:1000,id:1},
@@ -87,6 +90,11 @@ const loadBusiness = ( state, action ) => {
         loadBusiness:action.loadBusiness
     });
 };
+const setViewUserFilters = ( state, action ) => {
+    return updateObject( state,{
+        viewFilters:action.viewFilters
+    });
+};
 const setCheckedOpen = ( state, action ) => {
     return updateObject( state,{
         checkedOpen:action.checkedOpen
@@ -95,6 +103,16 @@ const setCheckedOpen = ( state, action ) => {
 const setRadiousValue = ( state, action ) => {
     return updateObject( state,{
         radiousValue:action.radiousValue
+    });
+};
+const setUserLat = ( state, action ) => {
+    return updateObject( state,{
+        userlat:action.userlat
+    });
+};
+const setUserLong = ( state, action ) => {
+    return updateObject( state,{
+        userlong:action.userlong
     });
 };
 
@@ -109,6 +127,9 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.LOAD_SERVICES_COMPANIES: return loadServicesCompanies(state,action);
         case actionTypes.LOAD_BUSINESS: return loadBusiness(state,action);
         case actionTypes.RESULT_MESSAGE: return setResultMessage(state,action);
+        case actionTypes.USER_LAT : return setUserLat(state,action);
+        case actionTypes.USER_LONG : return setUserLong(state,action);
+        case actionTypes.VIEW_USER_FILTERS : return setViewUserFilters(state,action);
         case actionTypes.CHECKED_OPEN : return setCheckedOpen(state,action);
         case actionTypes.RADIOUS_VALUE : return setRadiousValue(state,action);
         default: return state;

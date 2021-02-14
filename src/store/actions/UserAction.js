@@ -22,6 +22,24 @@ export const setSearchText = (text) => {
         searchText: text
     }
 }
+export const setViewUserFilters = (viewFilters) => {
+    return {
+        type: actionTypes.VIEW_USER_FILTERS,
+        viewFilters: viewFilters
+    }
+}
+export const setUserLat = (userlat) => {
+    return {
+        type: actionTypes.USER_LAT,
+        userlat: userlat
+    }
+}
+export const setUserLong = (userlong) => {
+    return {
+        type: actionTypes.USER_LONG,
+        userlong: userlong
+    }
+}
 
 export const setCheckedOpen = (checkedOpen) => {
     return {

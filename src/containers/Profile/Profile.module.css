@@ -1,5 +1,53 @@
-.Profile{
+.ProfileIntro{
     margin: auto;
     text-align: center;
- 
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.Profile{
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0 auto;
+    width:50%;
+    height: 91vh;
+    border-radius: 5px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #fbfbfb;
+}
+
+.Headings{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    margin-top: 20px;
+}
+
+.Row{
+    
+    margin: 0 auto;
+    width: 50%;
+}
+@media only screen and (max-width: 1400px) {
+    .Profile{
+        width:65%;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .Profile{
+        width:75%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .Profile{
+        width:90%;
+    }
 }

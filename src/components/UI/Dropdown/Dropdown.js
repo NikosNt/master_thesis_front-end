@@ -15,6 +15,7 @@ const Dropdown = (props) =>{
                       defaultValue={props.label}
                       onChange={props.changed}
                       value={props.value}
+                      size={props.size}
       />
   )
 

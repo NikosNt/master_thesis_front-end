@@ -110,3 +110,23 @@ export const authCheckState = () => {
         }
     };
 };
+
+export const loadUserData = (userData) => {
+    return {
+        type: actionTypes.LOAD_AUTH_USER_DATA,
+        userData: userData
+    };
+};
+
+export const getUserData = (id) => {
+    return dispatch => {
+        axios.get('api/auth/user/'+id)
+            .then(res => {
+                //console.log(res);
+                dispatch(loadUserData(res.data))
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
+}

@@ -9,7 +9,7 @@ const NewService = (props) => {
     return(
         <>
             <Card   className={classes.NewService}  >
-                <Card.Header style={{color:"#2f9c42",textAlign:"center"}}><h5>Πρόσθεσε μια νέα υπηρεσία !</h5></Card.Header>
+                <Card.Header style={{color:"#2f9c42",textAlign:"center"}}><h5>Πρόσθεσε ένα νεό προίον</h5></Card.Header>
                 <Card.Body>
                     <span>Ονομα : </span>
                     <input  style={{width:"40%"}} value={props.name} onChange={props.nameChange}/> <br/><br/>
