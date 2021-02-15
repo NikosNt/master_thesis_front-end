@@ -60,22 +60,23 @@ const ViewBusiness = (props) =>{
     }
 
   //  console.log(props.business)
-  let nearMe=false;
+    let nearMe=false;
+ 
     if(props.business.address.length){
         for (let i=0;i<props.business.address.length;i++){
-         let ap = getDistance(
+        let ap = getDistance(
             { latitude: props.lat , longitude: props.long  },
             { latitude:props.business.address[i].latitude, longitude: props.business.address[i].longitude }
             );
             if(ap <=props.radiousValue ){
                 nearMe = true;
-              //  console.log(nearMe)
+            //  console.log(nearMe)
             }
     
-          //  console.log("H apostash", ap);
+        //  console.log("H apostash", ap);
         }
     }
-
+ 
     const viewBusinessHandler = () => {   
         if(props.authenticated){
             OnLoadBusiness(props.business)
@@ -106,21 +107,24 @@ const ViewBusiness = (props) =>{
                                                 infoClicked={viewBusinessHandler}
                                                 mapClicked={viewMapOfBusinessHandler}/>
                                 ); 
+
+//    console.log(props.business.rating)
+
     let viewBusiness = '';
-    if( !props.checkedOpen &&  props.radiousValue === -1){//den xrisimopoiei ekstra filtra
-      //  console.log("1");
+    if( !props.checkedOpen &&   props.radiousValue === 0 ){//den xrisimopoiei ekstra filtra
+        console.log("1");
         viewBusiness = setComponentBusiness
     }
     else if(nearMe && props.checkedOpen && open){//xrhsimopoiei kai ta 2 filtra
-     //   console.log("2");
+        console.log("2");
         viewBusiness = setComponentBusiness
     }
-    else if(  props.checkedOpen && open  &&  props.radiousValue === -1){//mono to open
-     //   console.log("3");
+    else if(  props.checkedOpen && open  &&   props.radiousValue === 0){//mono to open
+        console.log("3");
         viewBusiness = setComponentBusiness
     }
-    else if (nearMe && !props.checkedOpen){//mono to near me
-      //  console.log("4");
+    else if (nearMe && !props.checkedOpen ){//mono to near me
+        console.log("4");
         viewBusiness = setComponentBusiness 
     }
 

@@ -21,15 +21,40 @@
 
   .NoResult{
    text-align: center;
-    color:rgb(218, 143, 32)
+   color:rgb(218, 143, 32)
 
   }
 
+  .FilterTitle{
+    text-align: center;
+    font-size: 20px;
+  }
+
   .Filters{
+    margin-top: 20px;
+    margin-left:20px;
+    margin-right:auto;
+    height:auto; 
+    width:100%;
+
+    border-radius: 5px;
+    border: 1px solid rgb(209, 204, 204);
+    box-shadow: 0 2px 3px rgb(214, 212, 212);
+    background-color: #fcfcfc;
+    height:600px;
+    padding: 15px;
     
-    position:relative;
+    /* position:relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin:  auto;
+    margin:  auto; */
+  }
+
+  @media screen and (max-width: 770px) {
+    .Filters{
+      width:90%;
+      height:300px
+    }
+
   }

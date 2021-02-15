@@ -75,7 +75,7 @@ const ViewMap = (props) => {
                            
                 }
                 {
-                    props.location.state.radious !== -1  
+                    props.location.state.radious !== 0  
                     ? <Circle center={[mylatitude,mylongitude]}  radius={props.location.state.radious} /> : null
                 }
                 {address}

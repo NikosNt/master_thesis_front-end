@@ -17,16 +17,16 @@ const initialState={
     userlong:0,
     viewFilters:false,
     checkedOpen:false,
-    radiousValue:-1,
-    radiousOptions:[{name:1000,id:1},
-                    {name:2000,id:2},
-                    {name:3000,id:3},
-                    {name:4000,id:4},
-                    {name:5000,id:5},
-                    {name:10000,id:6},
-                    {name:20000,id:7},
-                    {name:50000,id:8},
-                    {name:'Χωρίς ακτίνα',id:9}]
+    radiousValue:0,
+    // radiousOptions:[{name:1000,id:1},
+    //                 {name:2000,id:2},
+    //                 {name:3000,id:3},
+    //                 {name:4000,id:4},
+    //                 {name:5000,id:5},
+    //                 {name:10000,id:6},
+    //                 {name:20000,id:7},
+    //                 {name:50000,id:8},
+    //                 {name:'Χωρίς ακτίνα',id:9}]
 };
 
 const setSearchText =(state,action) =>{

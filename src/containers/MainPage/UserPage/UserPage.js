@@ -7,7 +7,7 @@ import MyButton from '../../../components/UI/Button/MyButton';
 import Info from '../../../components/StartingInfo/StartingInfo';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import ViewBusiness from '../../../components/UserComponents/ViewBusiness'
-import {CardDeck} from 'react-bootstrap'
+import {CardDeck,Row,Col} from 'react-bootstrap'
 import * as actions from '../../../store/actions/index';
 
 
@@ -61,21 +61,20 @@ const UserPage = (props) =>{
     />
   ))
 
-  const radiousHandler = (value) => {
+  // const radiousHandler = (value) => {
 
-    // navigator.geolocation.getCurrentPosition(function(position) {
-    //   setLatitude(position.coords.latitude);
-    //   setLongitude(position.coords.longitude);
-    // });
-
-    if(value === 'Χωρίς ακτίνα'){
-      OnSetRadiousValue(-1)
-    }else{
-      OnSetRadiousValue(value)
-    } 
-  }
+  //   // navigator.geolocation.getCurrentPosition(function(position) {
+  //   //   setLatitude(position.coords.latitude);
+  //   //   setLongitude(position.coords.longitude);
+  //   // });
+  //   if(Number(value) === 0){
+  //     OnSetRadiousValue(0)
+  //   }else{
+  //     OnSetRadiousValue(value)
+  //   } 
+  // }
  
-
+  
   return(
     <React.Fragment>
       <div className={classes.Main}>
@@ -95,7 +94,8 @@ const UserPage = (props) =>{
         <SearchBar textS={props.searchText} changed={(event)=> OnInitSearchText(event.target.value) }/>
         <br/>
         <div className={classes.Button}>
-          <MyButton variant="outline-info" 
+          <MyButton 
+                    variant="outline-info" 
                     size="xxl" 
                     clicked={()=> { OnfetchServicesCompanies(props.cityContent.name,props.serviceContent.name,props.searchText);
                     OnSetViewUserFilters(true)} } 
@@ -104,17 +104,23 @@ const UserPage = (props) =>{
           </MyButton>
         </div>
         <br/>
-        {
+        {/* {
           props.viewFilters ? 
           <div className={classes.Filters} > 
             <span>Ανοιχτά &nbsp;
               <input type="checkbox" checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;
-            </span>
-            <span> &nbsp;| Near Me&nbsp;</span>
+            </span> */}
+            {/* <span> &nbsp;| Near Me&nbsp;</span>
             <Dropdown list={props.radiousOptions} 
                       label={props.radiousValue ===-1 ? 'Ακτίνα (σε m) ':props.radiousValue} 
                       changed={(value)=>{radiousHandler(value.name) } }
-            /> 
+            />  */}
+            {/* <span>&nbsp;&nbsp; &nbsp;|&nbsp;&nbsp; Near Me &nbsp;
+              <input type="range" min="0" max="30000" step="1000" 
+                    value={props.radiousValue} onChange={(event)=> OnSetRadiousValue(Number(event.target.value))}  >
+              </input> { props.radiousValue === 0 ? 'Ακτίνα (σε m) ': props.radiousValue +'(m)' }
+            </span>
+
           </div>
           : null
         }
@@ -122,13 +128,53 @@ const UserPage = (props) =>{
         <h4 className={classes.NoResult} > {props.resultMessage} </h4>
         <CardDeck >
           {selected_services}
-        </CardDeck>
+        </CardDeck> */}
+
+        <Row>
+          <Col sm={12} md={4} lg={3} xl={2}>
+          {
+          props.viewFilters ? 
+          <div className={classes.Filters} >
+            <div>
+              <p className={classes.FilterTitle}>Φίλτρα</p>
+            </div>
+            <hr/>
+            <div>
+              <span>Ανοιχτά &nbsp;
+                <input type="checkbox" checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;
+              </span>
+            </div>
+            <hr/> 
+            <div>
+              <p>Near Me</p>
+                <input type="range" min="0" max="30000" step="1000" 
+                      value={props.radiousValue} onChange={(event)=> OnSetRadiousValue(Number(event.target.value))}  >
+                </input> 
+                <p>{ props.radiousValue === 0 ? 'Ακτίνα (σε m) ': props.radiousValue +'(m)' }</p>
+              {/* </span> */}
+            </div>
+            <hr/> 
+            <div>
+
+            </div>
+
+          </div>
+          : null
+          }
+          </Col>
+          <Col sm={12} md={8} lg={9} xl={10}>
+            <CardDeck >
+              {selected_services}
+            </CardDeck>
+          </Col>
+        </Row>
         
        
       </div>
       <style type="text/css">
         {`
           .btn-xxl {
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
             padding: 0.7rem 4.5rem;
             font-size: 1.3rem;
           }

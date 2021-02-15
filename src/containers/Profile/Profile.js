@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import classes from './Profile.module.css';
-import {Row,Col,Table } from 'react-bootstrap';
+import {Row,Col } from 'react-bootstrap';
 import * as actions from '../../store/actions/index';
 
 const Profile = (props) =>{
@@ -18,12 +18,12 @@ const Profile = (props) =>{
 
   console.log(props.userData);
 
-  let loading = true;
+  // let loading = true;
 
-  if(props.userData){
-    console.log("exw")
-    loading = false;
-  }
+  // if(props.userData){
+  //   console.log("exw")
+  //   loading = false;
+  // }
   
   return(
     <>
@@ -32,7 +32,7 @@ const Profile = (props) =>{
       <div style={{marginTop:"25px"}}>
         <h3 style={{textAlign:"center"}}>Βασικές Πληροφορίες Χρήστη</h3>
       </div>
-      <img src="no-person-image.png" height='300px' className={classes.Image}></img>
+      <img src="no-person-image.png" height='300px' alt="" className={classes.Image}></img>
       <br/><br/>
       <div className={classes.Row}>
         <Row  >
