@@ -10,7 +10,7 @@ export {
     setViewUserFilters,
     setCheckedOpen,
     setRadiousValue,
-
+    setRatingValue,
     setUserLat,
     setUserLong,
 } from './UserAction';

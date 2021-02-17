@@ -11,7 +11,7 @@ export const RESULT_MESSAGE='RESULT_MESSAGE';
 export const VIEW_USER_FILTERS='VIEW_USER_FILTERS'
 export const RADIOUS_VALUE = 'RADIOUS_VALUE';
 export const CHECKED_OPEN = 'CHECKED_OPEN';
-
+export const RATING_VALUE_FILTER='RATING_VALUE_FILTER';
 export const USER_LAT = 'USER_LAT';
 export const USER_LONG = 'USER_LONG';
 //Mod

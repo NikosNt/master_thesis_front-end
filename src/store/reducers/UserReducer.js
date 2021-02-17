@@ -15,6 +15,7 @@ const initialState={
     loadBusiness:[],
     userlat:0,
     userlong:0,
+    ratingValue:0,
     viewFilters:false,
     checkedOpen:false,
     radiousValue:0,
@@ -115,6 +116,11 @@ const setUserLong = ( state, action ) => {
         userlong:action.userlong
     });
 };
+const setRatingValue = ( state, action ) => {
+    return updateObject( state,{
+        ratingValue:action.ratingValue
+    });
+};
 
 const reducer = (state=initialState,action) =>{
     switch(action.type) {
@@ -132,9 +138,9 @@ const reducer = (state=initialState,action) =>{
         case actionTypes.VIEW_USER_FILTERS : return setViewUserFilters(state,action);
         case actionTypes.CHECKED_OPEN : return setCheckedOpen(state,action);
         case actionTypes.RADIOUS_VALUE : return setRadiousValue(state,action);
+        case actionTypes.RATING_VALUE_FILTER : return setRatingValue(state,action);
         default: return state;
     }
-
 }
 
 export default reducer

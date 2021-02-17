@@ -55,7 +55,7 @@ const App = (props) => {
   );
     
   if(props.isAuthenticated && props.hasRole === 'ROLE_USER'){
-    console.log("route -> user")
+   // console.log("route -> user")
      routes = (
       <Switch>
         <Route path="/profile" render={(props) => <Profile {...props}/>} />
@@ -69,7 +69,7 @@ const App = (props) => {
   }
 
   if(props.isAuthenticated && props.hasRole === 'ROLE_ADMIN'){
-    console.log("route -> admin")
+   // console.log("route -> admin")
      routes = (
       <Switch>
         <Route path="/logout" component={Logout} />        
@@ -80,7 +80,7 @@ const App = (props) => {
   }
 
   if(props.isAuthenticated && props.hasRole === 'ROLE_MODERATOR'){
-    console.log("route -> mod")
+ //   console.log("route -> mod")
      routes = (
       <Switch>
         <Route path="/logout" component={Logout} />

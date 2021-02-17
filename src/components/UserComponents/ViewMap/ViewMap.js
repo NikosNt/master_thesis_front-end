@@ -21,7 +21,6 @@ const DEFAULT_LATITUDE = 0;
 const DEFAULT_LONGITUDE = 0;
 
 const ViewMap = (props) => {
-    //const [isMapInit,setIsMapInit] = useState(false);
    
     const  mylatitude = props.coords ? props.coords.latitude : DEFAULT_LATITUDE;
     const  mylongitude = props.coords ? props.coords.longitude : DEFAULT_LONGITUDE;
@@ -34,21 +33,15 @@ const ViewMap = (props) => {
     let address = props.location.state.business.address.map(add =>{
         return <Marker key={add.id} position={[add.latitude,add.longitude]}  icon={greenMarker} >
                     <Popup>
-                        <span>{props.location.state.business.business_name} <br/>{add.street} {add.street_number} <br/>ΤΚ:{add.zip_code} </span>
+                        <span> <b>{props.location.state.business.business_name} </b>
+                            <br/>Αξιολόγηση : {props.location.state.business.rating}/5
+                            <br/>Οδός : {add.street} {add.street_number} 
+                            <br/>ΤΚ : {add.zip_code}
+                        
+                        </span>
                     </Popup>
                 </Marker>
     })
-
-    // const saveMap = map => {
-    //     props.map = map;
-    //     // this.setState({
-    //     //   isMapInit: true
-    //     // });
-    //     setIsMapInit(true);
-    //   };
-
-   // console.log(mylatitude+" , "+mylongitude)
-   // console.log(props.location.state.radious)
 
     return(
         <>  
@@ -79,8 +72,6 @@ const ViewMap = (props) => {
                     ? <Circle center={[mylatitude,mylongitude]}  radius={props.location.state.radious} /> : null
                 }
                 {address}
-
-                {/* {isMapInit&& <Routing map={isMapInit} />} */}
             </MapContainer>
             } 
         </>
@@ -89,8 +80,6 @@ const ViewMap = (props) => {
 export default geolocated({
     positionOptions:{
         enableHighAccuracy: false
-       
     },
      userDecisionTimeout:10000
 })(ViewMap)
-//export default ViewMap;

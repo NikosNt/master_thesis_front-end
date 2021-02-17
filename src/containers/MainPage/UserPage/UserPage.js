@@ -9,22 +9,16 @@ import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import ViewBusiness from '../../../components/UserComponents/ViewBusiness'
 import {CardDeck,Row,Col} from 'react-bootstrap'
 import * as actions from '../../../store/actions/index';
-
-
+import {Rating} from '@material-ui/lab'; 
 
 const UserPage = (props) =>{
 
-  // const [latitude,setLatitude] =useState(0);
-  // const [longitude,setLongitude] =useState(0);
-
-  const { OnfetchCities,
-          OnfetchServices,
+  const { OnfetchCities,OnfetchServices,
           OnInitSearchText,
-          onInitUpdateCityContent,
-          onInitUpdateServiceContent,
+          onInitUpdateCityContent,onInitUpdateServiceContent,
           OnfetchServicesCompanies,
           OnInitSetResultMessage,
-          OnSetUserLat,OnSetUserLong,
+          OnSetUserLat,OnSetUserLong,OnSetRatingValue,
           OnSetCheckedOpen, OnSetRadiousValue,OnSetViewUserFilters
         } = props;
 
@@ -37,11 +31,8 @@ const UserPage = (props) =>{
 
   useEffect(()=>{
     navigator.geolocation.getCurrentPosition(function(position) {
-     // setLatitude(position.coords.latitude);
-     // setLongitude(position.coords.longitude);
      OnSetUserLat(position.coords.latitude);
      OnSetUserLong(position.coords.longitude);
-       
     });
   },[OnSetUserLong,OnSetUserLat])
 
@@ -60,21 +51,8 @@ const UserPage = (props) =>{
                   long={props.userlong}                
     />
   ))
-
-  // const radiousHandler = (value) => {
-
-  //   // navigator.geolocation.getCurrentPosition(function(position) {
-  //   //   setLatitude(position.coords.latitude);
-  //   //   setLongitude(position.coords.longitude);
-  //   // });
-  //   if(Number(value) === 0){
-  //     OnSetRadiousValue(0)
-  //   }else{
-  //     OnSetRadiousValue(value)
-  //   } 
-  // }
- 
   
+
   return(
     <React.Fragment>
       <div className={classes.Main}>
@@ -104,32 +82,6 @@ const UserPage = (props) =>{
           </MyButton>
         </div>
         <br/>
-        {/* {
-          props.viewFilters ? 
-          <div className={classes.Filters} > 
-            <span>Ανοιχτά &nbsp;
-              <input type="checkbox" checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;
-            </span> */}
-            {/* <span> &nbsp;| Near Me&nbsp;</span>
-            <Dropdown list={props.radiousOptions} 
-                      label={props.radiousValue ===-1 ? 'Ακτίνα (σε m) ':props.radiousValue} 
-                      changed={(value)=>{radiousHandler(value.name) } }
-            />  */}
-            {/* <span>&nbsp;&nbsp; &nbsp;|&nbsp;&nbsp; Near Me &nbsp;
-              <input type="range" min="0" max="30000" step="1000" 
-                    value={props.radiousValue} onChange={(event)=> OnSetRadiousValue(Number(event.target.value))}  >
-              </input> { props.radiousValue === 0 ? 'Ακτίνα (σε m) ': props.radiousValue +'(m)' }
-            </span>
-
-          </div>
-          : null
-        }
-        <br/> 
-        <h4 className={classes.NoResult} > {props.resultMessage} </h4>
-        <CardDeck >
-          {selected_services}
-        </CardDeck> */}
-
         <Row>
           <Col sm={12} md={4} lg={3} xl={2}>
           {
@@ -155,10 +107,16 @@ const UserPage = (props) =>{
             </div>
             <hr/> 
             <div>
-
+                <p>Με κριτική από τουλάχιστον</p>
+                <Rating  name="half-rating" value={props.ratingValue} precision={1} onChange={(event)=>OnSetRatingValue(Number(event.target.value))}  />
+                <br/>
+                <span>ή όλα &nbsp; 
+                <input type="checkbox" checked={props.ratingValue === 0 ? true :false}  onChange={()=>OnSetRatingValue(0) }/>
+                </span>
             </div>
-
+            <hr/> 
           </div>
+
           : null
           }
           </Col>
@@ -195,6 +153,7 @@ const mapStateToProps = state => {
       loadedServices_Companies:state.userPage.loadedServices_Companies,
       resultMessage:state.userPage.resultMessage,
       checkedOpen:state.userPage.checkedOpen,
+      ratingValue:state.userPage.ratingValue,
       userlat:state.userPage.userlat,
       userlong:state.userPage.userlong,
       viewFilters:state.userPage.viewFilters,
@@ -213,6 +172,7 @@ const mapDispatchToProps = dispatch => {
     OnSetViewUserFilters: (state) => dispatch( actions.setViewUserFilters(state) ),
     OnSetCheckedOpen: (state) => dispatch( actions.setCheckedOpen(state) ),
     OnSetRadiousValue: (state) => dispatch( actions.setRadiousValue(state) ),
+    OnSetRatingValue: (state) => dispatch( actions.setRatingValue(state) ),
     onInitUpdateCityContent:(content) => dispatch( actions.updateCityContent(content) ),
     onInitUpdateServiceContent:(content) => dispatch( actions.updateServiceContent(content) ),
     OnfetchServicesCompanies: (city,typeBusiness,searchText)=> dispatch( actions.fetchServicesCompanies(city,typeBusiness,searchText) ),

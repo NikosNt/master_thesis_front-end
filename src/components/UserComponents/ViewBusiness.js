@@ -59,7 +59,6 @@ const ViewBusiness = (props) =>{
         scheduleDay =<i>Το ωράριο λειτουργίας δεν είναι διαθέσιμο !</i> }
     }
 
-  //  console.log(props.business)
     let nearMe=false;
  
     if(props.business.address.length){
@@ -70,10 +69,7 @@ const ViewBusiness = (props) =>{
             );
             if(ap <=props.radiousValue ){
                 nearMe = true;
-            //  console.log(nearMe)
             }
-    
-        //  console.log("H apostash", ap);
         }
     }
  
@@ -108,26 +104,29 @@ const ViewBusiness = (props) =>{
                                                 mapClicked={viewMapOfBusinessHandler}/>
                                 ); 
 
-//    console.log(props.business.rating)
 
     let viewBusiness = '';
-    if( !props.checkedOpen &&   props.radiousValue === 0 ){//den xrisimopoiei ekstra filtra
-        console.log("1");
+
+    /*
+    Na brw allo tropo na to kanw pio kalo programatismo
+    */
+    if( !props.checkedOpen &&   props.radiousValue === 0 && props.ratingValue === 0){//den xrisimopoiei ekstra filtra
         viewBusiness = setComponentBusiness
-    }
-    else if(nearMe && props.checkedOpen && open){//xrhsimopoiei kai ta 2 filtra
-        console.log("2");
+    }else if(nearMe && props.checkedOpen && open && props.business.rating >= props.ratingValue){//ola
         viewBusiness = setComponentBusiness
-    }
-    else if(  props.checkedOpen && open  &&   props.radiousValue === 0){//mono to open
-        console.log("3");
+    }else if(nearMe && props.checkedOpen && open && props.ratingValue === 0){//xrhsimopoiei  (near kaii open)
         viewBusiness = setComponentBusiness
-    }
-    else if (nearMe && !props.checkedOpen ){//mono to near me
-        console.log("4");
+    }else if(nearMe && !props.checkedOpen && props.business.rating >= props.ratingValue){//xrhsimopoiei  (near kaii asteria)
+        viewBusiness = setComponentBusiness
+    }else if( props.radiousValue === 0 && props.checkedOpen && open  && props.business.rating >= props.ratingValue){//xrhsimopoiei  (open kaii asteria)
+        viewBusiness = setComponentBusiness
+    }else if(  props.checkedOpen && open  &&   props.radiousValue === 0&& props.ratingValue === 0){//mono to open
+        viewBusiness = setComponentBusiness
+    }else if (nearMe && !props.checkedOpen && props.ratingValue === 0){//mono to near me
+        viewBusiness = setComponentBusiness 
+    }else if ( props.business.rating >= props.ratingValue && props.radiousValue === 0 && !props.checkedOpen ){//mono ta asteria
         viewBusiness = setComponentBusiness 
     }
-
 
     // switch (true ) {
     //     case  (!props.checkedOpen &&  props.radiousValue === -1 ) :console.log("1"); viewBusiness = setComponentBusiness ;break;//den xrisimopoiei ekstra filtra
@@ -137,7 +136,6 @@ const ViewBusiness = (props) =>{
     //     default :console.log("5"); viewBusiness = setComponentBusiness;
     // }
 
- 
     return(
         <>
             <Modal show={showModal} modalClosed={() => setShowModal(false)}>
@@ -160,7 +158,8 @@ const mapStateToProps = state => {
     return {
         userId:state.auth.userId,
         checkedOpen:state.userPage.checkedOpen,
-        radiousValue:state.userPage.radiousValue
+        radiousValue:state.userPage.radiousValue,
+        ratingValue:state.userPage.ratingValue,
     };
   };
   
