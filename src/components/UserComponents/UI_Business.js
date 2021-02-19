@@ -24,7 +24,7 @@ const UI_Business = (props) => {
                         {props.open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}
                         {!props.open && props.close?<h6 className={classes.Closed} >Κλειστά</h6>:null}
                         <hr/>
-                        <MyButton size="c" variant="custom"  clicked={props.infoClicked } >Δείτε περισσότερες πληροφορίες</MyButton>
+                        <MyButton size="c" variant="custom"  clicked={props.infoClicked } >Περισσότερες πληροφορίες</MyButton>
                         <MyButton size="c" variant="success" clicked={props.mapClicked }>Άνοιγμα στον χάρτη</MyButton>
                     </Card.Body>
                 </Card> 
