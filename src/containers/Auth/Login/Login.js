@@ -19,7 +19,7 @@ const LogIn = (props) => {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
-                placeholder: 'username'
+                placeholder: 'Όνομα χρήστη'
             },
             value: '',
             validation: {
@@ -32,7 +32,7 @@ const LogIn = (props) => {
             elementType: 'input',
             elementConfig: {
                 type: 'password',
-                placeholder: 'Password'
+                placeholder: 'Κωδικός'
             },
             value: '',
             validation: {
@@ -44,7 +44,7 @@ const LogIn = (props) => {
         }
     });
 
-    const { onSetAuthRedirectPath,authRedirectPath } = props;
+    const { onSetAuthRedirectPath,authRedirectPath,onAuthFail } = props;
 
     useEffect(()=>{
         if (authRedirectPath !== '/' ) {
@@ -64,6 +64,7 @@ const LogIn = (props) => {
     }
 
     const switchToRegisterHandler = ()=>{
+        onAuthFail(null);
         props.history.push("/register");
     }
 
@@ -114,21 +115,21 @@ const LogIn = (props) => {
             <Container   className={classes.Cont}>
                 <Row className={classes.Welcome}>
                     <Col>
-                        <h1>Welcome to ____ Log In to proceed with more feautures !! </h1>
+                        <h1>Καλώς ήλθατε στο FindMe !</h1>
                     </Col>
                 </Row>
                 <Row>
                     <Col  xs={12} md={8} className={classes.Login}>
                         <form  >
-                            <h2 className={classes.Header}>Log In</h2>
+                            <h2 className={classes.Header}>Σύνδεση</h2>
                             {form}
                             {errorMessage}
-                            <MyButton variant="outline-secondary" clicked={submitHandler}>SUBMIT</MyButton>
+                            <MyButton variant="outline-secondary" clicked={submitHandler}>Υποβολή</MyButton>
                         </form>
                     </Col>
                     <Col xs={6} md={4} className={classes.Info}>
-                        <p className={classes.Par}>Don't have an account ?<br/>Register now to unlock all the features</p> 
-                        <MyButton  size="lg" variant="info" clicked={switchToRegisterHandler}>Register</MyButton>
+                        <p className={classes.Par}>Δεν έχετε λογαριασμό;<br/>Εγγραφείτε τώρα για να ξεκλειδώσετε όλες τις δυνατότητες</p> 
+                        <MyButton  size="lg" variant="info" clicked={switchToRegisterHandler}>Εγγραφή</MyButton>
                     </Col>
                 </Row> 
             </Container>
@@ -149,7 +150,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: ( username, password ) => dispatch( actions.auth( username, password ) ),
-        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) ),
+        onAuthFail: (error) => dispatch(actions.authFail(error))
     };
 };
 

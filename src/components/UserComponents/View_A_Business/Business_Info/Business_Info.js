@@ -144,8 +144,13 @@ const Business_Info = (props) =>{
                     {schedule}                   
                 </Col>
                 <Col sm={12} md={6}  className={classes.Cols} >
+
                     <p><b>Τηλέφωνα επικοινωνίας :</b></p><p>{phoneOutput}</p>
-                    <p><b>E-mail :</b> </p><p><Icon.EnvelopeFill/> {props.business.ref}</p>
+                    { props.business.ref === null ?
+                                <p> Δεν υπάρχει ιστοσελίδα διαθέσιμη</p>
+                                :<><p><b>Σύνδεσμος :</b> </p><a href={props.business.ref} target="_blank" rel="noreferrer">  {props.business.ref} </a></>
+                    }
+                    {/* <p><b>E-mail :</b> </p><p><Icon.EnvelopeFill/> {props.business.ref}</p> */}
                     <p><b>Διεύθυνση :</b></p><p>{addressOutput}</p>
                 </Col>
             </Row>

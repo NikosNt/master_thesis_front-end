@@ -12,13 +12,14 @@ import * as actions from '../../../store/actions/index';
 import {Container,Col,Row} from 'react-bootstrap';
 
 const Register = (props) => {
+    const {onAuthFail} = props;
 
     const[RegisterForm,setRegisterForm]= useState({
         username: {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
-                placeholder: 'Username'
+                placeholder: 'Όνομα χρήστη'
             },
             value: '',
             validation: {
@@ -31,7 +32,7 @@ const Register = (props) => {
             elementType: 'input',
             elementConfig: {
                 type: 'email',
-                placeholder: 'Mail Address'
+                placeholder: 'Ηλεκτρονική διεύθυνση'
             },
             value: '',
             validation: {
@@ -45,7 +46,7 @@ const Register = (props) => {
             elementType: 'input',
             elementConfig: {
                 type: 'password',
-                placeholder: 'Password'
+                placeholder: 'Κωδικός'
             },
             value: '',
             validation: {
@@ -59,7 +60,7 @@ const Register = (props) => {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
-                placeholder: 'First Name'
+                placeholder: 'Όνομα'
             },
             value: '',
             validation: {
@@ -71,7 +72,7 @@ const Register = (props) => {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
-                placeholder: 'Last Name'
+                placeholder: 'Επώνυμο'
             },
             value: '',
             validation: {
@@ -83,8 +84,8 @@ const Register = (props) => {
             elementType: 'select',
             elementConfig: {
                 options: [
-                    {value: 'user', displayValue: 'User'},
-                    {value: 'mod', displayValue: 'Business owner'}
+                    {value: 'user', displayValue: 'Χρήστης'},
+                    {value: 'mod', displayValue: 'Διαχειρηστής Επιχείρησης'}
                 ]
             },
             value: 'user',
@@ -106,6 +107,7 @@ const Register = (props) => {
     }
 
     const switchToRegisterHandler = ()=>{
+        onAuthFail(null);
         props.history.push("/login");
     }
 
@@ -144,7 +146,7 @@ const Register = (props) => {
 
     let errorMessage = null;
     if ( props.error && props.error !== 'Unauthorized' ) {
-        errorMessage = ( <p style={{fontWeight: 'bold',color:'red'}}>{props.error}</p> );
+        errorMessage = ( <p style={{fontWeight: 'bold',color:'red'}}> Σφάλμα <br/>Το όνομα χρήστη ή μαίλ μπορει να υπάρχει είδη </p> );
     }
 
     let authRedirect = null;
@@ -158,27 +160,28 @@ const Register = (props) => {
             <Container   className={classes.Cont}>
                 <Row>
                     <Col>
-                        <h1 className={classes.Welcome}>Register now to view all the benefits of ___ </h1>
+                        <h1 className={classes.Welcome}>Εγγραφείτε τώρα για να δείτε όλα τα οφέλη του FindMe </h1>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} md={8} className={classes.Register}>
-                        <h2 className={classes.Header}>Register</h2>
+                        <h2 className={classes.Header}>Εγγραφή</h2>
                         <form >         
                             {form}
-                            {errorMessage}
-                            <MyButton variant="outline-secondary"  clicked={submitHandler}>SUBMIT</MyButton>
+                            
+                            <MyButton variant="outline-secondary"  clicked={submitHandler}>Υποβολή</MyButton>
                             <hr/>
+                            {errorMessage}
                         </form>
                     </Col>
                     <Col xs={6} md={4} className={classes.Info}>
-                        <p style={{fontSize:'18px',textAlign: 'justify' }}>You can register as a User and find any sevice thats connected(sunergazetai) with our platform.<br/><br/>
-                        Or Register as a services-Bussines owner and get your company-business on the platform for others to find </p>
+                        <p style={{fontSize:'18px',textAlign: 'justify' }}>Μπορείτε να εγγραφείτε ως χρήστης και να βρείτε οποιαδήποτε υπηρεσία συνεργάζεται με την πλατφόρμα μας.<br/><br/>
+                        Εναλλακτικά, εγγραφείτε ως κάτοχος υπηρεσίας ή επιχείρησης και τοποθετήστε την στην πλατφόρμα για να την βρουν άλλοι.</p>
                         <br/>
                         <hr/>
                         <br/>
-                        <p style={{fontSize:'18px',fontStyle:'italic'}}>Do you already have an acount ? </p>
-                        <MyButton variant="info" clicked={switchToRegisterHandler}>Log In</MyButton>
+                        <p style={{fontSize:'18px',fontStyle:'italic'}}>Έχετε ήδη λογαριασμό ? </p>
+                        <MyButton variant="info" clicked={switchToRegisterHandler}>Σύνδεση</MyButton>
                     </Col>
                 </Row>  
             </Container>
@@ -200,7 +203,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onRegister: ( username,email, password,fname,lname,userType ) => dispatch( actions.registerUser(username,email, password,fname,lname,userType) ),
-        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) ),
+        onAuthFail: (error) => dispatch(actions.authFail(error))
     };
 };
  

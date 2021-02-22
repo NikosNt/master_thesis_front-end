@@ -6,7 +6,7 @@ import classes from './UI_Business.module.css';
 import {getDay} from '../../shared/utility';
 
 const UI_Business = (props) => {
-
+    
     return (
         <>
             <Col  sm={12} md={12} lg={12} xl={4} className={classes.Column} > 
@@ -19,6 +19,10 @@ const UI_Business = (props) => {
                                 : <Rating  name="half-rating" defaultValue={props.business.rating} precision={0.1} readOnly  />} 
                         </div>                      
                         {/* <p>Διεύθυνση :</p> {addressOutput}            */}
+                        { props.business.ref === null ?
+                            <p> Δεν υπάρχει ιστοσελίδα διαθέσιμη</p>
+                            :<p>Σύνδεσμος : <a href={props.business.ref} target="_blank" rel="noreferrer">  {props.business.ref} </a></p>
+                        }
                         <p>Τηλέφωνα : </p>{props.phones}<br/><br/>
                         <p>Ωράριο λειτουργίας για  {getDay(props.business.day)} :  </p><p>{props.schedule}</p>
                         {props.open?<h6 className={classes.Open}>Ανοιχτά</h6>:null}

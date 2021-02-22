@@ -86,6 +86,7 @@ export{
     auth,
     setAuthRedirectPath,
     authCheckState,
+    authFail,
     logout,
     registerUser,
     getUserData
