@@ -71,7 +71,7 @@ export const fetchCities = () => {
         axios.get('api/services/business/by/cities')
             .then(res => {
                 let citiess = [];
-                citiess = [ { name: "Όλες οι Πόλεις", id: 0 } ]
+                citiess = [ { name: "Όλες", id: 0 } ]
                 for (let key in res.data) {
                     citiess.push({
                         name: res.data[key],
@@ -100,7 +100,7 @@ export const fetchServices = () => {
         axios.get('api/services/business/by/types')
             .then(res => {
                 let types = [];
-                types = [{ name: "Όλα τα είδη", id: 0 }]
+                types = [{ name: "Όλες", id: 0 }]
                 for (let key in res.data) {
                     types.push({
                         name: res.data[key],
