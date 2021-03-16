@@ -31,7 +31,7 @@ const AdminPage = (props) =>{
         <React.Fragment>
             <div className={classes.Title}>
                 <h1 > Admin Page</h1>
-                <h5 style={{marginTop:"20px"}}>For the moment admin page can delete any business / service that exists </h5>
+                <h5 style={{marginTop:"20px"}}>Προς το παρόν, ο διαχειριστής της ιστοσελίδας <br/> μπορεί να διαγράψει οποιαδήποτε επιχείρηση / υπηρεσία υπάρχει. </h5>
             </div>
             <br/>
             {loaded_services}

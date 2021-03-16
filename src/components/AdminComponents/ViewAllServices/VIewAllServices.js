@@ -7,11 +7,11 @@ const ViewAllServices = (props) =>{
 
     return(
         <div className={classes.ViewBusiness}>
-            <h4>{props.name}</h4>
-            <p>ID : {props.business_id}</p> 
-            <p>Moderator ID:{props.id_buss_mod}</p>
+            <h4 style={{textAlign:'center'}}>{props.name}</h4>
+            <p>Tο id της επηχείρησης ειναι : {props.business_id}</p> 
+            <p>Το id του ιδιοκτήτη της επιχείρησης είναι : {props.id_buss_mod}</p>
             <hr/>
-            <MyButton clicked={props.onClick}  variant="danger"> Delete</MyButton> 
+            <MyButton clicked={props.onClick}  variant="danger"> Διαγραφή</MyButton> 
         </div>
     );
 
