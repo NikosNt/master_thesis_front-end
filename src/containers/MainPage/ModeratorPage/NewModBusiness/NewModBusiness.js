@@ -24,9 +24,6 @@ const NewModBusiness = (props) =>{
             </div>
             <div className={classes.Form}>
                 <br/>
-                <div className={classes.View}> 
-                    <span>Business owner ID : {props.userId} </span>    
-                </div>
                 <div className={classes.View}>
                     <span>Business Name: </span>
                     <input style={{width:"70%"}}  onChange={ (event) =>{props.newModBusiness.business_name = event.target.value} } /> 

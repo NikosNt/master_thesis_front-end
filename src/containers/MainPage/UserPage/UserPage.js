@@ -52,6 +52,7 @@ const UserPage = (props) =>{
     />
   ))
   
+ // console.log(selected_services)
 
   return(
     <React.Fragment>
@@ -122,7 +123,7 @@ const UserPage = (props) =>{
           </Col>
           <Col sm={12} md={8} lg={9} xl={10}>
             <CardDeck >
-              {selected_services}
+              {selected_services.length ? selected_services:null/*<h4 className={classes.NoResult}>Δεν υπάρχει κάποια διαθέσιμη επιχείρηση η υπηρεσία</h4>*/}
             </CardDeck>
           </Col>
         </Row>

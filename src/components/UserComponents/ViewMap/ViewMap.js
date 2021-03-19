@@ -42,7 +42,8 @@ const ViewMap = (props) => {
                     </Popup>
                 </Marker>
     })
-
+//35.339220, 25.133080
+//console.log(mylatitude,mylongitude)
     return(
         <>  
         {  mylatitude === 0 && mylongitude === 0
