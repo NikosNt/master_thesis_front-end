@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Message from './Message/Message';
 import ViewSenders from './ViewSenders/ViewSenders';
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../../components/UI/Modal/Modal';
 import * as actions from '../../../store/actions/index';
 
 import classes from './MessagesMod.module.css';

@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import classes from './BasicBusinessInfo.module.css';
-import MyButton from '../../UI/Button/MyButton'
-import DeleteProp from '../DeleteProp'
-import Modal from '../../UI/Modal/Modal'
+import MyButton from '../../../components/UI/Button/MyButton'
+import DeleteProp from '../../../components/ModComponents/DeleteProp'
+import Modal from '../../../components/UI/Modal/Modal'
 import * as Icon from 'react-bootstrap-icons';
 
 import * as actions from '../../../store/actions/index';

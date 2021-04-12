@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 
-import ViewAllServices from '../../../components/AdminComponents/ViewAllServices/VIewAllServices'
+import ViewAllServices from '../../../SubContainers/AdminSubContainer/ViewAllServices/VIewAllServices'
 import classes from './AdminPage.module.css';
 import * as actions from '../../../store/actions/index';
 

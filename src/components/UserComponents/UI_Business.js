@@ -1,5 +1,5 @@
 import React  from 'react';
-import MyButton from '../UI/Button/MyButton';
+import MyButton from '../../components/UI/Button/MyButton';
 import {Col,Card} from 'react-bootstrap';
 import {Rating} from '@material-ui/lab'; 
 import classes from './UI_Business.module.css';

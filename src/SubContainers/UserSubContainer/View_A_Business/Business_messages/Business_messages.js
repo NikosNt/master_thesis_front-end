@@ -1,8 +1,8 @@
 import React ,{useEffect,useState} from 'react';
 import { connect } from 'react-redux';
 
-import NewMessage from '../../../Messages/NewMessage/NewMessage';
-import ViewMessages from '../../../Messages/ViewMessages/ViewMessages';
+import NewMessage from '../../../../components/Messages/NewMessage/NewMessage';
+import ViewMessages from '../../../../components/Messages/ViewMessages/ViewMessages';
 
 import {getCurDate} from '../../../../shared/utility'
 

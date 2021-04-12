@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/index';
 import {Row,Col} from 'react-bootstrap';
 import classes from './ExistingProductMod.module.css' ;
-import MyButton from '../../../UI/Button/MyButton'; 
+import MyButton from '../../../../components/UI/Button/MyButton'; 
 
 import UploadService from './FileUploadService';
 

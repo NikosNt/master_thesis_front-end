@@ -2,11 +2,11 @@ import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import classes from './ViewBusiness.module.css';
  
-import UIBusiness from './UI_Business'
+import UIBusiness from '../../components/UserComponents/UI_Business'
 
 import { withRouter } from "react-router-dom";
 import * as actions from '../../store/actions/index';
-import Modal from '../UI/Modal/Modal';
+import Modal from '../../components/UI/Modal/Modal';
 import {getCurDate} from '../../shared/utility';
 import { getDistance } from 'geolib';
 import * as Icon from 'react-bootstrap-icons';

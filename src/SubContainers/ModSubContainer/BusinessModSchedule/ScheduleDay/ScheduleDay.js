@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 
-import Button from "../../../UI/Button/MyButton";
-import DeleteProp from '../../DeleteProp';
+import Button from "../../../../components/UI/Button/MyButton";
+import DeleteProp from '../../../../components/ModComponents/DeleteProp';
 import classes from './ScheduleDay.module.css';
-import Modal from '../../../UI/Modal/Modal'
+import Modal from '../../../../components/UI/Modal/Modal';
 import * as actions from '../../../../store/actions/index';
 
 import {Row,Col} from 'react-bootstrap';

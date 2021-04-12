@@ -21,11 +21,11 @@ const Profile = React.lazy(() => {
 });
 
 const View_A_Business = React.lazy(()=>{
-  return import('./components/UserComponents/View_A_Business/View_A_Business')
+  return import('./SubContainers/UserSubContainer/View_A_Business/View_A_Business')
 })
 
 const ViewMap = React.lazy(()=>{
-  return import('./components/UserComponents/ViewMap/ViewMap')
+  return import('./SubContainers/UserSubContainer/ViewMap/ViewMap')
 })
 
 const App = (props) => {

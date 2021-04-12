@@ -4,7 +4,7 @@ import * as actions from '../../../store/actions/index';
 
 import ExistingService from './ExistingService/ExistingService';
 import NewService from './NewService/NewService';
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../../components/UI/Modal/Modal';
 import classes from './ServicesMod.module.css';
 import {CardDeck,Button} from 'react-bootstrap';
 import * as Icon from 'react-bootstrap-icons';

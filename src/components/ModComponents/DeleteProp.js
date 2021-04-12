@@ -15,9 +15,7 @@ const deleteProp = (props) =>{
                 <Col xs={12} md={2}>
                     <MyButton variant="danger" clicked={props.onClick}>   <Icon.Trash />  </MyButton>
                 </Col>
-            </Row>
-            
-            
+            </Row>                  
         </div> 
         </>
     )

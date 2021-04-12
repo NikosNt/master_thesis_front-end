@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import ExistingProductMod from './ExistingProduct/ExistingProductMod';
 import NewProduct from './NewProduct/NewProduct';
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../../components/UI/Modal/Modal';
 import classes from './ProductsMod.module.css';
 import {Button} from 'react-bootstrap';
 import * as Icon from 'react-bootstrap-icons';

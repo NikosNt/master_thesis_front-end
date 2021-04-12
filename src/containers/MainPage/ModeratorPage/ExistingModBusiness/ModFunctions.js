@@ -3,11 +3,11 @@ import React,{useState} from 'react';
 //import classes from './ModFunctions.module.css';
 //import * as actions from '../../../../store/actions/index';
 
-import BasicBusinessInfo from '../../../../components/ModComponents/BasicInfo/BasicBusinessInfo';
-import BusinessModSchedule from '../../../../components/ModComponents/BusinessModSchedule/BusinessModSchedule';
-import Products from '../../../../components/ModComponents/ProductsMod/ProductsMod';
-import Services from '../../../../components/ModComponents/ServicesMod/ServicesMod';
-import Messages from '../../../../components/ModComponents/MessagesMod/MessagesMod';
+import BasicBusinessInfo from '../../../../SubContainers/ModSubContainer/BasicInfo/BasicBusinessInfo';
+import BusinessModSchedule from '../../../../SubContainers/ModSubContainer/BusinessModSchedule/BusinessModSchedule';
+import Products from '../../../../SubContainers/ModSubContainer/ProductsMod/ProductsMod';
+import Services from '../../../../SubContainers/ModSubContainer/ServicesMod/ServicesMod';
+import Messages from '../../../../SubContainers/ModSubContainer/MessagesMod/MessagesMod';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Tab,Tabs} from 'react-bootstrap'

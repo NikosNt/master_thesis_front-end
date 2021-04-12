@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import {Card,Col} from 'react-bootstrap';
 import classes from './ExistingService.module.css' ;
-import MyButton from '../../../UI/Button/MyButton';
+import MyButton from '../../../../components/UI/Button/MyButton';
 import * as actions from '../../../../store/actions/index';
 
 const ExistingService = (props) => {

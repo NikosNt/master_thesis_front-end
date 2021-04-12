@@ -6,7 +6,7 @@ import SearchBar from '../../../components/UI/SearchBar/SearchBar'
 import MyButton from '../../../components/UI/Button/MyButton';
 import Info from '../../../components/StartingInfo/StartingInfo';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
-import ViewBusiness from '../../../components/UserComponents/ViewBusiness'
+import ViewBusiness from '../../..//SubContainers/UserSubContainer/ViewBusiness';
 import {CardDeck,Row,Col} from 'react-bootstrap'
 import * as actions from '../../../store/actions/index';
 import {Rating} from '@material-ui/lab'; 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ScheduleDay from './ScheduleDay/ScheduleDay'
 import classes from './BusinessModSchedule.module.css';
-import Modal from '../../UI/Modal/Modal'
+import Modal from '../../../components/UI/Modal/Modal'
 
 import * as actions from '../../../store/actions/index';
 

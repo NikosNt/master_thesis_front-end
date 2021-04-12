@@ -4,8 +4,8 @@ import classes from './Message.module.css';
 import * as actions from '../../../../store/actions/index';
 
 import {getCurDate} from '../../../../shared/utility'
-import ViewMessages from '../../../Messages/ViewMessages/ViewMessages';
-import NewMessage from '../../../Messages/NewMessage/NewMessage';
+import ViewMessages from '../../../../components/Messages/ViewMessages/ViewMessages';
+import NewMessage from '../../../../components/Messages/NewMessage/NewMessage';
 const Message = (props) =>{
 
     const {OnFetchdBusinessUserMessages,OnAddNewMessage} = props;

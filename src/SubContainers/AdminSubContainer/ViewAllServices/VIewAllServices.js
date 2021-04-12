@@ -1,7 +1,7 @@
 import React from 'react';
 
 import classes from './ViewAllServices.module.css';
-import MyButton from '../../UI/Button/MyButton';
+import MyButton from '../../../components/UI/Button/MyButton';
 
 const ViewAllServices = (props) =>{
 

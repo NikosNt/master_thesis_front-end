@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import Products from './Business_Products/Products';
-import Services from './Business_Services/Services';
+import Services from './Business_services/Services';
 import BusinessInfo from './Business_Info/Business_Info';
 import BusinessMessages from './Business_messages/Business_messages';
 // import * as actions from '../../../store/actions/index';
