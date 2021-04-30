@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import classes from './UserPage.module.css';
 import SearchBar from '../../../components/UI/SearchBar/SearchBar'
 import MyButton from '../../../components/UI/Button/MyButton';
-import Info from '../../../components/StartingInfo/StartingInfo';
+import Info from '../../../components/StartingPage/StartingInfo';
+import StartingImage from '../../../components/StartingPage/StartingImage';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import ViewBusiness from '../../..//SubContainers/UserSubContainer/ViewBusiness';
 import {CardDeck,Row,Col} from 'react-bootstrap'
@@ -45,8 +46,6 @@ const UserPage = (props) =>{
     <ViewBusiness key={buss.business_id}
                   business={buss}
                   authenticated={props.isAuthenticated}
-                  //lat={latitude}
-                  //long={longitude}
                   lat={props.userlat}
                   long={props.userlong}                
     />
@@ -83,47 +82,50 @@ const UserPage = (props) =>{
           </MyButton>
         </div>
         <br/>
+
+        {props.viewFilters ? null : <StartingImage  />} {/* Ama den fenontai ta filtra eimai sthn arxikh katastah ara nporw na dw thn eikona*/}
+        
         <Row>
           <Col sm={12} md={4} lg={3} xl={2}>
-          {
-          props.viewFilters ? 
-          <div className={classes.Filters} >
-            <div>
-              <p className={classes.FilterTitle}>Φίλτρα</p>
-            </div>
-            <hr/>
-            <div>
-              <span>Ανοιχτά &nbsp;
-                <input type="checkbox" checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;
-              </span>
-            </div>
-            <hr/> 
-            <div>
-              <p>Near Me</p>
-                <input type="range" min="0" max="30000" step="1000" 
-                      value={props.radiousValue} onChange={(event)=> OnSetRadiousValue(Number(event.target.value))}  >
-                </input> 
-                <p>{ props.radiousValue === 0 ? 'Ακτίνα (σε m) ': props.radiousValue +'(m)' }</p>
-              {/* </span> */}
-            </div>
-            <hr/> 
-            <div>
-                <p>Με κριτική από τουλάχιστον</p>
-                <Rating  name="half-rating" value={props.ratingValue} precision={1} onChange={(event)=>OnSetRatingValue(Number(event.target.value))}  />
-                <br/>
-                <span>ή όλα &nbsp; 
-                <input type="checkbox" checked={props.ratingValue === 0 ? true :false}  onChange={()=>OnSetRatingValue(0) }/>
-                </span>
-            </div>
-            <hr/> 
-          </div>
-
-          : null
-          }
+            {
+              props.viewFilters ? 
+              <div className={classes.Filters} >
+                <div>
+                  <p className={classes.FilterTitle}>Φίλτρα</p>
+                </div>
+                <hr/>
+                <div>
+                  <span>Ανοιχτά &nbsp;
+                    <input type="checkbox" checked={props.checkedOpen}  onChange={ ()=> {OnSetCheckedOpen(!props.checkedOpen)  } }/>&nbsp;
+                  </span>
+                </div>
+                <hr/> 
+                <div>
+                  <p>Near Me</p>
+                    <input type="range" min="0" max="30000" step="1000" 
+                          value={props.radiousValue} onChange={(event)=> OnSetRadiousValue(Number(event.target.value))}  >
+                    </input> 
+                    <p>{ props.radiousValue === 0 ? 'Ακτίνα (σε m) ': props.radiousValue +'(m)' }</p>
+                  {/* </span> */}
+                </div>
+                <hr/> 
+                <div>
+                    <p>Με κριτική από τουλάχιστον</p>
+                    <Rating  name="half-rating" value={props.ratingValue} precision={1} onChange={(event)=>OnSetRatingValue(Number(event.target.value))}  />
+                    <br/>
+                    <span>ή όλα &nbsp; 
+                    <input type="checkbox" checked={props.ratingValue === 0 ? true :false}  onChange={()=>OnSetRatingValue(0) }/>
+                    </span>
+                </div>
+                <hr/> 
+              </div>
+              : 
+              null
+            }
           </Col>
           <Col sm={12} md={8} lg={9} xl={10}>
             <CardDeck >
-              {selected_services.length ? selected_services:null/*<h4 className={classes.NoResult}>Δεν υπάρχει κάποια διαθέσιμη επιχείρηση η υπηρεσία</h4>*/}
+              {selected_services.length ? selected_services:null}
             </CardDeck>
           </Col>
         </Row>

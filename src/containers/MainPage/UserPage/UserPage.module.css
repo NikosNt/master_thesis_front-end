@@ -1,8 +1,8 @@
-.Main{
+/* .Main{ */
     /* margin-top: 10%;
      */
-     padding-bottom:60px; 
-}
+     /* padding-bottom:60px;  */
+/* } */
 .Button{
     display: flex;
     justify-content: center;
@@ -24,6 +24,7 @@
    color:rgb(0, 0, 0)
 
   }
+  
 
   .FilterTitle{
     text-align: center;
@@ -40,7 +41,8 @@
     border-radius: 5px;
     border: 1px solid rgb(209, 204, 204);
     box-shadow: 0 2px 3px rgb(214, 212, 212);
-    background-color: #fcfcfc;
+    /* background-color: #fcfcfc; */
+    background-image: linear-gradient(   #e0e0e0 , #ffffff, #e0e0e0);
     height:600px;
     padding: 15px;
     
