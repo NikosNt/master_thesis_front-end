@@ -75,7 +75,7 @@ export const updateModBusiness = () => {
         updateBusiness:  {
             moderatorId:'',
             business_name:'',
-            rating:0,
+            rating:-1,
             info:'',
             ref:'',
             owner:[],

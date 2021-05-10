@@ -12,6 +12,7 @@ const NewModBusiness = (props) =>{
 
     const changeValueForm = () => {
         props.newModBusiness.moderatorId = props.userId;
+        props.newModBusiness.rating = -1 ;
         onCreateBusiness(props.newModBusiness);
     } 
 

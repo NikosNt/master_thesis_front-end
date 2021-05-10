@@ -107,8 +107,8 @@ const BasicBusinessInfo = (props) =>{
 
             </div>
             <div className={classes.View}>
-                <p>Business ID : {props.modBusiness.id}</p>
-                <p>Business owner ID : {props.modBusiness.moderatorId}</p>
+                {/* <p>Business ID : {props.modBusiness.id}</p>
+                <p>Business owner ID : {props.modBusiness.moderatorId}</p> */}
                 <p >Business Rating : {props.modBusiness.rating === -1 ? "Δεν υπάρχει αξιολόγηση ακομα" :props.modBusiness.rating}</p>
                 <span>Business Name: </span> <input style={{width:"70%"}} defaultValue={props.modBusiness.business_name}
                                                                           onChange={ (event) =>{updateBasicValueHandler(event.target.value,"business_name")} }/><p/>
@@ -144,8 +144,8 @@ const BasicBusinessInfo = (props) =>{
                 <input className={classes.InputStyle} maxLength="5" placeholder="Zip Code" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","zip_code")} }/>
                 <input className={classes.InputStyle} placeholder="street" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street")} }/><br/>
                 <input className={classes.InputStyle} placeholder="street number" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street_number")} }/>
-                <input className={classes.InputStyle} maxLength="7" placeholder="Latitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","latitude")} }/>
-                <input className={classes.InputStyle} maxLength="7" placeholder="Longitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
+                <input className={classes.InputStyle} maxLength="10" placeholder="Latitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","latitude")} }/>
+                <input className={classes.InputStyle} maxLength="10" placeholder="Longitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
                 <MyButton variant="success" clicked={() => addPropHandler("address")} > <Icon.Plus  /></MyButton>
             </div>
             <div className={classes.View}>
