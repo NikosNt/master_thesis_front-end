@@ -109,50 +109,50 @@ const BasicBusinessInfo = (props) =>{
             <div className={classes.View}>
                 {/* <p>Business ID : {props.modBusiness.id}</p>
                 <p>Business owner ID : {props.modBusiness.moderatorId}</p> */}
-                <p >Business Rating : {props.modBusiness.rating === -1 ? "Δεν υπάρχει αξιολόγηση ακομα" :props.modBusiness.rating}</p>
-                <span>Business Name: </span> <input style={{width:"70%"}} defaultValue={props.modBusiness.business_name}
+                <p >Αξιολόγηση επιχείρησης : {props.modBusiness.rating === -1 ? "Δεν υπάρχει αξιολόγηση ακομα" :props.modBusiness.rating}</p>
+                <span>Επωνυμία Επιχείρησης : </span> <input style={{width:"70%"}} defaultValue={props.modBusiness.business_name}
                                                                           onChange={ (event) =>{updateBasicValueHandler(event.target.value,"business_name")} }/><p/>
-                <span>Reference Site: </span> <input style={{width:"70%"}}  defaultValue={props.modBusiness.ref}
+                <span>Ιστότοπος : </span> <input style={{width:"70%"}}  defaultValue={props.modBusiness.ref}
                                                                             onChange={ (event) =>{updateBasicValueHandler(event.target.value,"ref")}}/>
-                <p>Description : </p> <textarea style={{width:"100%",height:"130px" }} defaultValue={props.modBusiness.info}  
+                <p>Περιγραφή : </p> <textarea style={{width:"100%",height:"130px" }} defaultValue={props.modBusiness.info}  
                                                                                        onChange={ (event) =>{updateBasicValueHandler(event.target.value,"info")}}/>  
                 <br/>
                 <MyButton variant="info"  clicked={() => addBasicInfoHandler()} > Update </MyButton>
             </div>
             <div className={classes.View}>
-                <h5>Phones:</h5>
+                <h5>Τηλέφωνα:</h5>
                 {phoneOutput}
                 <hr/>
-                <input className={classes.InputStyle}  maxLength="10" placeholder="Phone" onChange={ (event) => {updatePropValueHandler(event.target.value,"phones","phone_number") }}/>
+                <input className={classes.InputStyle}  maxLength="10" placeholder="Τηλέφωνο" onChange={ (event) => {updatePropValueHandler(event.target.value,"phones","phone_number") }}/>
                 <br/>
                 <MyButton variant="success"  clicked={() => addPropHandler("phone")} > <Icon.Plus  /> </MyButton>
             </div>
             <div className={classes.View}>
-                <h5>Owners:</h5>
+                <h5>Ιδιοκτήτες:</h5>
                 {ownerOutput}
                 <hr/>
-                <input className={classes.InputStyle} placeholder="Name" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","fname") }}/>
-                <input className={classes.InputStyle} placeholder="Last Name" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","lname")}}/> 
+                <input className={classes.InputStyle} placeholder="Όνομα" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","fname") }}/>
+                <input className={classes.InputStyle} placeholder="Επώνυμο" onChange={ (event) => {updatePropValueHandler(event.target.value,"owner","lname")}}/> 
                         {/* onChange={ (event) =>{setBusinessUpdate(prevState => ({ ...prevState, owner:{...prevState.owner,lname:event.target.value} }))}  } */}
                 <br/><MyButton variant="success"  clicked={() => addPropHandler("owner")} >  <Icon.Plus  /></MyButton>
             </div>
             <div className={classes.View}>
-                <h5>Address:</h5>
+                <h5>Διευθύνσεις:</h5>
                 {addressOutput}
                 <hr/>
-                <input className={classes.InputStyle} placeholder="City" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","city")} }/>
-                <input className={classes.InputStyle} maxLength="5" placeholder="Zip Code" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","zip_code")} }/>
-                <input className={classes.InputStyle} placeholder="street" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street")} }/><br/>
-                <input className={classes.InputStyle} placeholder="street number" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street_number")} }/>
-                <input className={classes.InputStyle} maxLength="10" placeholder="Latitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","latitude")} }/>
-                <input className={classes.InputStyle} maxLength="10" placeholder="Longitude" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
+                <input className={classes.InputStyle} placeholder="Πόλη" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","city")} }/>
+                <input className={classes.InputStyle} maxLength="5" placeholder="Ταχυδρομικός κώδικας" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","zip_code")} }/>
+                <input className={classes.InputStyle} placeholder="Δρόμος" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street")} }/><br/>
+                <input className={classes.InputStyle} placeholder="Αριθμός" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","street_number")} }/>
+                <input className={classes.InputStyle} maxLength="10" placeholder="Γεωγραφικό πλάτος" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","latitude")} }/>
+                <input className={classes.InputStyle} maxLength="10" placeholder="Γεωγραφικό μήκος" onChange={ (event) => {updatePropValueHandler(event.target.value,"address","longitude")} }/><br/>
                 <MyButton variant="success" clicked={() => addPropHandler("address")} > <Icon.Plus  /></MyButton>
             </div>
             <div className={classes.View}>
-                <h5>Types:</h5>
+                <h5>Τύποι επιχείρησης:</h5>
                 {TypeOutput}
                 <hr/>
-                <input  className={classes.InputStyle} placeholder="type" onChange={ (event) => {updatePropValueHandler(event.target.value,"b_type","type") }}/>
+                <input  className={classes.InputStyle} placeholder="Τύπος" onChange={ (event) => {updatePropValueHandler(event.target.value,"b_type","type") }}/>
                 <br/><MyButton variant="success"  clicked={() => addPropHandler("type")}> <Icon.Plus  /></MyButton>
             </div> 
             <br/>

@@ -167,8 +167,6 @@ const Business_Info = (props) =>{
 const mapStateToProps = state => {
     return {
         businessSchedule: state.schedule.businessUserSchedule,
-       // businesRatingOfUser:state.rating.businesRatingOfUser,
-        //newRatingId:state.rating.newRatingId,
         userId:state.auth.userId,
     };
   };
@@ -176,8 +174,6 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
         OnFetchScheduleBusiness: (id)=> dispatch( actions.fetchUserScheduleBusiness(id) ),
-  //    OnFetchBusinesRatingOfUser: (businessId,userId)=> dispatch( actions.fetchBusinesRatingOfUser(businessId,userId) ),
-  //      OnUserAddRatingToBusiness: (rating)=> dispatch( actions.userAddRatingToBusiness(rating) ),
         OnUserUpdateRatingToBusiness: (rating,id)=> dispatch( actions.userUpdateRatingToBusiness(rating,id) ),
     };
   };

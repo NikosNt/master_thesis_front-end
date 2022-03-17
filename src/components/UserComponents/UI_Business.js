@@ -19,7 +19,7 @@ const UI_Business = (props) => {
                                 : <Rating  name="half-rating" defaultValue={props.business.rating} precision={0.1} readOnly  />} 
                         </div>                      
                         {/* <p>Διεύθυνση :</p> {addressOutput}            */}
-                        { props.business.ref === null ?
+                        { (props.business.ref === null || props.business.ref ==='' ) ?
                             <p> Δεν υπάρχει ιστοσελίδα διαθέσιμη</p>
                             :<p>Σύνδεσμος : <a href={props.business.ref} target="_blank" rel="noreferrer">  {props.business.ref} </a></p>
                         }

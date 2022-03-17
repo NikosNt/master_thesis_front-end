@@ -19,26 +19,26 @@ const NewModBusiness = (props) =>{
     return(
         <>
             <div className={classes.Title}>
-                <h1 > Create new Business or Service</h1>
-                <h5 style={{marginTop:"20px"}}>First step for creating your new Business / Service</h5>
-                <p>Add Business name, Information and your Reference Site </p>
+                <h1 >Δημιουργία νέας επιχείρησης ή υπηρεσίας</h1>
+                <h5 style={{marginTop:"20px"}}>Πρώτο βήμα για τη δημιουργία της νέας επιχείρησης / υπηρεσίας σας</h5>
+                <p>Προσθέστε το όνομα της επιχείρησης, τις πληροφορίες και τον ιστότοπο αναφοράς σας</p>
             </div>
             <div className={classes.Form}>
                 <br/>
                 <div className={classes.View}>
-                    <span>Business Name: </span>
+                    <span>Επωνυμία Επιχείρησης: </span>
                     <input style={{width:"70%"}}  onChange={ (event) =>{props.newModBusiness.business_name = event.target.value} } /> 
                 </div>
                 <div className={classes.View}>
-                    <p>Information: </p>   
+                    <p>Πληροφορίες: </p>   
                     <textarea style={{width:"100%",height:"130px"}} onChange={ (event) =>{props.newModBusiness.info = event.target.value} }/>  
                 </div>
                 <div className={classes.View}>
-                    <span>Reference Site: </span>
+                    <span>Ιστότοπος αναφοράς: </span>
                     <input style={{width:"70%"}} onChange={ (event) =>{props.newModBusiness.ref = event.target.value} } /> 
                 </div>
                 <br/>
-                <MyButton variant="success"  clicked={changeValueForm} > Create Business </MyButton>
+                <MyButton variant="success"  clicked={changeValueForm} > Δημιουργία επιχείρησης </MyButton>
             </div>
         </>
     )
